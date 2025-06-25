@@ -1,2 +1,3 @@
-package org.escaperoom.dao.mysql;public class EscapeRoomMySQLDAO {
+package org.escaperoom.dao.mysql;
+public class EscapeRoomMySQLDAO {
 }
