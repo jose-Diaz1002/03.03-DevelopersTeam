@@ -8,12 +8,16 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: escape_room_db_docker
-      MYSQL_USER: root
-      MYSQL_PASSWORD: ""
+      # Aquí NO pongas MYSQL_USER=root, para evitar conflictos
+      # Si quieres un usuario aparte, pon otro nombre, por ejemplo:
+      MYSQL_USER: escapeuser
+      MYSQL_PASSWORD: admin123
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+      # Si tienes script SQL para inicializar tablas:
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - escape-network
 
