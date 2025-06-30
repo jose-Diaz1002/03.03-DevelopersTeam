@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_escape_room
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: escape_room_db_docker
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ""
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - escape-network
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongo_escape_room
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - escape-network
+
+volumes:
+  mysql_data:
+  mongo_data:
+
+networks:
+  escape-network:
+    driver: bridge

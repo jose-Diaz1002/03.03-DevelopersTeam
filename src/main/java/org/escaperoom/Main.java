@@ -28,7 +28,6 @@ public class Main {
 
             switch (option) {
                 case "1":
-                    System.out.println("Función para crear ScapeRoom (a implementar)...");
                     break;
                 case "2":
                     System.out.println("Función para crear Room (a implementar)...");
