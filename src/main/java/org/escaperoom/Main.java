@@ -1,17 +1,50 @@
 package org.escaperoom;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import org.escaperoom.setup.DatabaseInitializer;
+
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            DatabaseInitializer.initializeDatabase();
+        } catch (Exception e) {
+            System.out.println("Error al inicializar la base de datos: " + e.getMessage());
+            return;
         }
+
+        boolean running = true;
+        while (running) {
+            System.out.println("===== MENU ESCAPE ROOM =====");
+            System.out.println("1. Crear nuevo ScapeRoom");
+            System.out.println("2. Crear nueva Room");
+            System.out.println("3. Crear nueva Clue");
+            System.out.println("0. Salir");
+            System.out.print("Elige una opción: ");
+            String option = sc.nextLine();
+
+            switch (option) {
+                case "1":
+                    System.out.println("Función para crear ScapeRoom (a implementar)...");
+                    break;
+                case "2":
+                    System.out.println("Función para crear Room (a implementar)...");
+                    break;
+                case "3":
+                    System.out.println("Función para crear Clue (a implementar)...");
+                    break;
+                case "0":
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
+        }
+
+        sc.close();
+
     }
 }

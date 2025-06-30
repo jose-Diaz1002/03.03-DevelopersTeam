@@ -1,17 +1,15 @@
 package org.escaperoom.model;
 
-import org.escaperoom.model.enums.DifficultyLevel;
-
-/**
- * Represents an Escape Room with its details.
- *
- */
-public class EscapeRoom {
+public class ScapeRoom {
 
     private int id;
     private String name;
 
-    public EscapeRoom(String name) {
+    public ScapeRoom() {
+    }
+
+    public ScapeRoom(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
@@ -29,5 +27,13 @@ public class EscapeRoom {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "EscapeRoom{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
