@@ -5,22 +5,22 @@ import org.escaperoom.model.enums.DifficultyLevel;
 public class Room {
 
     private int id;
-    private int scapeRoomId;
+    private int escape_room_id;
     private String name;
     private DifficultyLevel difficulty;
     private double price;
-    private int quantity;
+    private int quantity_available;
 
     public Room() {
     }
 
-    public Room(int id, int scapeRoomId, String name, DifficultyLevel difficulty, double price, int quantity) {
+    public Room(int id, int escape_room_id, String name, DifficultyLevel difficulty, double price, int quantity_available) {
         this.id = id;
-        this.scapeRoomId = scapeRoomId;
+        this.escape_room_id = escape_room_id;
         this.name = name;
         this.difficulty = difficulty;
         this.price = price;
-        this.quantity = quantity;
+        this.quantity_available = quantity_available;
     }
 
     public int getId() {
@@ -31,12 +31,12 @@ public class Room {
         this.id = id;
     }
 
-    public int getScapeRoomId() {
-        return scapeRoomId;
+    public int getEscape_room_id() {
+        return escape_room_id;
     }
 
-    public void setScapeRoomId(int scapeRoomId) {
-        this.scapeRoomId = scapeRoomId;
+    public void setEscape_room_id(int escape_room_id) {
+        this.escape_room_id = escape_room_id;
     }
 
     public String getName() {
@@ -63,23 +63,23 @@ public class Room {
         this.price = price;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getQuantity_available() {
+        return quantity_available;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantity_available(int quantity_available) {
+        this.quantity_available = quantity_available;
     }
 
     @Override
     public String toString() {
         return "Room{" +
                 "id=" + id +
-                ", scapeRoomId=" + scapeRoomId +
+                ", escape_room_id=" + escape_room_id +
                 ", name='" + name + '\'' +
                 ", difficulty=" + difficulty +
                 ", price=" + price +
-                ", quantity=" + quantity +
+                ", quantity_available=" + quantity_available +
                 '}';
     }
 }

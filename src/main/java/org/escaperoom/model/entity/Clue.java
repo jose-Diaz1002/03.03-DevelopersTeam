@@ -5,7 +5,7 @@ import org.escaperoom.model.enums.ClueTheme;
 public class Clue {
 
     private int id;
-    private int scapeRoomId;
+    private int room_id;
     private ClueTheme theme;
     private double price;
     private int quantity;
