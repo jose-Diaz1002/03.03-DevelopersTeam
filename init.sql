@@ -29,7 +29,7 @@ CREATE TABLE Room (
 CREATE TABLE Clue (
                       clue_id INT AUTO_INCREMENT PRIMARY KEY,
                       room_id INT NOT NULL, -- Cada pista pertenece a una sala específica
-                      theme VARCHAR(255) NOT NULL, -- Tema descriptivo de la pista
+                      theme ENUM('Mystery', 'Horror', 'Fantasy', 'Sci-Fi', 'Historical', 'Adventure') NOT NULL, -- Tema descriptivo de la pista como ENUM
                       price DECIMAL(8, 2) NOT NULL, -- Precio asociado a la pista (si se venden individualmente o tienen valor en inventario)
                       quantity_available INT NOT NULL DEFAULT 0, -- Cantidad disponible (útil para inventario)
                       FOREIGN KEY (room_id) REFERENCES Room(room_id)
