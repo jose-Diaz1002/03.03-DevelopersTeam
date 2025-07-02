@@ -8,17 +8,17 @@ public class Clue {
     private int room_id;
     private ClueTheme theme;
     private double price;
-    private int quantity;
+    private int quantity_available;
 
     public Clue() {
     }
 
-    public Clue(int id, int scapeRoomId, ClueTheme theme, double price, int quantity) {
+    public Clue(int id, int room_id, ClueTheme theme, double price, int quantity_available) {
         this.id = id;
-        this.scapeRoomId = scapeRoomId;
+        this.room_id = room_id;
         this.theme = theme;
         this.price = price;
-        this.quantity = quantity;
+        this.quantity_available = quantity_available;
     }
 
     public int getId() {
@@ -29,12 +29,12 @@ public class Clue {
         this.id = id;
     }
 
-    public int getScapeRoomId() {
-        return scapeRoomId;
+    public int getRoom_id() {
+        return room_id;
     }
 
-    public void setScapeRoomId(int scapeRoomId) {
-        this.scapeRoomId = scapeRoomId;
+    public void setRoom_id(int room_id) {
+        this.room_id = room_id;
     }
 
     public ClueTheme getTheme() {
@@ -53,22 +53,22 @@ public class Clue {
         this.price = price;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getQuantity_available() {
+        return quantity_available;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantity_available(int quantity_available) {
+        this.quantity_available = quantity_available;
     }
 
     @Override
     public String toString() {
         return "Clue{" +
                 "id=" + id +
-                ", scapeRoomId=" + scapeRoomId +
+                ", room_id=" + room_id +
                 ", theme=" + theme +
                 ", price=" + price +
-                ", quantity=" + quantity +
+                ", quantity_available=" + quantity_available +
                 '}';
     }
 }
