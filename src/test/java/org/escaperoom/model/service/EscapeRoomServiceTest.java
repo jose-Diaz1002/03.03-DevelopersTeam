@@ -1,4 +1,4 @@
 package org.escaperoom.model.service;
 
-public class NotificationService {
+public class EscapeRoomServiceTest {
 }
