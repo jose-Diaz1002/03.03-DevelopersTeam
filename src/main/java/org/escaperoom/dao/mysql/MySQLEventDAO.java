@@ -2,9 +2,7 @@ package org.escaperoom.dao.mysql;
 
 import org.escaperoom.dao.common.EventDAO;
 import org.escaperoom.database.MySQLConnection;
-import org.escaperoom.model.entity.Clue;
 import org.escaperoom.model.entity.Event;
-import org.escaperoom.model.enums.ClueTheme;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -31,8 +29,9 @@ public class MySQLEventDAO implements EventDAO {
         }
 
     }
+
     @Override
-    public Event read(int id) throws SQLException  {
+    public Event read(int id) throws SQLException {
         String sql = "SELECT * FROM Event WHERE id = ?";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -85,7 +84,7 @@ public class MySQLEventDAO implements EventDAO {
     @Override
     public void delete(int id) throws SQLException {
 
-        String sql = "DELETE FROM clue WHERE id = ?";
+        String sql = "DELETE FROM EscapeRoom WHERE id = ?";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);

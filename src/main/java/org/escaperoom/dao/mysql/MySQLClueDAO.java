@@ -4,6 +4,7 @@ import org.escaperoom.dao.common.ClueDAO;
 import org.escaperoom.database.MySQLConnection;
 import org.escaperoom.model.enums.ClueTheme;
 import org.escaperoom.model.entity.Clue;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,9 @@ public class MySQLClueDAO implements ClueDAO {
         }
 
     }
+
     @Override
-    public Clue read(int id) throws SQLException  {
+    public Clue read(int id) throws SQLException {
         String sql = "SELECT * FROM clue WHERE id = ?";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

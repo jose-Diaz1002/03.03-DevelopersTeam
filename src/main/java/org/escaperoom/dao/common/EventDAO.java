@@ -8,8 +8,12 @@ import java.util.List;
 
 public interface EventDAO {
     void create(Event event) throws SQLException;
+
     Event read(int id) throws SQLException;
+
     List<Event> readAll() throws SQLException;
+
     void update(Event event) throws SQLException;
+
     void delete(int id) throws SQLException;
 }

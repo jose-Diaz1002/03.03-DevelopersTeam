@@ -11,7 +11,7 @@ import java.util.List;
 public class MySQLAchievementDAO implements AchievementDAO {
     @Override
     public void create(Achievement achievement) {
-        String sql = "INSERT INTO Clue(player_id, room_id, description, achievement_date, reward_given) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Achievement (player_id, room_id, description, achievement_date, reward_given) VALUES (?, ?, ?, ?)";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 

@@ -31,8 +31,9 @@ public class MySQLRoomDAO implements RoomDAO {
         }
 
     }
+
     @Override
-    public Room read(int id) throws SQLException  {
+    public Room read(int id) throws SQLException {
         String sql = "SELECT * FROM Room WHERE id = ?";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

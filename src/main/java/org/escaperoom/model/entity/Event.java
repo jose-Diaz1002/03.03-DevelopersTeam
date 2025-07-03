@@ -3,10 +3,10 @@ package org.escaperoom.model.entity;
 import java.time.LocalDateTime;
 
 public class Event {
-private int id;
-private String event_type;
-private String event_description;
-private LocalDateTime event_date;
+    private int id;
+    private String event_type;
+    private String event_description;
+    private LocalDateTime event_date;
 
     public Event() {
     }

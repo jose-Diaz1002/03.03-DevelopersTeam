@@ -2,7 +2,6 @@ package org.escaperoom.dao.mysql;
 
 import org.escaperoom.dao.common.PlayerDAO;
 import org.escaperoom.database.MySQLConnection;
-import org.escaperoom.model.entity.EscapeRoom;
 import org.escaperoom.model.entity.Player;
 
 import java.sql.*;
@@ -12,7 +11,7 @@ import java.util.List;
 public class MySQLPlayerDAO implements PlayerDAO {
     @Override
     public void create(Player player) {
-        String sql = "INSERT INTO EscapeRoom(username,email) VALUES (?, ?)";
+        String sql = "INSERT INTO Player(username,email) VALUES (?, ?)";
 
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -28,8 +27,9 @@ public class MySQLPlayerDAO implements PlayerDAO {
         }
 
     }
+
     @Override
-    public Player read(int id) throws SQLException  {
+    public Player read(int id) throws SQLException {
         String sql = "SELECT * FROM Player WHERE id = ?";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
