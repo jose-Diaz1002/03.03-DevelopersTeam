@@ -3,18 +3,29 @@ package org.escaperoom.model.entity;
 public class EscapeRoom {
     private int id;
     private String name;
-    private double total_inventory_value;
-    private double total_ticket_sales;
+    private double totalInventoryValue;
+    private double totalTicketSales;
 
+    // Constructor vacío (recomendado)
     public EscapeRoom() {
     }
 
-    public EscapeRoom(int id, String name, double total_inventory_value, double total_ticket_sales) {
+    // Constructor para crear nuevos objetos (antes de insertar, sin id)
+    public EscapeRoom(String name, double totalInventoryValue, double totalTicketSales) {
+        this.name = name;
+        this.totalInventoryValue = totalInventoryValue;
+        this.totalTicketSales = totalTicketSales;
+    }
+
+    // Constructor para objetos ya existentes (con id)
+    public EscapeRoom(int id, String name, double totalInventoryValue, double totalTicketSales) {
         this.id = id;
         this.name = name;
-        this.total_inventory_value = total_inventory_value;
-        this.total_ticket_sales = total_ticket_sales;
+        this.totalInventoryValue = totalInventoryValue;
+        this.totalTicketSales = totalTicketSales;
     }
+
+    // Getters y setters
 
     public int getId() {
         return id;
@@ -32,20 +43,20 @@ public class EscapeRoom {
         this.name = name;
     }
 
-    public double getTotal_inventory_value() {
-        return total_inventory_value;
+    public double getTotalInventoryValue() {
+        return totalInventoryValue;
     }
 
-    public void setTotal_inventory_value(double total_inventory_value) {
-        this.total_inventory_value = total_inventory_value;
+    public void setTotalInventoryValue(double totalInventoryValue) {
+        this.totalInventoryValue = totalInventoryValue;
     }
 
-    public double getTotal_ticket_sales() {
-        return total_ticket_sales;
+    public double getTotalTicketSales() {
+        return totalTicketSales;
     }
 
-    public void setTotal_ticket_sales(double total_ticket_sales) {
-        this.total_ticket_sales = total_ticket_sales;
+    public void setTotalTicketSales(double totalTicketSales) {
+        this.totalTicketSales = totalTicketSales;
     }
 
     @Override
@@ -53,8 +64,8 @@ public class EscapeRoom {
         return "EscapeRoom{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", total_inventory_value=" + total_inventory_value +
-                ", total_ticket_sales=" + total_ticket_sales +
+                ", totalInventoryValue=" + totalInventoryValue +
+                ", totalTicketSales=" + totalTicketSales +
                 '}';
     }
 }

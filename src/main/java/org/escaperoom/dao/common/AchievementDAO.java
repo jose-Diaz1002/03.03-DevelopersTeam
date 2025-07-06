@@ -1,4 +1,4 @@
 package org.escaperoom.dao.common;
 
-public class AchievementDAO {
+public interface AchievementDAO {
 }
