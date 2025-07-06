@@ -1,4 +1,8 @@
 package org.escaperoom.dao.common;
 
-public class ClueDAO {
+public interface ClueDAO {
+
+    //crear un clue
+
+
 }

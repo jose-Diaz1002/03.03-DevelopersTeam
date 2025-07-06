@@ -1,4 +1,8 @@
 package org.escaperoom.dao.mysql;
 
-public class MySQLClueDAO {
+import org.escaperoom.dao.common.ClueDAO;
+
+public class MySQLClueDAO  implements ClueDAO {
+
+
 }

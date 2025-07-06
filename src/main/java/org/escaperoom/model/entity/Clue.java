@@ -13,12 +13,12 @@ public class Clue {
     public Clue() {
     }
 
-    public Clue(int id, int scapeRoomId, ClueTheme theme, double price, int quantity) {
+    public Clue(int id, int room_id, ClueTheme theme, double price, int quantity) {
         this.id = id;
-        this.scapeRoomId = scapeRoomId;
         this.theme = theme;
         this.price = price;
         this.quantity = quantity;
+        this.room_id = room_id;
     }
 
     public int getId() {
@@ -30,11 +30,11 @@ public class Clue {
     }
 
     public int getScapeRoomId() {
-        return scapeRoomId;
+        return room_id;
     }
 
     public void setScapeRoomId(int scapeRoomId) {
-        this.scapeRoomId = scapeRoomId;
+        this.room_id = room_id;
     }
 
     public ClueTheme getTheme() {
@@ -65,7 +65,7 @@ public class Clue {
     public String toString() {
         return "Clue{" +
                 "id=" + id +
-                ", scapeRoomId=" + scapeRoomId +
+                ", scapeRoomId=" + room_id +
                 ", theme=" + theme +
                 ", price=" + price +
                 ", quantity=" + quantity +
