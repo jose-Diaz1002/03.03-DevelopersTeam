@@ -1,5 +1,6 @@
 package org.escaperoom.dao.common;
 
+<<<<<<< HEAD
 import org.escaperoom.model.entity.EscapeRoom;
 
 import java.sql.SQLException;
@@ -16,4 +17,7 @@ public interface EscapeRoomDAO {
     void update(EscapeRoom escapeRoom) throws SQLException;
 
     void delete(int id) throws SQLException;
+=======
+public interface EscapeRoomDAO {
+>>>>>>> origin/main
 }

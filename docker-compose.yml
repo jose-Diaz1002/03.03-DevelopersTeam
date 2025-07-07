@@ -1,40 +1,64 @@
-version: "3.8"
-
 services:
-
-  mysql:
+  mysql_db:
     image: mysql:8.0
-    container_name: mysql_escape_room
+    container_name: mysql_container
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: escape_room_db_docker
-      # Aquí NO pongas MYSQL_USER=root, para evitar conflictos
-      # Si quieres un usuario aparte, pon otro nombre, por ejemplo:
-      MYSQL_USER: escapeuser
-      MYSQL_PASSWORD: admin123
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: escaperoom_db
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      # Si tienes script SQL para inicializar tablas:
-      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - escape-network
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Inicialización de MySQL
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_password"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
 
-  mongo:
-    image: mongo:6.0
-    container_name: mongo_escape_room
+  mongo_db:
+    image: mongo:latest
+    container_name: mongo_container
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root_password
+      MONGO_INITDB_DATABASE: escaperoom_logs_db
     ports:
       - "27018:27017"
     volumes:
       - mongo_data:/data/db
-    networks:
-      - escape-network
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js  # <-- Esta línea importa tu script JS
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'db.runCommand({ ping: 1 }).ok' | mongosh localhost:27017/escaperoom_logs_db --quiet"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  java_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: java_app_container
+    restart: unless-stopped
+    depends_on:
+      mysql_db:
+        condition: service_healthy
+      mongo_db:
+        condition: service_healthy
+    ports:
+      - "8081:8080"
+    environment:
+      MYSQL_HOST: mysql_db
+      MYSQL_PORT: 3306
+      MYSQL_DB: escaperoom_db
+      MYSQL_USER: root
+      MYSQL_PASS: root_password
+      MONGO_HOST: mongo_db
+      MONGO_PORT: 27017
+      MONGO_DB: escaperoom_logs_db
 
 volumes:
   mysql_data:
   mongo_data:
-
-networks:
-  escape-network:
-    driver: bridge

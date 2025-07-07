@@ -2,7 +2,11 @@ package org.escaperoom.model.entity;
 
 public class Decoration {
     private int id;
+<<<<<<< HEAD
     private int room_id;
+=======
+    private EscapeRoom escapeRoom_id;
+>>>>>>> origin/main
     private String name;
     private String material_type;
     private double price;
@@ -10,6 +14,7 @@ public class Decoration {
 
     public Decoration() {
     }
+<<<<<<< HEAD
 
     public Decoration(int id, int room_id, String name, String material_type, double price, int quantity_available) {
         this.id = id;
@@ -79,4 +84,6 @@ public class Decoration {
                 ", quantity_available=" + quantity_available +
                 '}';
     }
+=======
+>>>>>>> origin/main
 }

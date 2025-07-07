@@ -1,5 +1,6 @@
 package org.escaperoom.dao.common;
 
+<<<<<<< HEAD
 import org.escaperoom.model.entity.Clue;
 import org.escaperoom.model.entity.Event;
 
@@ -16,4 +17,7 @@ public interface EventDAO {
     void update(Event event) throws SQLException;
 
     void delete(int id) throws SQLException;
+=======
+public interface EventDAO {
+>>>>>>> origin/main
 }
