@@ -14,6 +14,11 @@ public class Player {
         this.email = email;
     }
 
+    public Player(String username, String email) {
+        this.username = username;
+        this.email = email;
+    }
+
     public int getId() {
         return id;
     }
@@ -40,10 +45,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+       return String.format("Player{id=%d, username='%s', email='%s'}", id, username, email);
     }
 }

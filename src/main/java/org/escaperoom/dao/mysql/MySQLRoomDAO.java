@@ -12,12 +12,12 @@ import java.util.List;
 public class MySQLRoomDAO implements RoomDAO {
     @Override
     public void create(Room room) {
-        String sql = "INSERT INTO room(escape_room_id, name, difficulty, price, quantity_available) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Room (escape_room_id, name, difficulty, price, quantity_available) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, room.getEscape_room_id());
+            pstmt.setInt(1, room.getEscapeRoomId());
             pstmt.setString(2, room.getName());
             pstmt.setString(3, room.getDifficulty().name());
             pstmt.setDouble(4, room.getPrice());

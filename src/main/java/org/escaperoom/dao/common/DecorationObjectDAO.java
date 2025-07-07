@@ -16,7 +16,4 @@ public interface DecorationObjectDAO {
     void update(Decoration decoration) throws SQLException;
 
     void delete(int id) throws SQLException;
-=======
-public interface DecorationObjectDAO {
->>>>>>> origin/main
 }
