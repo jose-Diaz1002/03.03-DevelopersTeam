@@ -8,7 +8,7 @@ public class Clue {
     private int room_id;
     private ClueTheme theme;
     private double price;
-    private int quantity;
+    private int  quantity_available;
 
     public Clue() {
     }
