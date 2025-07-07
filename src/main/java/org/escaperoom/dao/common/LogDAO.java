@@ -1,4 +1,4 @@
 package org.escaperoom.dao.common;
 
-public class LogDAO {
+public interface LogDAO {
 }

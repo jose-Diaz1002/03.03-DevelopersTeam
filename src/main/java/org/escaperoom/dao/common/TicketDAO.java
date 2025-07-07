@@ -1,4 +1,4 @@
 package org.escaperoom.dao.common;
 
-public class TicketDAO {
+public interface TicketDAO {
 }
