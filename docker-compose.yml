@@ -4,15 +4,15 @@ services:
     container_name: mysql_container
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root123    # ← ESTA ES LA CONTRASEÑA
-      MYSQL_DATABASE: escaperoom_db
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: virtual_escaperoom_db     # base que creas con el script, debe coincidir con el SQL
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Inicialización de MySQL
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # monta tu script para inicializar la BD
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_password"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot123"]
       interval: 5s
       timeout: 10s
       retries: 5
@@ -29,7 +29,7 @@ services:
       - "27018:27017"
     volumes:
       - mongo_data:/data/db
-      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js  # <-- Esta línea importa tu script JS
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
     healthcheck:
       test: ["CMD-SHELL", "echo 'db.runCommand({ ping: 1 }).ok' | mongosh localhost:27017/escaperoom_logs_db --quiet"]
       interval: 5s
@@ -52,9 +52,9 @@ services:
     environment:
       MYSQL_HOST: mysql_db
       MYSQL_PORT: 3306
-      MYSQL_DB: escaperoom_db
+      MYSQL_DB: virtual_escaperoom_db
       MYSQL_USER: root
-      MYSQL_PASS: root123         # ✅ Contraseña correcta
+      MYSQL_PASS: root123
       MONGO_HOST: mongo_db
       MONGO_PORT: 27017
       MONGO_DB: escaperoom_logs_db

@@ -1,7 +1,7 @@
 package org.escaperoom.dao.mysql;
 
 import org.escaperoom.dao.common.ClueDAO;
-<<<<<<< HEAD
+
 import org.escaperoom.database.MySQLConnection;
 import org.escaperoom.model.enums.ClueTheme;
 import org.escaperoom.model.entity.Clue;
