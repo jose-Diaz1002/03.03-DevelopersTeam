@@ -1,6 +1,6 @@
 -- Creación de la Base de Datos
-CREATE DATABASE IF NOT EXISTS virtual_escape_room_db;
-USE virtual_escape_room_db;
+CREATE DATABASE IF NOT EXISTS escaperoom_db;
+USE escaperoom_db;
 
 -- Tabla: EscapeRoom
 -- Representa la instancia principal del Escape Room virtual con sus valores globales.

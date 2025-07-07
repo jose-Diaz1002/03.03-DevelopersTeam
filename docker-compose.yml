@@ -4,7 +4,7 @@ services:
     container_name: mysql_container
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_ROOT_PASSWORD: root123    # ← ESTA ES LA CONTRASEÑA
       MYSQL_DATABASE: escaperoom_db
     ports:
       - "3306:3306"
@@ -54,7 +54,7 @@ services:
       MYSQL_PORT: 3306
       MYSQL_DB: escaperoom_db
       MYSQL_USER: root
-      MYSQL_PASS: root_password
+      MYSQL_PASS: root123         # ✅ Contraseña correcta
       MONGO_HOST: mongo_db
       MONGO_PORT: 27017
       MONGO_DB: escaperoom_logs_db

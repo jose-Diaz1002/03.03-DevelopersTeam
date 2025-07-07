@@ -25,9 +25,28 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <environmentVariables>
+            <MYSQL_HOST>mysql_db</MYSQL_HOST>
+            <MYSQL_PORT>3306</MYSQL_PORT>
+            <MYSQL_DB>escaperoom_db</MYSQL_DB>
+            <MYSQL_USER>root</MYSQL_USER>
+            <MYSQL_PASS>root_password</MYSQL_PASS>
+          </environmentVariables>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
   <dependencies>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.33</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
