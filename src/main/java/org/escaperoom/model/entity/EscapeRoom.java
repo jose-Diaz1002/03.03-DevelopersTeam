@@ -8,26 +8,21 @@ public class EscapeRoom {
     private BigDecimal totalInventoryValue;
     private BigDecimal totalTicketSales;
 
-    // Constructor vacío (recomendado para frameworks o reflexión)
     public EscapeRoom() {
     }
 
-    // Constructor sin id (para insertar nuevos registros)
     public EscapeRoom(String name, BigDecimal totalInventoryValue, BigDecimal totalTicketSales) {
         this.name = name;
         this.totalInventoryValue = totalInventoryValue;
         this.totalTicketSales = totalTicketSales;
     }
 
-    // Constructor con id (para instancias ya existentes en BD)
     public EscapeRoom(int id, String name, BigDecimal totalInventoryValue, BigDecimal totalTicketSales) {
         this.id = id;
         this.name = name;
         this.totalInventoryValue = totalInventoryValue;
         this.totalTicketSales = totalTicketSales;
     }
-
-    // Getters y Setters
 
     public int getId() {
         return id;

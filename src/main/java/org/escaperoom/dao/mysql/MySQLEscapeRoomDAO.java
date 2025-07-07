@@ -17,8 +17,8 @@ public class MySQLEscapeRoomDAO implements EscapeRoomDAO {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, escapeRoom.getName());
-            pstmt.setDouble(2, escapeRoom.getTotal_inventory_value());
-            pstmt.setDouble(3, escapeRoom.getTotal_ticket_sales());
+            pstmt.setDouble(2, escapeRoom.getTotalInventoryValue());
+            pstmt.setDouble(3, escapeRoom.getTotalTicketSales());
             pstmt.executeUpdate();
 
             System.out.println("EscapeRoom insertado correctamente.");
@@ -74,8 +74,8 @@ public class MySQLEscapeRoomDAO implements EscapeRoomDAO {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, escapeRoom.getName());
-            ps.setDouble(2, escapeRoom.getTotal_inventory_value());
-            ps.setDouble(3, escapeRoom.getTotal_ticket_sales());
+            ps.setDouble(2, escapeRoom.getTotalInventoryValue());
+            ps.setDouble(3, escapeRoom.getTotalTicketSales());
             ps.setInt(4, escapeRoom.getId());
             ps.executeUpdate();
         }

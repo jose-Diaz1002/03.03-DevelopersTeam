@@ -2,23 +2,38 @@ package org.escaperoom.model.entity;
 
 import org.escaperoom.model.enums.ClueTheme;
 
+import java.math.BigDecimal;
+
 public class Clue {
 
     private int id;
+<<<<<<< HEAD
     private int room_id;
     private ClueTheme theme;
     private double price;
+=======
+    private int roomId;
+    private ClueTheme theme;
+    private BigDecimal price;
+>>>>>>> c3d6979 (feat: cambios en entity)
     private int  quantity;
 
     public Clue() {
     }
 
-    public Clue(int id, int room_id, ClueTheme theme, double price, int quantity) {
+    public Clue(int roomId, ClueTheme theme, BigDecimal price, int quantity) {
+        this.roomId = roomId;
+        this.theme = theme;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public Clue(int id, int roomId, ClueTheme theme, double price, int quantity) {
         this.id = id;
         this.theme = theme;
         this.price = price;
         this.quantity = quantity;
-        this.room_id = room_id;
+        this.roomId = roomId;
     }
 
     public int getId() {
@@ -29,12 +44,12 @@ public class Clue {
         this.id = id;
     }
 
-    public int getScapeRoomId() {
-        return room_id;
+    public int getRoomId() {
+        return roomId;
     }
 
-    public void setScapeRoomId(int scapeRoomId) {
-        this.room_id = room_id;
+    public void setRoomId(int scapeRoomId) {
+        this.roomId = roomId;
     }
 
     public ClueTheme getTheme() {
@@ -65,7 +80,7 @@ public class Clue {
     public String toString() {
         return "Clue{" +
                 "id=" + id +
-                ", scapeRoomId=" + room_id +
+                ", scapeRoomId=" + roomId +
                 ", theme=" + theme +
                 ", price=" + price +
                 ", quantity=" + quantity +

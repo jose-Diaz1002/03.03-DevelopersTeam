@@ -1,6 +1,5 @@
 package org.escaperoom.dao.common;
 
-<<<<<<< HEAD
 import org.escaperoom.model.entity.Clue;
 
 import java.sql.SQLException;
@@ -16,11 +15,5 @@ public interface ClueDAO {
     void update(Clue clue) throws SQLException;
 
     void delete(int id) throws SQLException;
-=======
-public interface ClueDAO {
 
-    //crear un clue
-
-
->>>>>>> origin/main
 }

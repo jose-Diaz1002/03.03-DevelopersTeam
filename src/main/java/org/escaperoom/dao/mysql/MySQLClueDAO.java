@@ -18,10 +18,10 @@ public class MySQLClueDAO implements ClueDAO {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, clue.getRoom_id());
+            pstmt.setInt(1, clue.getRoomId());
             pstmt.setString(2, clue.getTheme().name());
             pstmt.setDouble(3, clue.getPrice());
-            pstmt.setInt(4, clue.getQuantity_available());
+            pstmt.setInt(4, clue.getQuantity());
             pstmt.executeUpdate();
 
             System.out.println("Clue insertado correctamente.");
@@ -78,10 +78,10 @@ public class MySQLClueDAO implements ClueDAO {
         String sql = "UPDATE Clue SET room_id = ?, theme = ?, price = ?, quantity = ? WHERE id = ?";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, clue.getRoom_id());
+            ps.setInt(1, clue.getRoomId());
             ps.setString(2, clue.getTheme().name());
             ps.setDouble(3, clue.getPrice());
-            ps.setInt(4, clue.getQuantity_available());
+            ps.setInt(4, clue.getQuantity());
             ps.setInt(5, clue.getId());
             ps.executeUpdate();
         }
@@ -98,10 +98,5 @@ public class MySQLClueDAO implements ClueDAO {
         }
 
     }
-=======
 
-public class MySQLClueDAO  implements ClueDAO {
-
-
->>>>>>> origin/main
 }

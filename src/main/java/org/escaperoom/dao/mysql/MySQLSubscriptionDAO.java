@@ -16,8 +16,8 @@ public class MySQLSubscriptionDAO implements SubscriptionDAO {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, subscription.getPlayer_id());
-            pstmt.setString(2, subscription.getEvent_type_subscribed());
+            pstmt.setInt(1, subscription.getPlayerId());
+            pstmt.setString(2, subscription.getEventTypeSubscribed());
             pstmt.executeUpdate();
 
             System.out.println("Subscription insertado correctamente.");
@@ -70,8 +70,8 @@ public class MySQLSubscriptionDAO implements SubscriptionDAO {
         String sql = "UPDATE Subscription SET player_id = ?, event_type_subscribed = ? WHERE id = ?";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, subscription.getPlayer_id());
-            ps.setString(2, subscription.getEvent_type_subscribed());
+            ps.setInt(1, subscription.getPlayerId());
+            ps.setString(2, subscription.getEventTypeSubscribed());
             ps.executeUpdate();
         }
     }

@@ -2,16 +2,16 @@ package org.escaperoom.model.entity;
 
 public class Subscription {
     private int id;
-    private int player_id;
-    private String event_type_subscribed;
+    private int playerId;
+    private String eventTypeSubscribed;
 
     public Subscription() {
     }
 
-    public Subscription(int id, int player_id, String event_type_subscribed) {
+    public Subscription(int id, int playerId, String eventTypeSubscribed) {
         this.id = id;
-        this.player_id = player_id;
-        this.event_type_subscribed = event_type_subscribed;
+        this.playerId = playerId;
+        this.eventTypeSubscribed = eventTypeSubscribed;
     }
 
     public int getId() {
@@ -22,28 +22,28 @@ public class Subscription {
         this.id = id;
     }
 
-    public int getPlayer_id() {
-        return player_id;
+    public int getPlayerId() {
+        return playerId;
     }
 
-    public void setPlayer_id(int player_id) {
-        this.player_id = player_id;
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
     }
 
-    public String getEvent_type_subscribed() {
-        return event_type_subscribed;
+    public String getEventTypeSubscribed() {
+        return eventTypeSubscribed;
     }
 
-    public void setEvent_type_subscribed(String event_type_subscribed) {
-        this.event_type_subscribed = event_type_subscribed;
+    public void setEventTypeSubscribed(String eventTypeSubscribed) {
+        this.eventTypeSubscribed = eventTypeSubscribed;
     }
 
     @Override
     public String toString() {
         return "Subscription{" +
                 "id=" + id +
-                ", player_id=" + player_id +
-                ", event_type_subscribed='" + event_type_subscribed + '\'' +
+                ", player_id=" + playerId +
+                ", event_type_subscribed='" + eventTypeSubscribed + '\'' +
                 '}';
     }
 }

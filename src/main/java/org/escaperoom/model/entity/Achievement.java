@@ -4,22 +4,30 @@ import java.time.LocalDateTime;
 
 public class Achievement {
     private int id;
-    private int player_id;
-    private int room_id;
+    private int playerId;
+    private int roomId;
     private String description;
-    private LocalDateTime achievement_date;
-    private boolean reward_given;
+    private LocalDateTime achievementDate;
+    private boolean rewardGiven;
 
     public Achievement() {
     }
 
-    public Achievement(int id, int player_id, int room_id, String description, LocalDateTime achievement_date, boolean reward_given) {
+    public Achievement(int id, int playerId, int roomId, String description, LocalDateTime achievementDate, boolean rewardGiven) {
         this.id = id;
-        this.player_id = player_id;
-        this.room_id = room_id;
+        this.playerId = playerId;
+        this.roomId = roomId;
         this.description = description;
-        this.achievement_date = achievement_date;
-        this.reward_given = reward_given;
+        this.achievementDate = achievementDate;
+        this.rewardGiven = rewardGiven;
+    }
+
+    public Achievement(int playerId, int roomId, String description, LocalDateTime achievementDate, boolean rewardGiven) {
+        this.playerId = playerId;
+        this.roomId = roomId;
+        this.description = description;
+        this.achievementDate = achievementDate;
+        this.rewardGiven = rewardGiven;
     }
 
     public int getId() {
@@ -30,20 +38,20 @@ public class Achievement {
         this.id = id;
     }
 
-    public int getPlayer_id() {
-        return player_id;
+    public int getPlayerId() {
+        return playerId;
     }
 
-    public void setPlayer_id(int player_id) {
-        this.player_id = player_id;
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
     }
 
-    public int getRoom_id() {
-        return room_id;
+    public int getRoomId() {
+        return roomId;
     }
 
-    public void setRoom_id(int room_id) {
-        this.room_id = room_id;
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
     public String getDescription() {
@@ -54,31 +62,31 @@ public class Achievement {
         this.description = description;
     }
 
-    public LocalDateTime getAchievement_date() {
-        return achievement_date;
+    public LocalDateTime getAchievementDate() {
+        return achievementDate;
     }
 
-    public void setAchievement_date(LocalDateTime achievement_date) {
-        this.achievement_date = achievement_date;
+    public void setAchievementDate(LocalDateTime achievementDate) {
+        this.achievementDate = achievementDate;
     }
 
-    public boolean isReward_given() {
-        return reward_given;
+    public boolean isRewardGiven() {
+        return rewardGiven;
     }
 
-    public void setReward_given(boolean reward_given) {
-        this.reward_given = reward_given;
+    public void setRewardGiven(boolean rewardGiven) {
+        this.rewardGiven = rewardGiven;
     }
 
     @Override
     public String toString() {
         return "Achievement{" +
                 "id=" + id +
-                ", player_id=" + player_id +
-                ", room_id=" + room_id +
+                ", playerId=" + playerId +
+                ", roomId=" + roomId +
                 ", description='" + description + '\'' +
-                ", achievement_date=" + achievement_date +
-                ", reward_given=" + reward_given +
+                ", achievementDate=" + achievementDate +
+                ", rewardGiven=" + rewardGiven +
                 '}';
     }
 }

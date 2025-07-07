@@ -1,6 +1,5 @@
 package org.escaperoom.dao.common;
 
-<<<<<<< HEAD
 import org.escaperoom.model.entity.Achievement;
 
 import java.sql.SQLException;
@@ -16,7 +15,4 @@ public interface AchievementDAO {
     void update(Achievement achievement) throws SQLException;
 
     void delete(int id) throws SQLException;
-=======
-public interface AchievementDAO {
->>>>>>> origin/main
 }

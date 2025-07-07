@@ -4,18 +4,18 @@ import java.time.LocalDateTime;
 
 public class Event {
     private int id;
-    private String event_type;
-    private String event_description;
-    private LocalDateTime event_date;
+    private String eventType;
+    private String eventDescription;
+    private LocalDateTime eventDate;
 
     public Event() {
     }
 
-    public Event(int id, String event_type, String event_description, LocalDateTime event_date) {
+    public Event(int id, String eventType, String eventDescription, LocalDateTime eventDate) {
         this.id = id;
-        this.event_type = event_type;
-        this.event_description = event_description;
-        this.event_date = event_date;
+        this.eventType = eventType;
+        this.eventDescription = eventDescription;
+        this.eventDate = eventDate;
     }
 
     public int getId() {
@@ -26,37 +26,37 @@ public class Event {
         this.id = id;
     }
 
-    public String getEvent_type() {
-        return event_type;
+    public String getEventType() {
+        return eventType;
     }
 
-    public void setEvent_type(String event_type) {
-        this.event_type = event_type;
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
     }
 
-    public String getEvent_description() {
-        return event_description;
+    public String getEventDescription() {
+        return eventDescription;
     }
 
-    public void setEvent_description(String event_description) {
-        this.event_description = event_description;
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
     }
 
-    public LocalDateTime getEvent_date() {
-        return event_date;
+    public LocalDateTime getEventDate() {
+        return eventDate;
     }
 
-    public void setEvent_date(LocalDateTime event_date) {
-        this.event_date = event_date;
+    public void setEventDate(LocalDateTime eventDate) {
+        this.eventDate = eventDate;
     }
 
     @Override
     public String toString() {
         return "Event{" +
                 "id=" + id +
-                ", event_type='" + event_type + '\'' +
-                ", event_description='" + event_description + '\'' +
-                ", event_date=" + event_date +
+                ", event_type='" + eventType + '\'' +
+                ", event_description='" + eventDescription + '\'' +
+                ", event_date=" + eventDate +
                 '}';
     }
 }

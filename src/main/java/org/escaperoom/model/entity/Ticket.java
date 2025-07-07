@@ -14,20 +14,20 @@ public class Ticket {
      */
 
     private int id;
-    private Integer room_id;
-    private Integer player_id;
-    private LocalDateTime purchase_date;
-    private Double total_amount;
+    private Integer roomId;
+    private Integer playerId;
+    private LocalDateTime purchaseDate;
+    private Double totalAmount;
 
     public Ticket() {
     }
 
-    public Ticket(int id, Integer room_id, Integer player_id, LocalDateTime purchase_date, Double total_amount) {
+    public Ticket(int id, Integer roomId, Integer playerId, LocalDateTime purchaseDate, Double totalAmount) {
         this.id = id;
-        this.room_id = room_id;
-        this.player_id = player_id;
-        this.purchase_date = purchase_date;
-        this.total_amount = total_amount;
+        this.roomId = roomId;
+        this.playerId = playerId;
+        this.purchaseDate = purchaseDate;
+        this.totalAmount = totalAmount;
     }
 
     public int getId() {
@@ -38,46 +38,46 @@ public class Ticket {
         this.id = id;
     }
 
-    public Integer getRoom_id() {
-        return room_id;
+    public Integer getRoomId() {
+        return roomId;
     }
 
-    public void setRoom_id(Integer room_id) {
-        this.room_id = room_id;
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
     }
 
-    public Integer getPlayer_id() {
-        return player_id;
+    public Integer getPlayerId() {
+        return playerId;
     }
 
-    public void setPlayer_id(Integer player_id) {
-        this.player_id = player_id;
+    public void setPlayerId(Integer playerId) {
+        this.playerId = playerId;
     }
 
-    public LocalDateTime getPurchase_date() {
-        return purchase_date;
+    public LocalDateTime getPurchaseDate() {
+        return purchaseDate;
     }
 
-    public void setPurchase_date(LocalDateTime purchase_date) {
-        this.purchase_date = purchase_date;
+    public void setPurchaseDate(LocalDateTime purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 
-    public Double getTotal_amount() {
-        return total_amount;
+    public Double getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setTotal_amount(Double total_amount) {
-        this.total_amount = total_amount;
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     @Override
     public String toString() {
         return "Ticket{" +
                 "id=" + id +
-                ", room_id=" + room_id +
-                ", player_id=" + player_id +
-                ", purchase_date=" + purchase_date +
-                ", total_amount=" + total_amount +
+                ", room_id=" + roomId +
+                ", player_id=" + playerId +
+                ", purchase_date=" + purchaseDate +
+                ", total_amount=" + totalAmount +
                 '}';
     }
 }

@@ -2,27 +2,24 @@ package org.escaperoom.model.entity;
 
 public class Decoration {
     private int id;
-<<<<<<< HEAD
-    private int room_id;
-=======
+    private int roomId;
     private EscapeRoom escapeRoom_id;
->>>>>>> origin/main
     private String name;
-    private String material_type;
+    private String materialType;
     private double price;
-    private int quantity_available;
+    private int quantity;
 
     public Decoration() {
     }
-<<<<<<< HEAD
 
-    public Decoration(int id, int room_id, String name, String material_type, double price, int quantity_available) {
+
+    public Decoration(int id, int roomId, String name, String materialType, double price, int quantity) {
         this.id = id;
-        this.room_id = room_id;
+        this.roomId = roomId;
         this.name = name;
-        this.material_type = material_type;
+        this.materialType = materialType;
         this.price = price;
-        this.quantity_available = quantity_available;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -33,12 +30,12 @@ public class Decoration {
         this.id = id;
     }
 
-    public int getRoom_id() {
-        return room_id;
+    public int getRoomId() {
+        return roomId;
     }
 
-    public void setRoom_id(int room_id) {
-        this.room_id = room_id;
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
     public String getName() {
@@ -49,12 +46,12 @@ public class Decoration {
         this.name = name;
     }
 
-    public String getMaterial_type() {
-        return material_type;
+    public String getMaterialType() {
+        return materialType;
     }
 
-    public void setMaterial_type(String material_type) {
-        this.material_type = material_type;
+    public void setMaterialType(String materialType) {
+        this.materialType = materialType;
     }
 
     public double getPrice() {
@@ -65,25 +62,23 @@ public class Decoration {
         this.price = price;
     }
 
-    public int getQuantity_available() {
-        return quantity_available;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuantity_available(int quantity_available) {
-        this.quantity_available = quantity_available;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
         return "Decoration{" +
                 "id=" + id +
-                ", room_id=" + room_id +
+                ", room_id=" + roomId +
                 ", name='" + name + '\'' +
-                ", material_type='" + material_type + '\'' +
+                ", material_type='" + materialType + '\'' +
                 ", price=" + price +
-                ", quantity_available=" + quantity_available +
+                ", quantity_available=" + quantity +
                 '}';
     }
-=======
->>>>>>> origin/main
 }

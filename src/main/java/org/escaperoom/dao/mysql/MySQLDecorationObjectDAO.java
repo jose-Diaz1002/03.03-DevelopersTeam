@@ -17,11 +17,11 @@ public class MySQLDecorationObjectDAO implements DecorationObjectDAO {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, decoration.getRoom_id());
+            pstmt.setInt(1, decoration.getRoomId());
             pstmt.setString(2, decoration.getName());
-            pstmt.setString(3, decoration.getMaterial_type());
+            pstmt.setString(3, decoration.getMaterialType());
             pstmt.setDouble(4, decoration.getPrice());
-            pstmt.setInt(5, decoration.getQuantity_available());
+            pstmt.setInt(5, decoration.getQuantity());
             pstmt.executeUpdate();
 
             System.out.println("decoration insertado correctamente.");
@@ -79,11 +79,11 @@ public class MySQLDecorationObjectDAO implements DecorationObjectDAO {
         String sql = "UPDATE Decoration SET room_id= ?, name= ?, material_type= ?, price= ?, quantity_available= ? WHERE id = ?";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, decoration.getRoom_id());
+            ps.setInt(1, decoration.getRoomId());
             ps.setString(2, decoration.getName());
-            ps.setString(3, decoration.getMaterial_type());
+            ps.setString(3, decoration.getMaterialType());
             ps.setDouble(4, decoration.getPrice());
-            ps.setInt(5, decoration.getQuantity_available());
+            ps.setInt(5, decoration.getQuantity());
             ps.executeUpdate();
         }
     }

@@ -15,11 +15,11 @@ public class MySQLAchievementDAO implements AchievementDAO {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, achievement.getPlayer_id());
-            pstmt.setInt(2, achievement.getRoom_id());
+            pstmt.setInt(1, achievement.getPlayerId());
+            pstmt.setInt(2, achievement.getRoomId());
             pstmt.setString(3, achievement.getDescription());
-            pstmt.setTimestamp(4, Timestamp.valueOf(achievement.getAchievement_date()));
-            pstmt.setBoolean(5, achievement.isReward_given());
+            pstmt.setTimestamp(4, Timestamp.valueOf(achievement.getAchievementDate()));
+            pstmt.setBoolean(5, achievement.isRewardGiven());
 
             System.out.println("Achievement insertado correctamente.");
 
@@ -77,11 +77,11 @@ public class MySQLAchievementDAO implements AchievementDAO {
         String sql = "UPDATE Achievement SET player_id= ?, room_id= ?, description= ?, achievement_date= ?, reward_given= ? WHERE id = ?";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, achievement.getPlayer_id());
-            ps.setInt(2, achievement.getRoom_id());
+            ps.setInt(1, achievement.getPlayerId());
+            ps.setInt(2, achievement.getRoomId());
             ps.setString(3, achievement.getDescription());
-            ps.setTimestamp(4, Timestamp.valueOf(achievement.getAchievement_date()));
-            ps.setBoolean(5, achievement.isReward_given());
+            ps.setTimestamp(4, Timestamp.valueOf(achievement.getAchievementDate()));
+            ps.setBoolean(5, achievement.isRewardGiven());
         }
     }
 

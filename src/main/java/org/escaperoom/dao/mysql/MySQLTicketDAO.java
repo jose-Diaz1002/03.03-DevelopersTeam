@@ -15,10 +15,10 @@ public class MySQLTicketDAO implements TicketDAO {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, ticket.getRoom_id());
-            pstmt.setInt(2, ticket.getPlayer_id());
-            pstmt.setTimestamp(3, Timestamp.valueOf(ticket.getPurchase_date()));
-            pstmt.setDouble(4, ticket.getTotal_amount());
+            pstmt.setInt(1, ticket.getRoomId());
+            pstmt.setInt(2, ticket.getPlayerId());
+            pstmt.setTimestamp(3, Timestamp.valueOf(ticket.getPurchaseDate()));
+            pstmt.setDouble(4, ticket.getTotalAmount());
 
             System.out.println("Ticket insertado correctamente.");
 
@@ -74,10 +74,10 @@ public class MySQLTicketDAO implements TicketDAO {
         String sql = "UPDATE Ticket SET room_id = ?, player_id = ?, purchase_date = ?, total_amount = ? WHERE id = ?";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, ticket.getRoom_id());
-            ps.setInt(2, ticket.getPlayer_id());
-            ps.setTimestamp(3, Timestamp.valueOf(ticket.getPurchase_date()));
-            ps.setDouble(4, ticket.getTotal_amount());
+            ps.setInt(1, ticket.getRoomId());
+            ps.setInt(2, ticket.getPlayerId());
+            ps.setTimestamp(3, Timestamp.valueOf(ticket.getPurchaseDate()));
+            ps.setDouble(4, ticket.getTotalAmount());
         }
     }
 

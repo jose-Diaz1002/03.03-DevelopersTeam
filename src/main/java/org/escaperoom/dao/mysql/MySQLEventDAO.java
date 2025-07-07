@@ -16,9 +16,9 @@ public class MySQLEventDAO implements EventDAO {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, event.getEvent_type());
-            pstmt.setString(2, event.getEvent_description());
-            pstmt.setTimestamp(4, Timestamp.valueOf(event.getEvent_date()));
+            pstmt.setString(1, event.getEventType());
+            pstmt.setString(2, event.getEventDescription());
+            pstmt.setTimestamp(4, Timestamp.valueOf(event.getEventDate()));
 
             pstmt.executeUpdate();
 
@@ -74,9 +74,9 @@ public class MySQLEventDAO implements EventDAO {
         String sql = "UPDATE Event SET event_type = ?, event_description = ?, event_date = ? WHERE id = ?";
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, event.getEvent_type());
-            ps.setString(2, event.getEvent_description());
-            ps.setTimestamp(4, Timestamp.valueOf(event.getEvent_date()));
+            ps.setString(1, event.getEventType());
+            ps.setString(2, event.getEventDescription());
+            ps.setTimestamp(4, Timestamp.valueOf(event.getEventDate()));
             ps.executeUpdate();
         }
     }
