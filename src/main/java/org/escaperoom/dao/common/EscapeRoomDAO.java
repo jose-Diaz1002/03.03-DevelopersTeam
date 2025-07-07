@@ -1,14 +1,23 @@
 package org.escaperoom.dao.common;
 
+<<<<<<< HEAD
 import org.escaperoom.model.entity.EscapeRoom;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public interface EscapeRoomDAO {
-    void insert(EscapeRoom room) throws SQLException;
-    EscapeRoom findById(int id) throws SQLException;
-    List<EscapeRoom> findAll() throws SQLException;
-    boolean update(EscapeRoom room) throws SQLException;
-    boolean delete(int id) throws SQLException;
+
+    void create(EscapeRoom escapeRoom) throws SQLException;
+
+    EscapeRoom read(int id) throws SQLException;
+
+    List<EscapeRoom> readAll() throws SQLException;
+
+    void update(EscapeRoom escapeRoom) throws SQLException;
+
+    void delete(int id) throws SQLException;
+=======
+public interface EscapeRoomDAO {
+>>>>>>> origin/main
 }

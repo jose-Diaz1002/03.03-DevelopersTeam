@@ -14,48 +14,70 @@ public class Ticket {
      */
 
     private int id;
-    private Integer roomId;
-    private Integer playerId;
-    private LocalDateTime purchaseDate;
-    private Double totalAmount;
+    private Integer room_id;
+    private Integer player_id;
+    private LocalDateTime purchase_date;
+    private Double total_amount;
 
+    public Ticket() {
+    }
 
-    public Ticket(Integer roomId, Integer playerId, Double totalAmount) {
-        this.roomId = roomId;
-        this.playerId = playerId;
-        this.totalAmount = totalAmount;
-        this.purchaseDate = LocalDateTime.now(); // Fecha y hora de la compra del ticket
+    public Ticket(int id, Integer room_id, Integer player_id, LocalDateTime purchase_date, Double total_amount) {
+        this.id = id;
+        this.room_id = room_id;
+        this.player_id = player_id;
+        this.purchase_date = purchase_date;
+        this.total_amount = total_amount;
     }
 
     public int getId() {
         return id;
     }
 
-    public Integer getRoomId() {
-        return roomId;
-    }
-
-    public Integer getPlayerId() {
-        return playerId;
-    }
-
-    public LocalDateTime getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public Double getTotalAmount() {
-        return totalAmount;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
+    public Integer getRoom_id() {
+        return room_id;
+    }
+
+    public void setRoom_id(Integer room_id) {
+        this.room_id = room_id;
+    }
+
+    public Integer getPlayer_id() {
+        return player_id;
+    }
+
+    public void setPlayer_id(Integer player_id) {
+        this.player_id = player_id;
+    }
+
+    public LocalDateTime getPurchase_date() {
+        return purchase_date;
+    }
+
+    public void setPurchase_date(LocalDateTime purchase_date) {
+        this.purchase_date = purchase_date;
+    }
+
+    public Double getTotal_amount() {
+        return total_amount;
+    }
+
+    public void setTotal_amount(Double total_amount) {
+        this.total_amount = total_amount;
+    }
+
     @Override
     public String toString() {
-        return String.format( "Ticket ID: %d | Room ID: %s | Player ID: %s | Total Price: %.2f | Created At: %s",
-                id, (roomId != null ? roomId : "Deleted"),
-                (playerId != null ? playerId : "Deleted"),
-                totalAmount, purchaseDate);
+        return "Ticket{" +
+                "id=" + id +
+                ", room_id=" + room_id +
+                ", player_id=" + player_id +
+                ", purchase_date=" + purchase_date +
+                ", total_amount=" + total_amount +
+                '}';
     }
 }
