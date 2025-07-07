@@ -3,5 +3,6 @@ package org.escaperoom.model.enums;
 public enum DifficultyLevel {
     EASY,
     MEDIUM,
-    HARD
+    HARD,
+    EXPERT
 }

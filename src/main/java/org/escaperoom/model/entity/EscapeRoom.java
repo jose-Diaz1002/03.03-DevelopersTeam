@@ -1,31 +1,33 @@
 package org.escaperoom.model.entity;
 
+import java.math.BigDecimal;
+
 public class EscapeRoom {
     private int id;
     private String name;
-    private double totalInventoryValue;
-    private double totalTicketSales;
+    private BigDecimal totalInventoryValue;
+    private BigDecimal totalTicketSales;
 
-    // Constructor vacío (recomendado)
+    // Constructor vacío (recomendado para frameworks o reflexión)
     public EscapeRoom() {
     }
 
-    // Constructor para crear nuevos objetos (antes de insertar, sin id)
-    public EscapeRoom(String name, double totalInventoryValue, double totalTicketSales) {
+    // Constructor sin id (para insertar nuevos registros)
+    public EscapeRoom(String name, BigDecimal totalInventoryValue, BigDecimal totalTicketSales) {
         this.name = name;
         this.totalInventoryValue = totalInventoryValue;
         this.totalTicketSales = totalTicketSales;
     }
 
-    // Constructor para objetos ya existentes (con id)
-    public EscapeRoom(int id, String name, double totalInventoryValue, double totalTicketSales) {
+    // Constructor con id (para instancias ya existentes en BD)
+    public EscapeRoom(int id, String name, BigDecimal totalInventoryValue, BigDecimal totalTicketSales) {
         this.id = id;
         this.name = name;
         this.totalInventoryValue = totalInventoryValue;
         this.totalTicketSales = totalTicketSales;
     }
 
-    // Getters y setters
+    // Getters y Setters
 
     public int getId() {
         return id;
@@ -43,19 +45,19 @@ public class EscapeRoom {
         this.name = name;
     }
 
-    public double getTotalInventoryValue() {
+    public BigDecimal getTotalInventoryValue() {
         return totalInventoryValue;
     }
 
-    public void setTotalInventoryValue(double totalInventoryValue) {
+    public void setTotalInventoryValue(BigDecimal totalInventoryValue) {
         this.totalInventoryValue = totalInventoryValue;
     }
 
-    public double getTotalTicketSales() {
+    public BigDecimal getTotalTicketSales() {
         return totalTicketSales;
     }
 
-    public void setTotalTicketSales(double totalTicketSales) {
+    public void setTotalTicketSales(BigDecimal totalTicketSales) {
         this.totalTicketSales = totalTicketSales;
     }
 
