@@ -1,4 +1,4 @@
 package org.escaperoom.model;
 
-public class NotificationService {
+public interface NotificationService {
 }
