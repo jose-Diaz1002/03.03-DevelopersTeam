@@ -20,12 +20,10 @@ public class MySQLEscapeRoomDAO implements EscapeRoomDAO {
             throw new EscapeRoomCreationException("El nombre del EscapeRoom no puede estar vacío.");
         }
 
-        String sql = "INSERT INTO EscapeRoom (name, total_inventory_value, total_ticket_sales) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO EscapeRoom (name) VALUES (?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, escapeRoom.getName());
-            stmt.setBigDecimal(2, escapeRoom.getTotalInventoryValue());
-            stmt.setBigDecimal(3, escapeRoom.getTotalTicketSales());
 
             int affectedRows = stmt.executeUpdate();
 

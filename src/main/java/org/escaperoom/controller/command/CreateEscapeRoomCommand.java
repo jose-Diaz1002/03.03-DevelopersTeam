@@ -5,14 +5,10 @@ import org.escaperoom.dao.mysql.MySQLEscapeRoomDAO;
 import org.escaperoom.database.MySQLConnection;
 import org.escaperoom.model.entity.EscapeRoom;
 
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CreateEscapeRoomCommand implements Command {
-
-
-
     private final EscapeRoomDAO dao;
 
 
@@ -30,13 +26,12 @@ public class CreateEscapeRoomCommand implements Command {
         try {
             System.out.print("Nombre del Escape Room: ");
             String name = sc.nextLine();
-            System.out.print("Valor inventario inicial: ");
-            double value = Double.parseDouble(sc.nextLine());
-
+            if (name == null || name.trim().isEmpty()) {
+                System.out.println("El nombre del Escape Room no puede estar vacío.");
+                return;
+            }
             EscapeRoom room = new EscapeRoom();
             room.setName(name);
-            //Revisar el cast de double a BigDecimal
-            room.setTotalInventoryValue(BigDecimal.valueOf(value));
 
             dao.create(room);
             System.out.println("Escape Room creado con éxito.");

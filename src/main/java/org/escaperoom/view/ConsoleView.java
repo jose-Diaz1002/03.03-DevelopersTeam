@@ -19,7 +19,9 @@ public class ConsoleView {
 
     public void showMenu() {
         Scanner sc = new Scanner(System.in);
+
         while (true) {
+
             System.out.println("\n--- Menú ---");
             System.out.println("1. Crear EscapeRoom");
             System.out.println("2. Salir");

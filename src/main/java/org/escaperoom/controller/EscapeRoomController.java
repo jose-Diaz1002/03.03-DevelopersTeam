@@ -20,8 +20,8 @@ public class EscapeRoomController {
         }
     }
 
-    public void createEscapeRoom(String name, BigDecimal totalInventoryValue, BigDecimal totalTicketSales) {
-        EscapeRoom escapeRoom = new EscapeRoom(name, totalInventoryValue, totalTicketSales);
+    public void createEscapeRoom(String name) {
+        EscapeRoom escapeRoom = new EscapeRoom(name);
         try {
             escapeRoomService.createEscapeRoom(escapeRoom);
             System.out.println("EscapeRoom creado con ID: " + escapeRoom.getId());
