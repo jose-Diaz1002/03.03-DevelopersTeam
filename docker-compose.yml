@@ -7,7 +7,7 @@ services:
       MYSQL_ROOT_PASSWORD: root123
       MYSQL_DATABASE: virtual_escaperoom_db     # base que creas con el script, debe coincidir con el SQL
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # monta tu script para inicializar la BD
@@ -26,7 +26,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root_password
       MONGO_INITDB_DATABASE: escaperoom_logs_db
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - mongo_data:/data/db
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js

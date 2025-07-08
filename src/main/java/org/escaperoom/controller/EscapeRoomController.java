@@ -35,4 +35,5 @@ public class EscapeRoomController {
     }
 
     // Otros métodos...
+
 }
