@@ -9,7 +9,6 @@ public class MySQLConnection {
     private static MySQLConnection instance;
     private Connection connection;
 /*
-
     private static final String HOST = System.getenv().getOrDefault("MYSQL_HOST", "127.0.0.1");
     private static final String PORT = System.getenv().getOrDefault("MYSQL_PORT", "3307");
     private static final String DB_NAME = System.getenv().getOrDefault("MYSQL_DB", "virtual_escaperoom_db");
