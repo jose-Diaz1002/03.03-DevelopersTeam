@@ -1,6 +1,6 @@
 package org.escaperoom.model.notification;
 
-public class qNotificationObserver implements Observer {
+public class NotificationObserver implements Observer {
 
     @Override
     public void update(String eventType, Object data) {
