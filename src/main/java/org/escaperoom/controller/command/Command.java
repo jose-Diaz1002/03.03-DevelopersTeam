@@ -1,4 +1,5 @@
 package org.escaperoom.controller.command;
 
-public class Command {
+public interface Command {
+    void execute();
 }

@@ -2,15 +2,18 @@ package org.escaperoom.dao.mysql;
 
 import org.escaperoom.dao.common.ClueDAO;
 
-import org.escaperoom.database.MySQLConnection;
-import org.escaperoom.model.enums.ClueTheme;
 import org.escaperoom.model.entity.Clue;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLClueDAO implements ClueDAO {
+
+    private final Connection connection;
+
+    public MySQLClueDAO(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public void create(Clue clue) throws SQLException {

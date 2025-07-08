@@ -2,6 +2,10 @@ package org.escaperoom.model.service;
 
 
 import org.escaperoom.dao.common.*;
+import org.escaperoom.exception.EscapeRoomCreationException;
+import org.escaperoom.model.entity.EscapeRoom;
+
+import java.sql.SQLException;
 
 
 public class EscapeRoomService {
@@ -31,4 +35,14 @@ public class EscapeRoomService {
         this.achievementDAO = achievementDAO;
         this.inventoryDAO = inventoryDAO;
     }
+
+    public void createEscapeRoom(EscapeRoom escapeRoom) throws EscapeRoomCreationException {
+        // Validaciones previas si quieres
+        if (escapeRoom.getName() == null || escapeRoom.getName().trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del EscapeRoom no puede estar vacío");
+        }
+
+        escapeRoomDAO.create(escapeRoom);
+    }
+
 }
