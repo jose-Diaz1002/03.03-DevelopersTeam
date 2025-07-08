@@ -1,6 +1,5 @@
 package org.escaperoom.model.notification;
 
-
 public class LoggerObserver implements Observer {
 
     @Override

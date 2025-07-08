@@ -1,6 +1,5 @@
 package org.escaperoom.model.notification;
 
-
 import java.util.ArrayList;
 import java.util.List;
 

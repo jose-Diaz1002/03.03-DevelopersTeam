@@ -4,8 +4,8 @@ public class NotificationObserver implements Observer {
 
     @Override
     public void update(String eventType, Object data) {
-        if (eventType.equals("achievementCompleted")) {
-            System.out.println("[NOTIFICATION] Congrats! Achievement unlocked: " + data);
+        if ("roomCreated".equals(eventType) && data instanceof Room room) {
+            System.out.println("[NOTIFICATION] New room created: " + room.getName());
         }
     }
 }
