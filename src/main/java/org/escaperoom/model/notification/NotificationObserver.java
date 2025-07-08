@@ -1,5 +1,7 @@
 package org.escaperoom.model.notification;
 
+import org.escaperoom.model.entity.Room;
+
 public class NotificationObserver implements Observer {
 
     @Override

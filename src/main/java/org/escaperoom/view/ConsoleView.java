@@ -1,46 +1,44 @@
 package org.escaperoom.view;
 
+import org.escaperoom.controller.command.Command;
+import org.escaperoom.controller.command.CreateEscapeRoomCommand;
+import org.escaperoom.controller.command.ExitCommand;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ConsoleView {
-    private final Scanner scanner = new Scanner(System.in);
 
-    public void start() {
-        System.out.println("Escape Room Application - Console Interface");
-        boolean running = true;
+    private final Map<Integer, Command> commands = new HashMap<>();
 
-        while (running) {
-            printMenu();
-            String input = scanner.nextLine();
+    public ConsoleView() {
+        commands.put(1, new CreateEscapeRoomCommand());
+        commands.put(2, new ExitCommand());
+    }
 
-            switch (input) {
-                case "1":
-                    System.out.println("Crear sala (pendiente implementar).");
-                    break;
-                case "2":
-                    System.out.println("Mostrar todas las salas (pendiente implementar).");
-                    break;
-                case "0":
-                    System.out.println("Saliendo...");
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Opción no válida, intenta de nuevo.");
-                    break;
+    public void showMenu() {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("\n--- Menú ---");
+            System.out.println("1. Crear EscapeRoom");
+            System.out.println("2. Salir");
+            System.out.print("Elige una opción: ");
+
+            int option;
+            try {
+                option = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor ingresa un número válido.");
+                continue;
+            }
+
+            Command command = commands.get(option);
+            if (command != null) {
+                command.execute();
+            } else {
+                System.out.println("Opción inválida. Intenta de nuevo.");
             }
         }
-
-        scanner.close();
-        System.out.println("Gracias por usar Escape Room App.");
     }
-
-    private void printMenu() {
-        System.out.println("\n--- Menú Principal ---");
-        System.out.println("1. Crear sala");
-        System.out.println("2. Mostrar todas las salas");
-        System.out.println("0. Salir");
-        System.out.print("Ingresa tu opción: ");
-    }
-
-
 }

@@ -41,8 +41,10 @@ public class EscapeRoomService {
         if (escapeRoom.getName() == null || escapeRoom.getName().trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre del EscapeRoom no puede estar vacío");
         }
-
         escapeRoomDAO.create(escapeRoom);
     }
+
+    // Otros métodos para manejar las operaciones de EscapeRoom, Room, Clue, etc.
+
 
 }
