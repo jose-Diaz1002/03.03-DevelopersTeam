@@ -10,7 +10,6 @@ public class App {
         ConsoleView consoleView = new ConsoleView();
         consoleView.showMenu();
 
-
     }
 
 }
