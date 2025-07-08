@@ -15,9 +15,4 @@ public interface DecorationObjectDAO {
     void update(Decoration decoration) throws SQLException;
 
     void delete(int id) throws SQLException;
-<<<<<<< HEAD
 }
-=======
-
-}
->>>>>>> c3d6979 (feat: cambios en entity)
