@@ -10,7 +10,10 @@ import java.util.List;
 
 public class MySQLDecorationObjectDAO implements DecorationObjectDAO {
 
-
+    private final Connection connection;
+    public MySQLDecorationObjectDAO(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
     public void create(Decoration decoration) throws SQLException {

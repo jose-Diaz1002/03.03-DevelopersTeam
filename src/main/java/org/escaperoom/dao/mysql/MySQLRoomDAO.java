@@ -10,6 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLRoomDAO implements RoomDAO {
+
+  private final Connection connection;
+
+  public MySQLRoomDAO(Connection connection) {
+    this.connection = connection;
+  }
+
   @Override
   public void create(Room room) throws SQLException {
 

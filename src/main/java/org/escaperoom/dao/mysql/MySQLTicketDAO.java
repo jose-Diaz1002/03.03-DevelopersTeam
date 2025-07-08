@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLTicketDAO implements TicketDAO {
+    public MySQLTicketDAO(Connection connection) {
+    }
+
     @Override
     public void create(Ticket ticket) throws SQLException {
 
