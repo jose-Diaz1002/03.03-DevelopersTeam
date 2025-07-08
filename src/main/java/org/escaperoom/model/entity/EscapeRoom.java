@@ -17,13 +17,6 @@ public class EscapeRoom {
         this.totalTicketSales = totalTicketSales;
     }
 
-    public EscapeRoom(int id, String name, BigDecimal totalInventoryValue, BigDecimal totalTicketSales) {
-        this.id = id;
-        this.name = name;
-        this.totalInventoryValue = totalInventoryValue;
-        this.totalTicketSales = totalTicketSales;
-    }
-
     public int getId() {
         return id;
     }
@@ -58,11 +51,8 @@ public class EscapeRoom {
 
     @Override
     public String toString() {
-        return "EscapeRoom{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", totalInventoryValue=" + totalInventoryValue +
-                ", totalTicketSales=" + totalTicketSales +
-                '}';
+       return String.format(
+            "EscapeRoom{id=%d, name='%s', totalInventoryValue=%s, totalTicketSales=%s}",
+            id, name, totalInventoryValue, totalTicketSales);
     }
 }
