@@ -1,5 +1,7 @@
 package org.escaperoom.controller.command;
 
+import org.escaperoom.controller.command.interficie.Command;
+
 public class ExitCommand implements Command {
 
     @Override

@@ -2,6 +2,7 @@ package org.escaperoom.dao.mysql;
 
 import org.escaperoom.dao.common.RoomDAO;
 import org.escaperoom.database.MySQLConnection;
+import org.escaperoom.exception.RoomCreationException;
 import org.escaperoom.model.entity.Room;
 import org.escaperoom.model.enums.DifficultyLevel;
 
@@ -18,28 +19,67 @@ public class MySQLRoomDAO implements RoomDAO {
   }
 
   @Override
-  public void create(Room room) throws SQLException {
+  public void create(Room room) throws RoomCreationException {
+    if (room.getName() == null || room.getName().trim().isEmpty()) {
+      throw new RoomCreationException("El nombre de la sala no puede estar vacío.");
+    }
+    if (room.getDifficultyLevel() == null) {
+      throw new RoomCreationException("Debe asignar un nivel de dificultad a la sala.");
+    }
+    if (room.getPrice() == null || room.getPrice().doubleValue() < 0) {
+      throw new RoomCreationException("El precio debe ser un valor positivo.");
+    }
+    if (room.getQuantityAvailable() < 0) {
+      throw new RoomCreationException("La cantidad disponible no puede ser negativa.");
+    }
 
+    String sql = "INSERT INTO Room (escape_room_id, name, difficulty_level, price, quantity_available) VALUES (?, ?, ?, ?, ?)";
 
+    try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+      stmt.setInt(1, room.getEscapeRoomId());
+      stmt.setString(2, room.getName());
+      stmt.setString(3, room.getDifficultyLevel().name());
+      stmt.setBigDecimal(4, room.getPrice());
+      stmt.setInt(5, room.getQuantityAvailable());
+
+      int affectedRows = stmt.executeUpdate();
+
+      if (affectedRows == 0) {
+        throw new RoomCreationException("No se pudo insertar la sala, ninguna fila afectada.");
+      }
+
+      try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+        if (generatedKeys.next()) {
+          room.setRoomId(generatedKeys.getInt(1));
+        } else {
+          throw new RoomCreationException("No se pudo obtener el ID generado de la sala.");
+        }
+      }
+    } catch (SQLException e) {
+      throw new RoomCreationException("Error al insertar la sala en la base de datos.", e);
+    }
   }
 
+
   @Override
-  public Room read(int id) throws SQLException {
+  public Room findById(int roomId) {
+    // Implementar luego...
     return null;
   }
 
   @Override
-  public List<Room> readAll() throws SQLException {
-    return null;
+  public List<Room> findAll() {
+    // Implementar luego...
+    return new ArrayList<>();
   }
 
   @Override
-  public void update(Room room) throws SQLException {
-
+  public void update(Room room) {
+    // Implementar  luego...
   }
 
   @Override
-  public void delete(int id) throws SQLException {
-
+  public void delete(int roomId) {
+    // Implementar  luego...
   }
 }
