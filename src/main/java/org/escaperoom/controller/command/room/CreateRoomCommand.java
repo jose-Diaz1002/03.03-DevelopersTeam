@@ -1,4 +1,4 @@
-package org.escaperoom.controller.command;
+package org.escaperoom.controller.command.room;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.dao.mysql.MySQLRoomDAO;

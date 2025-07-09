@@ -1,19 +1,24 @@
 package org.escaperoom.dao.common;
 
+import org.escaperoom.exception.ClueCreationException;
 import org.escaperoom.model.entity.Clue;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public interface ClueDAO {
-    void create(Clue clue) throws SQLException;
+    void create(Clue clue) throws ClueCreationException;
 
-    Clue read(int id) throws SQLException;
+    Clue findById(int clueId);
 
-    List<Clue> readAll() throws SQLException;
+    List<Clue> findAll();
 
-    void update(Clue clue) throws SQLException;
+    void update(Clue clue);
 
-    void delete(int id) throws SQLException;
+    void delete(int clueId);
+
+    List<Clue> findByRoomId(int clueId) throws SQLException;
 
 }
+
+
