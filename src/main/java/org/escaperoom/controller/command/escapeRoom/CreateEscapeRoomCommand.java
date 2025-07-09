@@ -1,6 +1,6 @@
-package org.escaperoom.controller.command;
-
+package org.escaperoom.controller.command.escapeRoom;
 import org.escaperoom.controller.command.interficie.Command;
+import org.escaperoom.controller.command.room.CreateRoomCommand;
 import org.escaperoom.dao.common.EscapeRoomDAO;
 import org.escaperoom.dao.mysql.MySQLEscapeRoomDAO;
 import org.escaperoom.database.MySQLConnection;

@@ -2,30 +2,38 @@ package org.escaperoom.model.entity;
 
 import org.escaperoom.model.enums.ClueTheme;
 
+import java.math.BigDecimal;
+
 public class Clue {
 
-    private int id;
+    private int clueId;
     private int roomId;
     private ClueTheme theme;
-    private double price;
+    private BigDecimal price;
     private int  quantity;
 
     public Clue() {
     }
 
-    public Clue( ClueTheme theme, double price, int roomId, int quantity) {
+    public Clue(int roomId, ClueTheme theme, BigDecimal price, int quantity) {
+        this.roomId = roomId;
         this.theme = theme;
         this.price = price;
-        this.roomId = roomId;
+        this.quantity = quantity;
+    }
+
+    public Clue(ClueTheme theme, BigDecimal price, int quantity) {
+        this.theme = theme;
+        this.price = price;
         this.quantity = quantity;
     }
 
     public int getId() {
-        return id;
+        return clueId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int clueId) {
+        this.clueId = clueId;
     }
 
     public ClueTheme getTheme() {
@@ -36,21 +44,15 @@ public class Clue {
         this.theme = theme;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public int getRoomId() {
-        return roomId;
-    }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
 
     public int getQuantity() {
         return quantity;
@@ -59,17 +61,20 @@ public class Clue {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    public int getRoomId() {
+        return roomId;
+    }
 
+    public void setClueId(int clueId) {
+        this.clueId = clueId;
+    }
 
     @Override
     public String toString() {
-        return "Clue{" +
-                "id=" + id +
-                ", room_id=" + roomId +
-                ", theme=" + theme +
-                ", price=" + price +
-                ", roomId=" + roomId +
-                ", quantity=" + quantity +
-                '}';
+        return String.format("Clue{clueId=%d, roomId=%d, theme='%s', price=%.2f, quantity=%d}",
+                clueId, roomId, theme, price, quantity);
     }
+
+
+
 }
