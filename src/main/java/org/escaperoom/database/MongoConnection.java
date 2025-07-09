@@ -1,24 +1,29 @@
 package org.escaperoom.database;
 
+import com.mongodb.MongoClientSettings;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 
+import java.util.Collections;
+
 public class MongoConnection {
-
     private static MongoConnection instance;
-    private final MongoClient mongoClient;
-    private final MongoDatabase database;
+    private MongoClient mongoClient;
+    private MongoDatabase database;
 
-    private static final String DEFAULT_URI = "mongodb://root:root_password@localhost:27018";
-    private static final String DEFAULT_DB = "escaperoom_logs_db";
+    private static final String HOST = System.getenv().getOrDefault("MONGO_HOST", "localhost");
+    private static final int PORT = Integer.parseInt(System.getenv().getOrDefault("MONGO_PORT", "27017"));
+    private static final String DB_NAME = System.getenv().getOrDefault("MONGO_DB", "virtual_escaperoom_logs");
 
     private MongoConnection() {
-        String uri = System.getenv().getOrDefault("MONGO_URI", DEFAULT_URI);
-        String dbName = System.getenv().getOrDefault("MONGO_DB", DEFAULT_DB);
-
-        this.mongoClient = MongoClients.create(uri);
-        this.database = mongoClient.getDatabase(dbName);
+        mongoClient = MongoClients.create(
+                MongoClientSettings.builder()
+                        .applyToClusterSettings(builder ->
+                                builder.hosts(Collections.singletonList(new ServerAddress(HOST, PORT))))
+                        .build());
+        database = mongoClient.getDatabase(DB_NAME);
     }
 
     public static synchronized MongoConnection getInstance() {
@@ -30,5 +35,11 @@ public class MongoConnection {
 
     public MongoDatabase getDatabase() {
         return database;
+    }
+
+    public void close() {
+        if (mongoClient != null) {
+            mongoClient.close();
+        }
     }
 }

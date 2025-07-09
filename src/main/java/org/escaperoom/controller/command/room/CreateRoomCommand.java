@@ -2,7 +2,7 @@ package org.escaperoom.controller.command;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.dao.mysql.MySQLRoomDAO;
-import org.escaperoom.database.MySQLConnection;
+import org.escaperoom.database.ConnectionFactory;
 import org.escaperoom.exception.RoomCreationException;
 import org.escaperoom.model.entity.Room;
 import org.escaperoom.model.enums.DifficultyLevel;
@@ -22,9 +22,10 @@ public class CreateRoomCommand implements Command {
         this.scanner = scanner;
         this.escapeRoomId = escapeRoomId;
         try {
-            this.roomService = new RoomService(new MySQLRoomDAO(MySQLConnection.getInstance().getConnection()));
+            // Usamos ConnectionFactory en lugar de MySQLConnection directamente
+            this.roomService = new RoomService(new MySQLRoomDAO(ConnectionFactory.getMySQLConnection()));
         } catch (SQLException e) {
-            throw new RuntimeException("Error al conectar a BD", e);
+            throw new RuntimeException("Error al obtener la conexión a BD", e);
         }
     }
 
@@ -44,20 +45,16 @@ public class CreateRoomCommand implements Command {
             String diffInput = scanner.nextLine().trim();
             DifficultyLevel difficulty;
             try {
-               difficulty = DifficultyLevel.fromString(diffInput);
-                if (difficulty == null) {
-                    throw new IllegalArgumentException("Dificultad inválida");
-                }
+                difficulty = DifficultyLevel.fromString(diffInput);
             } catch (IllegalArgumentException e) {
                 System.out.println("Dificultad inválida. Debe ser: Easy, Medium, Hard o Expert.");
                 return;
             }
 
             System.out.print("Precio: ");
-            String priceInput = scanner.nextLine().trim();
             BigDecimal price;
             try {
-                price = new BigDecimal(priceInput);
+                price = new BigDecimal(scanner.nextLine().trim());
                 if (price.compareTo(BigDecimal.ZERO) < 0) {
                     System.out.println("El precio no puede ser negativo.");
                     return;
@@ -68,10 +65,9 @@ public class CreateRoomCommand implements Command {
             }
 
             System.out.print("Cantidad disponible: ");
-            String quantityInput = scanner.nextLine().trim();
             int quantity;
             try {
-                quantity = Integer.parseInt(quantityInput);
+                quantity = Integer.parseInt(scanner.nextLine().trim());
                 if (quantity < 0) {
                     System.out.println("La cantidad no puede ser negativa.");
                     return;
@@ -81,10 +77,9 @@ public class CreateRoomCommand implements Command {
                 return;
             }
 
-            // Ahora sí creamos el objeto y persistimos sólo si todas las validaciones pasaron
+            // Creamos la sala
             Room room = new Room(escapeRoomId, name, difficulty, price, quantity);
             roomService.createRoom(room);
-
             System.out.println("Sala creada con éxito.");
 
         } catch (RoomCreationException e) {
@@ -93,5 +88,4 @@ public class CreateRoomCommand implements Command {
             System.out.println("Error inesperado: " + e.getMessage());
         }
     }
-
 }
