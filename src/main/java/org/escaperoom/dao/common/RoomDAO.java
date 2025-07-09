@@ -16,5 +16,7 @@ public interface RoomDAO {
     void update(Room room);
 
     void delete(int roomId);
+
+    List<Room> findByEscapeRoomId(int escapeRoomId) throws SQLException;
 }
 

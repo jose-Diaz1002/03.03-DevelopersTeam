@@ -109,6 +109,14 @@
             <version>5.5.0</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-core</artifactId>
+            <version>4.11.1</version>
+        </dependency>
+
     </dependencies>
+
 
 </project>

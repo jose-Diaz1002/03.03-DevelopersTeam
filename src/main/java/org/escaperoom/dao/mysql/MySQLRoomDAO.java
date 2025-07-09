@@ -68,6 +68,30 @@ public class MySQLRoomDAO implements RoomDAO {
   }
 
   @Override
+  public List<Room> findByEscapeRoomId(int escapeRoomId) throws SQLException {
+    List<Room> rooms = new ArrayList<>();
+    String sql = "SELECT * FROM Room WHERE escape_room_id = ?";
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+      stmt.setInt(1, escapeRoomId);
+      try (ResultSet rs = stmt.executeQuery()) {
+        while (rs.next()) {
+          Room room = new Room(
+                  rs.getInt("room_id"),
+                  rs.getInt("escape_room_id"),
+                  rs.getString("name"),
+                  DifficultyLevel.fromString(rs.getString("difficulty_level")),
+                  rs.getBigDecimal("price"),
+                  rs.getInt("quantity_available")
+          );
+          rooms.add(room);
+        }
+      }
+    }
+    return rooms;
+  }
+
+
+  @Override
   public List<Room> findAll() {
     // Implementar luego...
     return new ArrayList<>();
