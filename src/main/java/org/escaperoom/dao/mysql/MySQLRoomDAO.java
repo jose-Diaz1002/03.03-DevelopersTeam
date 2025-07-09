@@ -1,7 +1,6 @@
 package org.escaperoom.dao.mysql;
 
 import org.escaperoom.dao.common.RoomDAO;
-import org.escaperoom.database.MySQLConnection;
 import org.escaperoom.exception.RoomCreationException;
 import org.escaperoom.model.entity.Room;
 import org.escaperoom.model.enums.DifficultyLevel;
@@ -60,14 +59,12 @@ public class MySQLRoomDAO implements RoomDAO {
     }
   }
 
-
   @Override
   public Room findById(int roomId) {
-    // Implementar luego...
+    // Implementar luego si quieres
     return null;
   }
 
-  @Override
   public List<Room> findByEscapeRoomId(int escapeRoomId) throws SQLException {
     List<Room> rooms = new ArrayList<>();
     String sql = "SELECT * FROM Room WHERE escape_room_id = ?";
@@ -90,20 +87,19 @@ public class MySQLRoomDAO implements RoomDAO {
     return rooms;
   }
 
-
   @Override
   public List<Room> findAll() {
-    // Implementar luego...
+    // Implementar luego si quieres
     return new ArrayList<>();
   }
 
   @Override
   public void update(Room room) {
-    // Implementar  luego...
+    // Implementar luego si quieres
   }
 
   @Override
   public void delete(int roomId) {
-    // Implementar  luego...
+    // Implementar luego si quieres
   }
 }
