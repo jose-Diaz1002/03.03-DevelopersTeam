@@ -1,5 +1,6 @@
 package org.escaperoom.controller.command;
 
+import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.dao.common.EscapeRoomDAO;
 import org.escaperoom.dao.mysql.MySQLEscapeRoomDAO;
 import org.escaperoom.database.MySQLConnection;
@@ -33,10 +34,21 @@ public class CreateEscapeRoomCommand implements Command {
             EscapeRoom room = new EscapeRoom();
             room.setName(name);
 
-            dao.create(room);
-            System.out.println("Escape Room creado con éxito.");
+            dao.create(room);  // persiste y setea el ID automáticamente
+            System.out.println("Escape Room creado con éxito con ID: " + room.getId());
+
+            // Preguntar si quiere añadir una sala ahora
+            System.out.print("¿Quieres añadir una sala ahora? (S/N): ");
+            String respuesta = sc.nextLine();
+            if (respuesta.equalsIgnoreCase("S")) {
+                // Crear Room con escapeRoomId asociado
+                CreateRoomCommand createRoomCommand = new CreateRoomCommand(sc, room.getId());
+                createRoomCommand.execute();
+            }
+
         } catch (Exception e) {
             System.out.println("Error al crear Escape Room: " + e.getMessage());
         }
     }
+
 }

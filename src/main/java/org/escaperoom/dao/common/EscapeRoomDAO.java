@@ -11,4 +11,7 @@ import org.escaperoom.model.entity.EscapeRoom;
 public interface EscapeRoomDAO {
     void create(EscapeRoom escapeRoom) throws EscapeRoomCreationException;
   //  EscapeRoom read (int id) throws SQLException;
+    // List<EscapeRoom> readAll() throws SQLException;
+    // void update(EscapeRoom escapeRoom) throws SQLException;
+    // void delete(int id) throws SQLException;
 }

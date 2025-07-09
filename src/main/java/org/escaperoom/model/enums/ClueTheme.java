@@ -5,6 +5,15 @@ public enum ClueTheme {
     TERROR,
     ROMANTIC,
     ACTION,
-    PSYCHOLOGICAL
+    PSYCHOLOGICAL;
+
+    public static ClueTheme fromString(String value) {
+        for (ClueTheme theme : values()) {
+            if (theme.name().equalsIgnoreCase(value.trim())) {
+                return theme;
+            }
+        }
+        throw new IllegalArgumentException("Tema de pista inválido: " + value);
+    }
 
 }

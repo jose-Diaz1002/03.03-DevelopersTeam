@@ -1,6 +1,7 @@
 package org.escaperoom.view;
 
-import org.escaperoom.controller.command.Command;
+import org.escaperoom.controller.command.CreateRoomCommand;
+import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.controller.command.CreateEscapeRoomCommand;
 import org.escaperoom.controller.command.ExitCommand;
 
@@ -11,10 +12,14 @@ import java.util.Scanner;
 public class ConsoleView {
 
     private final Map<Integer, Command> commands = new HashMap<>();
+    private final Scanner scanner = new Scanner(System.in);
+
 
     public ConsoleView() {
         commands.put(1, new CreateEscapeRoomCommand());
-        commands.put(2, new ExitCommand());
+        commands.put(2, new CreateRoomCommand(scanner, -1)); // -1 porque aún no hay EscapeRoom creado
+        commands.put(0, new ExitCommand());
+
     }
 
     public void showMenu() {
@@ -24,7 +29,8 @@ public class ConsoleView {
 
             System.out.println("\n--- Menú ---");
             System.out.println("1. Crear EscapeRoom");
-            System.out.println("2. Salir");
+            System.out.println("2. Crear Sala");
+            System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
 
             int option;
