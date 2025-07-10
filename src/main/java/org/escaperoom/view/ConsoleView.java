@@ -1,5 +1,6 @@
 package org.escaperoom.view;
 
+import org.escaperoom.controller.command.AddDecorationObjectCommand;
 import org.escaperoom.controller.command.room.AddClueCommand;
 import org.escaperoom.controller.command.room.CreateRoomCommand;
 import org.escaperoom.controller.command.ListRoomsCommand;
@@ -23,6 +24,7 @@ public class ConsoleView {
         commands.put(3, new ListRoomsCommand(new Scanner(System.in)));
         commands.put(0, new ExitCommand());
         commands.put(4, new AddClueCommand(scanner, 4));
+        commands.put(5, new AddDecorationObjectCommand(scanner, 4));
 
     }
 
@@ -37,6 +39,7 @@ public class ConsoleView {
             System.out.println("3. Listar Salas de un EscapeRoom");
             System.out.println("0. Salir");
             System.out.println("4. Crear Clue");
+            System.out.println("5. Crear Clue");
 
             System.out.print("Elige una opción: ");
 
