@@ -6,7 +6,6 @@ public class DecorationObject {
 
     private int DecorationObjectId;
     private int roomId;
-    private EscapeRoom escapeRoom_id;
     private String name;
     private String materialType;
     private BigDecimal price;

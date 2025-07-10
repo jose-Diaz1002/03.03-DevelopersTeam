@@ -1,4 +1,4 @@
-package org.escaperoom.controller.command;
+package org.escaperoom.controller.command.room;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.dao.mysql.MySQLDecorationObjectDAO;
@@ -40,7 +40,7 @@ public class AddDecorationObjectCommand implements Command {
                 return;
             }
 
-            System.out.print("Tipo de decoración (por ejemplo: Plant, Statue, Painting, Lighting): ");
+            System.out.print("Tipo de decoración: ");
             String decorationType = scanner.nextLine().trim();
             if (decorationType.isEmpty()) {
                 System.out.println("El tipo de decoración no puede estar vacío.");
@@ -79,7 +79,6 @@ public class AddDecorationObjectCommand implements Command {
             decorationService.createDecorationObject(decoration);
 
             System.out.println("Objeto decorativo añadido con éxito.");
-            System.out.println(decoration);
 
         } catch (Exception e) {
             System.out.println("Error inesperado al añadir el objeto decorativo: " + e.getMessage());

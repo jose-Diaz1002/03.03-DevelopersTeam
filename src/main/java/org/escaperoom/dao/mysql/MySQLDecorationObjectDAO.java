@@ -30,7 +30,7 @@ public class MySQLDecorationObjectDAO implements DecorationObjectDAO {
             throw new DecorationObjectCreationException("La cantidad disponible no puede ser negativa.");
         }
 
-        String sql = "INSERT INTO DecorationObject (room_id, name, decoration_type, price, quantity_available) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO DecorationObject (room_id, name, material_type, price, quantity_available) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
