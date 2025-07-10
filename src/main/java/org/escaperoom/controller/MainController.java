@@ -1,4 +1,4 @@
-package org.escaperoom.controller;
+/*package org.escaperoom.controller;
 
 
 import org.escaperoom.controller.command.escapeRoom.CreateEscapeRoomCommand;
@@ -84,4 +84,4 @@ public class MainController {
             }
         }
     }
-}
+}*/

@@ -1,8 +1,6 @@
 package org.escaperoom.dao.common;
 
-import org.escaperoom.exception.ClueCreationException;
 import org.escaperoom.exception.DecorationObjectCreationException;
-import org.escaperoom.model.entity.Clue;
 import org.escaperoom.model.entity.DecorationObject;
 
 import java.sql.SQLException;

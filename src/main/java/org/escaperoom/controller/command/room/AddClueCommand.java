@@ -76,7 +76,6 @@ public class AddClueCommand implements Command {
             clueService.createClue(clue);
 
             System.out.println("Pista añadida con éxito.");
-            System.out.println(clue.toString());
 
         } catch (Exception e) {
             System.out.println("Error inesperado al añadir la pista: " + e.getMessage());
