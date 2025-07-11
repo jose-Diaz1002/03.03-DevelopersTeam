@@ -1,88 +1,76 @@
 package org.escaperoom.controller.command;
 
 import org.escaperoom.controller.command.interficie.Command;
-import org.escaperoom.dao.mysql.MySQLDecorationObjectDAO;
-import org.escaperoom.database.MySQLConnection;
+import org.escaperoom.exception.DecorationObjectCreationException;
+import org.escaperoom.input.InputReader;
 import org.escaperoom.model.entity.DecorationObject;
 import org.escaperoom.model.service.DecorationObjectService;
+import org.escaperoom.dao.mysql.MySQLDecorationObjectDAO;
+import org.escaperoom.database.ConnectionFactory;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class AddDecorationObjectCommand implements Command {
 
-    private final DecorationObjectService decorationService;
-    private final Scanner scanner;
-    private final int roomId;
+    private final DecorationObjectService decorationObjectService;
+    private final InputReader inputReader;
 
-    public AddDecorationObjectCommand(Scanner scanner, int roomId) {
-        this.scanner = scanner;
-        this.roomId = roomId;
+    public AddDecorationObjectCommand(InputReader inputReader) {
+        this.inputReader = inputReader;
         try {
-            this.decorationService = new DecorationObjectService(
-                    new MySQLDecorationObjectDAO(MySQLConnection.getInstance().getConnection())
-            );
+            this.decorationObjectService = new DecorationObjectService(new MySQLDecorationObjectDAO(ConnectionFactory.getMySQLConnection()));
         } catch (SQLException e) {
-            throw new RuntimeException("Error al conectar con la base de datos", e);
+            throw new RuntimeException("Error al obtener conexión a la base de datos", e);
         }
     }
 
     @Override
     public void execute() {
         try {
-            System.out.println("Creando objeto decorativo para Room ID: " + roomId);
+            int roomId = Integer.parseInt(inputReader.readLine("ID de la sala para añadir el objeto decorativo: ").trim());
 
-            System.out.print("Nombre del objeto decorativo: ");
-            String name = scanner.nextLine().trim();
+            String name = inputReader.readLine("Nombre del objeto decorativo: ").trim();
             if (name.isEmpty()) {
                 System.out.println("El nombre no puede estar vacío.");
                 return;
             }
 
-            System.out.print("Tipo de decoración (por ejemplo: Plant, Statue, Painting, Lighting): ");
-            String decorationType = scanner.nextLine().trim();
-            if (decorationType.isEmpty()) {
-                System.out.println("El tipo de decoración no puede estar vacío.");
-                return;
-            }
+            String materialType = inputReader.readLine("Tipo de material: ").trim();
 
-            System.out.print("Precio del objeto: ");
-            String priceInput = scanner.nextLine().trim();
             BigDecimal price;
             try {
-                price = new BigDecimal(priceInput);
+                price = new BigDecimal(inputReader.readLine("Precio del objeto decorativo: ").trim());
                 if (price.compareTo(BigDecimal.ZERO) < 0) {
                     System.out.println("El precio no puede ser negativo.");
                     return;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Precio inválido. Debe ser un número decimal válido.");
+                System.out.println("Precio inválido.");
                 return;
             }
 
-            System.out.print("Cantidad disponible: ");
-            String quantityInput = scanner.nextLine().trim();
             int quantity;
             try {
-                quantity = Integer.parseInt(quantityInput);
+                quantity = Integer.parseInt(inputReader.readLine("Cantidad disponible: ").trim());
                 if (quantity < 0) {
                     System.out.println("La cantidad no puede ser negativa.");
                     return;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Cantidad inválida. Debe ser un número entero válido.");
+                System.out.println("Cantidad inválida.");
                 return;
             }
 
-            DecorationObject decoration = new DecorationObject(roomId, name, decorationType, price, quantity);
-            decorationService.createDecorationObject(decoration);
+            DecorationObject decorationObject = new DecorationObject(roomId, name, materialType, price, quantity);
+            decorationObjectService.addDecorationObject(decorationObject);
 
-            System.out.println("Objeto decorativo añadido con éxito.");
-            System.out.println(decoration);
+            System.out.println("Objeto decorativo añadido correctamente.");
 
+        } catch (DecorationObjectCreationException e) {
+            System.out.println("Error al añadir objeto decorativo: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Error inesperado al añadir el objeto decorativo: " + e.getMessage());
+            System.out.println("Error inesperado: " + e.getMessage());
         }
     }
 }

@@ -1,26 +1,21 @@
 package org.escaperoom.dao.common;
 
-import org.escaperoom.exception.ClueCreationException;
-import org.escaperoom.exception.DecorationObjectCreationException;
-import org.escaperoom.model.entity.Clue;
 import org.escaperoom.model.entity.DecorationObject;
 
 import java.sql.SQLException;
 import java.util.List;
 
+
+
 public interface DecorationObjectDAO {
-    void create(DecorationObject decorationObject) throws DecorationObjectCreationException;
 
-    DecorationObject findById(int decorationObject);
+    void create(DecorationObject decorationObject) throws SQLException;
 
-    List<DecorationObject> findAll();
+    DecorationObject findById(int id) throws SQLException;
 
-    void update(DecorationObject decorationObject);
+    List<DecorationObject> findByRoomId(int roomId) throws SQLException;
 
-    void delete(int decorationObjectId);
+    void update(DecorationObject decorationObject) throws SQLException;
 
-    List<DecorationObject> findByRoomId(int decorationObjectId) throws SQLException;
-
+    void delete(int id) throws SQLException;
 }
-
-

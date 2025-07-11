@@ -4,40 +4,32 @@ import java.math.BigDecimal;
 
 public class DecorationObject {
 
-    private int DecorationObjectId;
+    private int id;
     private int roomId;
-    private EscapeRoom escapeRoom_id;
     private String name;
     private String materialType;
     private BigDecimal price;
-    private int quantity;
+    private int quantityAvailable;
 
     public DecorationObject() {
     }
 
-    public DecorationObject(int DecorationObjectId, int roomId, String name, String materialType, BigDecimal price, int quantity) {
-        this.DecorationObjectId = DecorationObjectId;
+    public DecorationObject(int roomId, String name, String materialType, BigDecimal price, int quantityAvailable) {
         this.roomId = roomId;
         this.name = name;
         this.materialType = materialType;
         this.price = price;
-        this.quantity = quantity;
+        this.quantityAvailable = quantityAvailable;
     }
 
-    public DecorationObject(int roomId, String name, String decorationType, BigDecimal price, int quantity) {
-        this.roomId = roomId;
-        this.name = name;
-        this.materialType = decorationType;
-        this.price = price;
-        this.quantity = quantity;
+    // Getters y Setters
+
+    public int getId() {
+        return id;
     }
 
-    public int getDecorationObjectId() {
-        return DecorationObjectId;
-    }
-
-    public void setDecorationObjectId(int DecorationObjectId) {
-        this.DecorationObjectId = DecorationObjectId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getRoomId() {
@@ -72,19 +64,23 @@ public class DecorationObject {
         this.price = price;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getQuantityAvailable() {
+        return quantityAvailable;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantityAvailable(int quantityAvailable) {
+        this.quantityAvailable = quantityAvailable;
     }
 
     @Override
     public String toString() {
-        return String.format(
-                "Decoration { DecorationObjectId=%d, room_id=%d, name='%s', material_type='%s', price=%.2f, quantity_available=%d }",
-                DecorationObjectId, roomId, name, materialType, price, quantity
-        );
+        return "DecorationObject{" +
+                "id=" + id +
+                ", roomId=" + roomId +
+                ", name='" + name + '\'' +
+                ", materialType='" + materialType + '\'' +
+                ", price=" + price +
+                ", quantityAvailable=" + quantityAvailable +
+                '}';
     }
 }

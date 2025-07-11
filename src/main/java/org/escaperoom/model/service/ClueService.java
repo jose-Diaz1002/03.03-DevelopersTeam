@@ -14,5 +14,9 @@ public class ClueService {
     public void createClue(Clue clue) throws ClueCreationException {
         clueDAO.create(clue);
     }
+
+    public void addClue(Clue clue) {
+
+    }
 }
 

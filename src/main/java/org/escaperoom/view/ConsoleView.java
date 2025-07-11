@@ -1,62 +1,111 @@
 package org.escaperoom.view;
 
-import org.escaperoom.controller.command.AddDecorationObjectCommand;
-import org.escaperoom.controller.command.room.AddClueCommand;
-import org.escaperoom.controller.command.room.CreateRoomCommand;
-import org.escaperoom.controller.command.ListRoomsCommand;
-import org.escaperoom.controller.command.escapeRoom.CreateEscapeRoomCommand;
-import org.escaperoom.controller.command.interficie.Command;
-import org.escaperoom.controller.command.ExitCommand;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import org.escaperoom.input.InputReader;
 
 public class ConsoleView {
+    private final InputReader inputReader;
 
-    private final Map<Integer, Command> commands = new HashMap<>();
-    private final Scanner scanner = new Scanner(System.in);
-
-
-    public ConsoleView() {
-        commands.put(1, new CreateEscapeRoomCommand());
-        commands.put(2, new CreateRoomCommand(scanner, 1)); // -1 porque aún no hay EscapeRoom creado
-        commands.put(3, new ListRoomsCommand(new Scanner(System.in)));
-        commands.put(0, new ExitCommand());
-        commands.put(4, new AddClueCommand(scanner, 4));
-        commands.put(5, new AddDecorationObjectCommand(scanner, 4));
-
+    public ConsoleView(InputReader inputReader) {
+        this.inputReader = inputReader;
     }
 
-    public void showMenu() {
-        Scanner sc = new Scanner(System.in);
+    public void printWelcomeMessage() {
+        System.out.println("¡Bienvenido a Escape Room Virtual! 🎉");
+        System.out.println("Aquí podrás gestionar tus Escape Rooms, Salas, Pistas, Objetos Decorativos, Inventario, Ventas y Suscripciones.");
+    }
 
-        while (true) {
+    public void printMainMenu() {
+        System.out.println("\n========= 🎮 ESCAPE ROOM VIRTUAL =========");
+        System.out.println("1. Gestión de Escape Rooms       ➤ Crear, Ver, Editar, Eliminar");
+        System.out.println("2. Gestión de Rooms              ➤ Crear, Ver, Editar, Eliminar");
+        System.out.println("3. Gestión de Clues              ➤ Crear, Ver, Editar, Eliminar");
+        System.out.println("4. Gestión de Objetos Decorativos ➤ Crear, Ver, Editar, Eliminar");
+        System.out.println("5. 📦 Ver Inventario Actualizado");
+        System.out.println("6. 💰 Ver Valor Total del Inventario (€)");
+        System.out.println("7. 🎟️ Gestión de Tickets & Ventas");
+        System.out.println("8. 📣 Gestión de Subscripciones y Notificaciones");
+        System.out.println("0. ❌ Salir");
+        System.out.println("=====================================");
+    }
+    public String readInput(String prompt) {
+        System.out.print(prompt);             // Imprime el prompt una vez
+        return inputReader.readLine();        // Lee la línea sin imprimir nada más
+    }
 
-            System.out.println("\n--- Menú ---");
-            System.out.println("1. Crear EscapeRoom");
-            System.out.println("2. Crear Sala");
-            System.out.println("3. Listar Salas de un EscapeRoom");
-            System.out.println("0. Salir");
-            System.out.println("4. Crear Clue");
-            System.out.println("5. Crear Clue");
+    public void printError(String message) {
+        System.err.println("Error: " + message);
+    }
 
-            System.out.print("Elige una opción: ");
+    public void printInfo(String message) {
+        System.out.println(message);
+    }
 
-            int option;
-            try {
-                option = Integer.parseInt(sc.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Por favor ingresa un número válido.");
-                continue;
-            }
+    public void printSuccess(String message) {
+        System.out.println("✅ " + message);
+    }
 
-            Command command = commands.get(option);
-            if (command != null) {
-                command.execute();
-            } else {
-                System.out.println("Opción inválida. Intenta de nuevo.");
-            }
-        }
+    public void printRoomMenu() {
+        System.out.println("===== Menú de Salas =====");
+        System.out.println("1. Crear Sala");
+        System.out.println("2. Listar Salas");
+        System.out.println("3. Actualizar Sala");
+        System.out.println("4. Eliminar Sala");
+        System.out.println("0. Volver");
+    }
+
+    public void printEscapeRoomMenu() {
+
+        System.out.println("===== Menú de Escape Rooms =====");
+        System.out.println("1. Crear Escape Room");
+        System.out.println("2. Mostrar todos los Escape Rooms");
+        System.out.println("3. Actualizar Escape Room");
+        System.out.println("4. Eliminar Escape Room");
+        System.out.println("0. Volver al menú principal");
+    }
+
+    public void printClueMenu() {
+        System.out.println("===== Menú de Pistas =====");
+        System.out.println("1. Crear Pista");
+        System.out.println("2. Listar Pistas");
+        System.out.println("3. Actualizar Pista");
+        System.out.println("4. Eliminar Pista");
+        System.out.println("0. Volver al menú principal");
+    }
+
+    public void printDecorationMenu() {
+        System.out.println("===== Menú de Objetos Decorativos =====");
+        System.out.println("1. Crear Objeto Decorativo");
+        System.out.println("2. Listar Objetos Decorativos");
+        System.out.println("3. Actualizar Objeto Decorativo");
+        System.out.println("4. Eliminar Objeto Decorativo");
+        System.out.println("0. Volver al menú principal");
+    }
+
+    public void printInventoryMenu() {
+        System.out.println("===== Menú de Inventario =====");
+        System.out.println("1. Ver Inventario Actualizado");
+        System.out.println("2. Ver Valor Total del Inventario (€)");
+        System.out.println("0. Volver al menú principal");
+    }
+
+    public void printSalesMenu() {
+        System.out.println("===== Menú de Ventas =====");
+        System.out.println("1. Crear Venta");
+        System.out.println("2. Listar Ventas");
+        System.out.println("3. Actualizar Venta");
+        System.out.println("4. Eliminar Venta");
+        System.out.println("0. Volver al menú principal");
+    }
+
+    public void printSubscriptionMenu() {
+        System.out.println("===== Menú de Suscripciones =====");
+        System.out.println("1. Crear Suscripción");
+        System.out.println("2. Listar Suscripciones");
+        System.out.println("3. Actualizar Suscripción");
+        System.out.println("4. Eliminar Suscripción");
+        System.out.println("0. Volver al menú principal");
+    }
+    public void printExitMessage() {
+        System.out.println("Gracias por usar Escape Room Virtual. ¡Hasta luego!");
     }
 }

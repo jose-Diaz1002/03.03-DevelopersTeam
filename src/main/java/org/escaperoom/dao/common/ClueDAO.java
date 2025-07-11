@@ -19,6 +19,7 @@ public interface ClueDAO {
 
     List<Clue> findByRoomId(int clueId) throws SQLException;
 
+    void add(Clue clue);
 }
 
 

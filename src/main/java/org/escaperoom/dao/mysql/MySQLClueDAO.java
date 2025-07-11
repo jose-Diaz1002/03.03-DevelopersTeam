@@ -81,4 +81,13 @@ public class MySQLClueDAO implements ClueDAO {
     public List<Clue> findByRoomId(int clueId){
         return null;
     }
+
+    @Override
+    public void add(Clue clue) {
+        try {
+            create(clue);
+        } catch (ClueCreationException e) {
+            System.err.println("Error al añadir la pista: " + e.getMessage());
+        }
+    }
 }

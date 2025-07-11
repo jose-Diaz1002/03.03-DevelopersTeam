@@ -39,4 +39,30 @@ public class RoomService {
     public List<Room> getRoomsByEscapeRoomId(int escapeRoomId) throws SQLException {
         return roomDAO.findByEscapeRoomId(escapeRoomId);
     }
+
+    //TODO revisar método
+    public void updateRoom(Room existingRoom) throws RoomCreationException {
+        // Validaciones
+        if (existingRoom.getName() == null || existingRoom.getName().trim().isEmpty()) {
+            throw new RoomCreationException("El nombre de la sala no puede estar vacío");
+        }
+        if (existingRoom.getPrice().compareTo(BigDecimal.ZERO) < 0) {
+            throw new RoomCreationException("El precio no puede ser negativo");
+        }
+        if (existingRoom.getQuantityAvailable() < 0) {
+            throw new RoomCreationException("La cantidad no puede ser negativa");
+        }
+
+        // Actualizar usando DAO
+        roomDAO.update(existingRoom);
+    }
+
+    //TODO revisar método
+    public Room findById(int roomId) throws RuntimeException {
+        Room room = roomDAO.findById(roomId);
+        if (room == null) {
+            throw new RuntimeException("Sala no encontrada con ID: " + roomId);
+        }
+        return room;
+    }
 }

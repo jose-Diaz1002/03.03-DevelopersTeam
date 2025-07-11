@@ -1,7 +1,7 @@
 package org.escaperoom.input;
 
-import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class TestInputReader implements InputReader {
     private final Queue<String> inputs = new LinkedList<>();
@@ -11,27 +11,7 @@ public class TestInputReader implements InputReader {
     }
 
     @Override
-    public String readString() {
-        return null;
-    }
-
-    @Override
-    public int readInt() {
-        return 0;
-    }
-
-    @Override
-    public double readDouble() {
-        return 0;
-    }
-
-    @Override
-    public boolean readBoolean() {
-        return false;
-    }
-
-    @Override
-    public String readString(String prompt) {
+    public String readLine() {
         return null;
     }
 
@@ -41,12 +21,7 @@ public class TestInputReader implements InputReader {
     }
 
     @Override
-    public double readDouble(String prompt) {
-        return 0;
-    }
-
-    @Override
-    public boolean readBoolean(String prompt) {
-        return false;
+    public String readLine(String prompt) {
+        return inputs.poll();
     }
 }

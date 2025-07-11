@@ -1,25 +1,25 @@
-package org.escaperoom.controller.command;
+package org.escaperoom.controller.command.room;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.dao.mysql.MySQLRoomDAO;
-import org.escaperoom.database.MySQLConnection;
+import org.escaperoom.database.ConnectionFactory;
+import org.escaperoom.input.InputReader;
 import org.escaperoom.model.entity.Room;
 import org.escaperoom.model.service.RoomService;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Scanner;
 
 public class ListRoomsCommand implements Command {
 
     private final RoomService roomService;
-    private final Scanner scanner;
+    private final InputReader inputReader;
 
-    public ListRoomsCommand(Scanner scanner) {
-        this.scanner = scanner;
+    public ListRoomsCommand(InputReader inputReader) {
+        this.inputReader = inputReader;
         try {
             this.roomService = new RoomService(
-                    new MySQLRoomDAO(MySQLConnection.getInstance().getConnection())
+                    new MySQLRoomDAO(ConnectionFactory.getMySQLConnection())
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error al conectar con la base de datos", e);
@@ -29,8 +29,8 @@ public class ListRoomsCommand implements Command {
     @Override
     public void execute() {
         try {
-            System.out.print("Introduce el ID del EscapeRoom: ");
-            int escapeRoomId = Integer.parseInt(scanner.nextLine());
+            String input = inputReader.readLine("Introduce el ID del EscapeRoom: ").trim();
+            int escapeRoomId = Integer.parseInt(input);
 
             List<Room> rooms = roomService.getRoomsByEscapeRoomId(escapeRoomId);
             if (rooms.isEmpty()) {
@@ -43,11 +43,11 @@ public class ListRoomsCommand implements Command {
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("ID inválido. Debe ser un número entero.");
+            System.out.println("❌ ID inválido. Debe ser un número entero.");
         } catch (SQLException e) {
-            System.out.println("Error al acceder a la base de datos: " + e.getMessage());
+            System.out.println("❌ Error al acceder a la base de datos: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Error inesperado: " + e.getMessage());
+            System.out.println("❌ Error inesperado: " + e.getMessage());
         }
     }
 }
