@@ -3,7 +3,6 @@ package org.escaperoom.dao.mysql;
 import org.escaperoom.dao.common.DecorationObjectDAO;
 import org.escaperoom.model.entity.DecorationObject;
 
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
