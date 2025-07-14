@@ -18,7 +18,7 @@ CREATE TABLE Room (
                       difficulty_level ENUM('Easy', 'Medium', 'Hard', 'Expert') NOT NULL,
                       price DECIMAL(8, 2) NOT NULL,
                       quantity_available INT NOT NULL DEFAULT 0,
-                      FOREIGN KEY (escape_room_id) REFERENCES EscapeRoom(escape_room_id)
+                      FOREIGN KEY (escape_room_id) REFERENCES EscapeRoom(escape_room_id) ON DELETE CASCADE
 );
 
 -- Tabla: Clue
@@ -27,8 +27,8 @@ CREATE TABLE Clue (
                       room_id INT NOT NULL,
                       theme ENUM('Mystery', 'Horror', 'Fantasy', 'Sci-Fi', 'Historical', 'Adventure') NOT NULL,
                       price DECIMAL(8, 2) NOT NULL,
-                      quantity_available INT NOT NULL DEFAULT 0,  -- ✅ Corrección aquí
-                      FOREIGN KEY (room_id) REFERENCES Room(room_id)
+                      quantity_available INT NOT NULL DEFAULT 0,
+                      FOREIGN KEY (room_id) REFERENCES Room(room_id) ON DELETE CASCADE
 );
 
 -- Tabla: DecorationObject
@@ -39,7 +39,7 @@ CREATE TABLE DecorationObject (
                                   material_type VARCHAR(255),
                                   price DECIMAL(8, 2) NOT NULL,
                                   quantity_available INT NOT NULL DEFAULT 0,
-                                  FOREIGN KEY (room_id) REFERENCES Room(room_id)
+                                  FOREIGN KEY (room_id) REFERENCES Room(room_id) ON DELETE CASCADE
 );
 
 -- Tabla: Player
@@ -56,8 +56,8 @@ CREATE TABLE Ticket (
                         room_id INT NOT NULL,
                         purchase_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                         total_amount DECIMAL(10, 2) NOT NULL,
-                        FOREIGN KEY (player_id) REFERENCES Player(player_id),
-                        FOREIGN KEY (room_id) REFERENCES Room(room_id)
+                        FOREIGN KEY (player_id) REFERENCES Player(player_id) ON DELETE CASCADE,
+                        FOREIGN KEY (room_id) REFERENCES Room(room_id) ON DELETE CASCADE
 );
 
 -- Tabla: Achievement
@@ -68,8 +68,8 @@ CREATE TABLE Achievement (
                              description TEXT NOT NULL,
                              achievement_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                              reward_given BOOLEAN DEFAULT FALSE,
-                             FOREIGN KEY (player_id) REFERENCES Player(player_id),
-                             FOREIGN KEY (room_id) REFERENCES Room(room_id)
+                             FOREIGN KEY (player_id) REFERENCES Player(player_id) ON DELETE CASCADE,
+                             FOREIGN KEY (room_id) REFERENCES Room(room_id) ON DELETE CASCADE
 );
 
 -- Tabla: Event
@@ -85,5 +85,5 @@ CREATE TABLE Subscription (
                               subscription_id INT AUTO_INCREMENT PRIMARY KEY,
                               player_id INT NOT NULL,
                               event_type_subscribed VARCHAR(255) NOT NULL,
-                              FOREIGN KEY (player_id) REFERENCES Player(player_id)
+                              FOREIGN KEY (player_id) REFERENCES Player(player_id) ON DELETE CASCADE
 );

@@ -12,71 +12,62 @@ import org.escaperoom.model.service.RoomService;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
-public class CreateRoomCommand implements Command {
+public class CreateRoomInteractiveCommand implements Command {
 
-    private final RoomService roomService;
     private final InputReader inputReader;
-    private final int escapeRoomId;
+    private final RoomService roomService;
 
-    public CreateRoomCommand(InputReader inputReader, int escapeRoomId) {
+    public CreateRoomInteractiveCommand(InputReader inputReader) {
         this.inputReader = inputReader;
-        this.escapeRoomId = escapeRoomId;
-
         try {
             this.roomService = new RoomService(new MySQLRoomDAO(ConnectionFactory.getMySQLConnection()));
         } catch (SQLException e) {
-            throw new RuntimeException("Error al obtener la conexión a BD", e);
+            throw new RuntimeException("❌ Error al obtener la conexión a la base de datos", e);
         }
     }
 
     @Override
     public void execute() {
         try {
-            System.out.println("📦 Creando sala para EscapeRoom ID: " + escapeRoomId);
+            int escapeRoomId = Integer.parseInt(
+                    inputReader.readLine("🔢 Introduce el ID del Escape Room al que quieres añadir la sala: ").trim());
 
-            String name = inputReader.readLine("Nombre de la sala: ").trim();
+            String name = inputReader.readLine("🏷️ Nombre de la sala: ").trim();
             if (name.isEmpty()) {
                 System.out.println("❌ El nombre de la sala no puede estar vacío.");
                 return;
             }
 
-            String diffInput = inputReader.readLine("Dificultad (Easy, Medium, Hard, Expert): ").trim();
+            String difficultyInput = inputReader.readLine("🎯 Dificultad (Easy, Medium, Hard, Expert): ").trim();
             DifficultyLevel difficulty;
-            if (diffInput.isEmpty()) {
-                System.out.println("❌ La dificultad no puede estar vacía.");
-                return;
-            }
-
             try {
-                difficulty = DifficultyLevel.fromString(diffInput);
+                difficulty = DifficultyLevel.fromString(difficultyInput);
             } catch (IllegalArgumentException e) {
                 System.out.println("❌ Dificultad inválida. Debe ser: Easy, Medium, Hard o Expert.");
                 return;
             }
 
-            String priceInput = inputReader.readLine("Precio: ");
             BigDecimal price;
             try {
-                price = new BigDecimal(priceInput.trim());
+                price = new BigDecimal(inputReader.readLine("💰 Precio: ").trim());
                 if (price.compareTo(BigDecimal.ZERO) < 0) {
                     System.out.println("❌ El precio no puede ser negativo.");
                     return;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("❌ Precio inválido. Debe ser un número decimal válido.");
+                System.out.println("❌ Precio inválido. Debe ser un número decimal.");
                 return;
             }
 
-            String quantityInput = inputReader.readLine("Cantidad disponible: ");
             int quantity;
             try {
-                quantity = Integer.parseInt(quantityInput.trim());
+                quantity = Integer.parseInt(inputReader.readLine("📦 Cantidad disponible: ").trim());
                 if (quantity < 0) {
                     System.out.println("❌ La cantidad no puede ser negativa.");
                     return;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("❌ Cantidad inválida. Debe ser un número entero válido.");
+                System.out.println("❌ Cantidad inválida. Debe ser un número entero.");
                 return;
             }
 
@@ -85,7 +76,7 @@ public class CreateRoomCommand implements Command {
             System.out.println("✅ Sala creada con éxito.");
 
         } catch (RoomCreationException e) {
-            System.out.println("❌ Error al crear sala: " + e.getMessage());
+            System.out.println("❌ Error al crear la sala: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("❌ Error inesperado: " + e.getMessage());
         }

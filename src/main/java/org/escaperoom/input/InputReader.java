@@ -1,14 +1,13 @@
+// Interface InputReader.java
 package org.escaperoom.input;
 
 public interface InputReader {
-    String readString();
-    int readInt();
-    double readDouble();
-    boolean readBoolean();
-
-    // Opcional, más amigable:
-    String readString(String prompt);
+    String readLine();
     int readInt(String prompt);
-    double readDouble(String prompt);
-    boolean readBoolean(String prompt);
+    default String readLine(String prompt) {
+        System.out.print(prompt);
+        return readLine();
+    }
+
+
 }

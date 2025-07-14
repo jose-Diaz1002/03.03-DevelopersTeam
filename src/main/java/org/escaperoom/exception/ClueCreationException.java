@@ -2,7 +2,6 @@
 package org.escaperoom.exception;
 
 public class ClueCreationException extends Exception {
-
     public ClueCreationException(String message) {
         super(message);
     }

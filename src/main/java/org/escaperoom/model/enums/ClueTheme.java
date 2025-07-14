@@ -8,32 +8,12 @@ public enum ClueTheme {
     HISTORICAL,
     ADVENTURE;
 
-    public static ClueTheme fromString(String input) {
-        if (input == null) {
-            throw new IllegalArgumentException("El tema no puede ser nulo.");
+    public static ClueTheme fromString(String value) {
+        try {
+            return ClueTheme.valueOf(value.trim().toUpperCase().replace("-", "_").replace(" ", "_"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("❌ Tema no reconocido: " + value);
         }
-
-        return switch (input.trim().toLowerCase()) {
-            case "mystery" -> MYSTERY;
-            case "horror" -> HORROR;
-            case "fantasy" -> FANTASY;
-            case "sci-fi", "scifi", "sci fi" -> SCI_FI;
-            case "historical" -> HISTORICAL;
-            case "adventure" -> ADVENTURE;
-            default -> throw new IllegalArgumentException("Tema no válido: " + input);
-        };
-    }
-
-    @Override
-    public String toString() {
-        return switch (this) {
-            case MYSTERY -> "Mystery";
-            case HORROR -> "Horror";
-            case FANTASY -> "Fantasy";
-            case SCI_FI -> "Sci-Fi";
-            case HISTORICAL -> "Historical";
-            case ADVENTURE -> "Adventure";
-        };
     }
 }
 

@@ -1,54 +1,48 @@
 package org.escaperoom.controller.command.escapeRoom;
+
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.controller.command.room.CreateRoomCommand;
-import org.escaperoom.dao.common.EscapeRoomDAO;
-import org.escaperoom.dao.mysql.MySQLEscapeRoomDAO;
-import org.escaperoom.database.MySQLConnection;
+import org.escaperoom.exception.EscapeRoomCreationException;
+import org.escaperoom.factory.EscapeRoomServiceFactory;
+import org.escaperoom.input.InputReader;
 import org.escaperoom.model.entity.EscapeRoom;
-
-import java.sql.SQLException;
-import java.util.Scanner;
+import org.escaperoom.model.service.EscapeRoomService;
 
 public class CreateEscapeRoomCommand implements Command {
-    private final EscapeRoomDAO dao;
 
+    private final EscapeRoomService escapeRoomService;
+    private final InputReader inputReader;
 
-    public CreateEscapeRoomCommand() {
-        try {
-            this.dao = new MySQLEscapeRoomDAO(MySQLConnection.getInstance().getConnection());
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al obtener la conexión a la base de datos", e);
-        }
+    public CreateEscapeRoomCommand(InputReader inputReader) {
+        this.escapeRoomService = EscapeRoomServiceFactory.create();
+        this.inputReader = inputReader;
     }
 
     @Override
     public void execute() {
-        Scanner sc = new Scanner(System.in);
         try {
-            System.out.print("Nombre del Escape Room: ");
-            String name = sc.nextLine();
-            if (name == null || name.trim().isEmpty()) {
-                System.out.println("El nombre del Escape Room no puede estar vacío.");
+            String name = inputReader.readLine("Nombre del Escape Room: ").trim();
+
+            if (name.isEmpty()) {
+                System.out.println("❌ El nombre no puede estar vacío.");
                 return;
             }
-            EscapeRoom room = new EscapeRoom();
-            room.setName(name);
 
-            dao.create(room);  // persiste y setea el ID automáticamente
-            System.out.println("Escape Room creado con éxito con ID: " + room.getId());
+            EscapeRoom escapeRoom = new EscapeRoom();
+            escapeRoom.setName(name);
 
-            // Preguntar si quiere añadir una sala ahora
-            System.out.print("¿Quieres añadir una sala ahora? (S/N): ");
-            String respuesta = sc.nextLine();
+            escapeRoomService.createEscapeRoom(escapeRoom);
+            System.out.println("✅ Escape Room creado con ID: " + escapeRoom.getId());
+
+            String respuesta = inputReader.readLine("¿Quieres añadir una sala ahora? (S/N): ").trim();
             if (respuesta.equalsIgnoreCase("S")) {
-                // Crear Room con escapeRoomId asociado
-                CreateRoomCommand createRoomCommand = new CreateRoomCommand(sc, room.getId());
-                createRoomCommand.execute();
+                new CreateRoomCommand(inputReader, escapeRoom.getId()).execute();
             }
 
+        } catch (EscapeRoomCreationException e) {
+            System.out.println("❌ Error al crear el Escape Room: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Error al crear Escape Room: " + e.getMessage());
+            System.out.println("❌ Error inesperado: " + e.getMessage());
         }
     }
-
 }

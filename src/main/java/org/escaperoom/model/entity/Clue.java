@@ -10,22 +10,22 @@ public class Clue {
     private int roomId;
     private ClueTheme theme;
     private BigDecimal price;
-    private int  quantity;
+    private int quantityAvailable;
 
     public Clue() {
     }
 
-    public Clue(int roomId, ClueTheme theme, BigDecimal price, int quantity) {
+    public Clue(int roomId, ClueTheme theme, BigDecimal price, int quantityAvailable) {
         this.roomId = roomId;
         this.theme = theme;
         this.price = price;
-        this.quantity = quantity;
+        this.quantityAvailable = quantityAvailable;
     }
 
-    public Clue(ClueTheme theme, BigDecimal price, int quantity) {
+    public Clue(ClueTheme theme, BigDecimal price, int quantityAvailable) {
         this.theme = theme;
         this.price = price;
-        this.quantity = quantity;
+        this.quantityAvailable = quantityAvailable;
     }
 
     public int getId() {
@@ -34,6 +34,14 @@ public class Clue {
 
     public void setId(int clueId) {
         this.clueId = clueId;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
     public ClueTheme getTheme() {
@@ -52,29 +60,17 @@ public class Clue {
         this.price = price;
     }
 
-
-
-    public int getQuantity() {
-        return quantity;
+    public int getQuantityAvailable() {
+        return quantityAvailable;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-    public int getRoomId() {
-        return roomId;
-    }
-
-    public void setClueId(int clueId) {
-        this.clueId = clueId;
+    public void setQuantityAvailable(int quantityAvailable) {
+        this.quantityAvailable = quantityAvailable;
     }
 
     @Override
     public String toString() {
-        return String.format("Clue{clueId=%d, roomId=%d, theme='%s', price=%.2f, quantity=%d}",
-                clueId, roomId, theme, price, quantity);
+        return String.format("Clue{id=%d, roomId=%d, theme=%s, price=%.2f€, quantityAvailable=%d}",
+                clueId, roomId, theme, price, quantityAvailable);
     }
-
-
-
 }

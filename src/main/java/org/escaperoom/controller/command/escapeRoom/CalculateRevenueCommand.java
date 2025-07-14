@@ -1,4 +1,4 @@
-package org.escaperoom.controller.command;
+package org.escaperoom.controller.command.escapeRoom;
 
 public class CalculateRevenueCommand {
 }
