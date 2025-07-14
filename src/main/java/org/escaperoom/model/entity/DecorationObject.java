@@ -74,13 +74,10 @@ public class DecorationObject {
 
     @Override
     public String toString() {
-        return "DecorationObject{" +
-                "id=" + id +
-                ", roomId=" + roomId +
-                ", name='" + name + '\'' +
-                ", materialType='" + materialType + '\'' +
-                ", price=" + price +
-                ", quantityAvailable=" + quantityAvailable +
-                '}';
+
+        return String.format(
+            "DecorationObject{id=%d, roomId=%d, name='%s', materialType='%s', price=%s, quantityAvailable=%d}",
+            id, roomId, name, materialType, price.toPlainString(), quantityAvailable
+        );
     }
 }
