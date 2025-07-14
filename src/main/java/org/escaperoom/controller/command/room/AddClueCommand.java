@@ -2,84 +2,77 @@ package org.escaperoom.controller.command.room;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.dao.mysql.MySQLClueDAO;
-import org.escaperoom.database.MySQLConnection;
+import org.escaperoom.database.ConnectionFactory;
+import org.escaperoom.input.InputReader;
 import org.escaperoom.model.entity.Clue;
 import org.escaperoom.model.enums.ClueTheme;
 import org.escaperoom.model.service.ClueService;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class AddClueCommand implements Command {
-
+    private final InputReader inputReader;
     private final ClueService clueService;
-    private final Scanner scanner;
-    private final int roomId;
 
-    public AddClueCommand(Scanner scanner, int roomId) {
-
-        this.scanner = scanner;
-        this.roomId = roomId;
+    public AddClueCommand(InputReader inputReader) {
+        this.inputReader = inputReader;
         try {
-            this.clueService = new ClueService(new MySQLClueDAO(MySQLConnection.getInstance().getConnection()));
+            this.clueService = new ClueService(new MySQLClueDAO(ConnectionFactory.getMySQLConnection()));
         } catch (SQLException e) {
             throw new RuntimeException("Error al conectar con la base de datos", e);
         }
     }
-
     @Override
     public void execute() {
         try {
-            System.out.println("Creando pista para Room ID: " + roomId);
+            int roomId = Integer.parseInt(inputReader.readLine("ID de la sala a la que quieres añadir la pista: ").trim());
 
-            System.out.print("Tema de la pista (Mystery, Horror, Fantasy, Sci-Fi, Historical, Adventure): ");
-
-            String themeInput = scanner.nextLine().trim();
+            String themeStr = inputReader.readLine("Tema de la pista (Mystery, Horror, Fantasy, Sci-Fi, Historical, Adventure): ").trim();
             ClueTheme theme;
             try {
-                theme = ClueTheme.fromString(themeInput);
+                theme = ClueTheme.valueOf(themeStr);
             } catch (IllegalArgumentException e) {
-                System.out.println("Tema inválido. Debe ser: Mystery, Horror, Fantasy, Sci-Fi, Historical, Adventure).");
+                System.out.println("Tema inválido. Debe ser uno de los indicados.");
                 return;
             }
 
-            System.out.print("Precio de la pista: ");
-            String priceInput = scanner.nextLine().trim();
             BigDecimal price;
             try {
-                price = new BigDecimal(priceInput);
+                price = new BigDecimal(inputReader.readLine("Precio de la pista: ").trim());
                 if (price.compareTo(BigDecimal.ZERO) < 0) {
                     System.out.println("El precio no puede ser negativo.");
                     return;
                 }
-            } catch (NumberFormatException | NullPointerException e) {
-                System.out.println("Precio inválido. Debe ser un número decimal.");
+            } catch (NumberFormatException e) {
+                System.out.println("Precio inválido.");
                 return;
             }
 
-            System.out.print("Cantidad disponible: ");
-            String quantityInput = scanner.nextLine().trim();
             int quantity;
             try {
-                quantity = Integer.parseInt(quantityInput);
+                quantity = Integer.parseInt(inputReader.readLine("Cantidad disponible: ").trim());
                 if (quantity < 0) {
-                    System.out.println("La cantidad no puede ser negativa.");
+                    System.out.println("Cantidad no puede ser negativa.");
                     return;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Cantidad inválida. Debe ser un número entero.");
+                System.out.println("Cantidad inválida.");
                 return;
             }
 
             Clue clue = new Clue(roomId, theme, price, quantity);
-            clueService.createClue(clue);
+            clueService.addClue(clue);
 
-            System.out.println("Pista añadida con éxito.");
+
+            System.out.println("Pista añadida correctamente.");
 
         } catch (Exception e) {
-            System.out.println("Error inesperado al añadir la pista: " + e.getMessage());
+            System.out.println("Error inesperado: " + e.getMessage());
         }
     }
-}
 
+
+    // Additional methods for testing or other functionalities can be added here
+
+}

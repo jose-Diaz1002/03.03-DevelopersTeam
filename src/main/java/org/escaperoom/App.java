@@ -1,15 +1,10 @@
 package org.escaperoom;
 
-import org.escaperoom.view.ConsoleView;
-
-
+import org.escaperoom.controller.MainController;
 
 public class App {
     public static void main(String[] args) {
-
-        ConsoleView consoleView = new ConsoleView();
-        consoleView.showMenu();
-
+        MainController mainController = new MainController();
+        mainController.start();
     }
-
 }
