@@ -94,15 +94,20 @@ public class MySQLEscapeRoomDAO implements EscapeRoomDAO {
 
     @Override
     public void deleteById(int escapeRoomId) throws EscapeRoomCreationException {
+        String sql = "DELETE FROM EscapeRoom WHERE escape_room_id = ?";
 
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, escapeRoomId);
+
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new EscapeRoomCreationException("No se encontró ningún EscapeRoom con el ID proporcionado.");
+            }
+
+        } catch (SQLException e) {
+            throw new EscapeRoomCreationException("Error al eliminar el EscapeRoom en la base de datos.", e);
+        }
     }
 
-
-    @Override
-    public boolean delete(int id) {
-
-        return false;
-
-    }
 
 }

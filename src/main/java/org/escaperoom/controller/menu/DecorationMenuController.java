@@ -9,6 +9,9 @@ public class DecorationMenuController implements Command {
 
     @Override
     public void execute() {
+        start();
+    }
 
+    public void start() {
     }
 }

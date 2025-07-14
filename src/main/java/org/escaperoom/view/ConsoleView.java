@@ -63,14 +63,17 @@ public class ConsoleView {
         System.out.println("0. Volver al menú principal");
     }
 
+
+
     public void printClueMenu() {
-        System.out.println("===== Menú de Pistas =====");
+        System.out.println("\n===== MENÚ PISTAS =====");
         System.out.println("1. Crear Pista");
-        System.out.println("2. Listar Pistas");
+        System.out.println("2. Ver todas las Pistas");
         System.out.println("3. Actualizar Pista");
         System.out.println("4. Eliminar Pista");
-        System.out.println("0. Volver al menú principal");
+        System.out.println("0. Volver");
     }
+
 
     public void printDecorationMenu() {
         System.out.println("===== Menú de Objetos Decorativos =====");

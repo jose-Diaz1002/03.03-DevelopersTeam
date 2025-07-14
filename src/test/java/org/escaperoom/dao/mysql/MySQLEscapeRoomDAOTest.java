@@ -27,4 +27,5 @@ public class MySQLEscapeRoomDAOTest {
             fail("Fallo al crear EscapeRoom: " + e.getMessage());
         }
     }
+
 }

@@ -8,15 +8,13 @@ public enum ClueTheme {
     HISTORICAL,
     ADVENTURE;
 
-    public static ClueTheme fromString(String input) {
-        for (ClueTheme theme : ClueTheme.values()) {
-            if (theme.name().equalsIgnoreCase(input)) {
-                return theme;
-            }
+    public static ClueTheme fromString(String value) {
+        try {
+            return ClueTheme.valueOf(value.trim().toUpperCase().replace("-", "_").replace(" ", "_"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("❌ Tema no reconocido: " + value);
         }
-        throw new IllegalArgumentException("Tema de pista no válido: " + input);
     }
-
 }
 
 

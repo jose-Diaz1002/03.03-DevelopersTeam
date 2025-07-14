@@ -17,9 +17,6 @@ public class EscapeRoomService {
     private final AchievementDAO achievementDAO;
     private final InventoryDAO inventoryDAO;
 
-    /**
-     * Constructor principal con inyección de dependencias.
-     */
     public EscapeRoomService(
             EscapeRoomDAO escapeRoomDAO,
             RoomDAO roomDAO,
@@ -38,11 +35,6 @@ public class EscapeRoomService {
         this.inventoryDAO = inventoryDAO;
     }
 
-    /**
-     * Crea un nuevo EscapeRoom después de validar los datos.
-     * @param escapeRoom Objeto EscapeRoom a crear.
-     * @throws EscapeRoomCreationException si hay errores durante la creación.
-     */
     public void createEscapeRoom(EscapeRoom escapeRoom) throws EscapeRoomCreationException {
         if (escapeRoom.getName() == null || escapeRoom.getName().trim().isEmpty()) {
             throw new EscapeRoomCreationException("El nombre del EscapeRoom no puede estar vacío");
@@ -63,11 +55,30 @@ public class EscapeRoomService {
         }
     }
 
-    // Aquí puedes añadir más métodos de negocio
+    public void updateEscapeRoom(EscapeRoom updatedEscapeRoom) throws EscapeRoomCreationException {
+        if (updatedEscapeRoom.getId() <= 0) {
+            throw new EscapeRoomCreationException("ID de Escape Room inválido para actualización.");
+        }
+        if (updatedEscapeRoom.getName() == null || updatedEscapeRoom.getName().trim().isEmpty()) {
+            throw new EscapeRoomCreationException("El nombre no puede estar vacío.");
+        }
 
-
+        try {
+            escapeRoomDAO.update(updatedEscapeRoom);
+        } catch (Exception e) {
+            throw new EscapeRoomCreationException("Error al actualizar el Escape Room.", e);
+        }
+    }
 
     public void deleteEscapeRoomById(int id) throws EscapeRoomDeletionException {
+        if (id <= 0) {
+            throw new EscapeRoomDeletionException("ID inválido para eliminación.");
+        }
 
+        try {
+            escapeRoomDAO.deleteById(id);
+        } catch (Exception e) {
+            throw new EscapeRoomDeletionException("Error al eliminar el Escape Room.", e);
+        }
     }
 }

@@ -21,6 +21,7 @@ public class CreateRoomCommand implements Command {
     public CreateRoomCommand(InputReader inputReader, int escapeRoomId) {
         this.inputReader = inputReader;
         this.escapeRoomId = escapeRoomId;
+
         try {
             this.roomService = new RoomService(new MySQLRoomDAO(ConnectionFactory.getMySQLConnection()));
         } catch (SQLException e) {
@@ -41,6 +42,11 @@ public class CreateRoomCommand implements Command {
 
             String diffInput = inputReader.readLine("Dificultad (Easy, Medium, Hard, Expert): ").trim();
             DifficultyLevel difficulty;
+            if (diffInput.isEmpty()) {
+                System.out.println("❌ La dificultad no puede estar vacía.");
+                return;
+            }
+
             try {
                 difficulty = DifficultyLevel.fromString(diffInput);
             } catch (IllegalArgumentException e) {
