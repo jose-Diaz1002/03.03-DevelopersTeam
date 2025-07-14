@@ -1,4 +1,4 @@
-package org.escaperoom.controller;
+/*package org.escaperoom.controller;
 
 import org.escaperoom.controller.command.ExitCommand;
 import org.escaperoom.controller.command.interficie.Command;
@@ -52,5 +52,5 @@ public class MainController {
         } while (!"0".equals(input));
     }
 
+}*/
 
-}

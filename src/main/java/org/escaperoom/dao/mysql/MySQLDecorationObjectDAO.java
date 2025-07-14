@@ -17,6 +17,34 @@ public class MySQLDecorationObjectDAO implements DecorationObjectDAO {
     }
 
     @Override
+
+    public void create(DecorationObject decoration) throws DecorationObjectCreationException {
+        if (decoration.getName() == null || decoration.getName().trim().isEmpty()) {
+            throw new DecorationObjectCreationException("Debe indicar un nombre.");
+        }
+        if (decoration.getMaterialType() == null || decoration.getMaterialType().trim().isEmpty()) {
+            throw new DecorationObjectCreationException("Debe indicar un tipo de decoración.");
+        }
+        if (decoration.getPrice() == null || decoration.getPrice().doubleValue() < 0) {
+            throw new DecorationObjectCreationException("El precio debe ser un valor positivo.");
+        }
+        if (decoration.getQuantity() < 0) {
+            throw new DecorationObjectCreationException("La cantidad disponible no puede ser negativa.");
+        }
+
+        String sql = "INSERT INTO DecorationObject (room_id, name, material_type, price, quantity_available) VALUES (?, ?, ?, ?, ?)";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setInt(1, decoration.getRoomId());
+            stmt.setString(2, decoration.getName());
+            stmt.setString(3, decoration.getMaterialType());
+            stmt.setBigDecimal(4, decoration.getPrice());
+            stmt.setInt(5, decoration.getQuantity());
+
+            int affectedRows = stmt.executeUpdate();
+
+
     public void create(DecorationObject decorationObject) {
         String sql = "INSERT INTO DecorationObject (room_id, name, material_type, price, quantity_available) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {

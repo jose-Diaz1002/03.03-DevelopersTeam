@@ -1,4 +1,4 @@
-package org.escaperoom.controller.command;
+package org.escaperoom.controller.command.room;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.exception.DecorationObjectCreationException;
@@ -36,6 +36,14 @@ public class AddDecorationObjectCommand implements Command {
                 return;
             }
 
+
+            System.out.print("Tipo de decoración: ");
+            String decorationType = scanner.nextLine().trim();
+            if (decorationType.isEmpty()) {
+                System.out.println("El tipo de decoración no puede estar vacío.");
+                return;
+            }
+
             String materialType = inputReader.readLine("Tipo de material: ").trim();
 
             BigDecimal price;
@@ -65,7 +73,10 @@ public class AddDecorationObjectCommand implements Command {
             DecorationObject decorationObject = new DecorationObject(roomId, name, materialType, price, quantity);
             decorationObjectService.addDecorationObject(decorationObject);
 
+
+
             System.out.println("Objeto decorativo añadido correctamente.");
+
 
         } catch (DecorationObjectCreationException e) {
             System.out.println("Error al añadir objeto decorativo: " + e.getMessage());

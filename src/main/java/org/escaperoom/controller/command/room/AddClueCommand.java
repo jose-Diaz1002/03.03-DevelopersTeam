@@ -64,6 +64,7 @@ public class AddClueCommand implements Command {
             Clue clue = new Clue(roomId, theme, price, quantity);
             clueService.addClue(clue);
 
+
             System.out.println("Pista añadida correctamente.");
 
         } catch (Exception e) {
