@@ -1,4 +1,4 @@
-/*package org.escaperoom.controller;
+package org.escaperoom.controller;
 
 import org.escaperoom.controller.command.ExitCommand;
 import org.escaperoom.controller.command.interficie.Command;
@@ -32,7 +32,7 @@ public class MainController {
         commands.put("4", () -> new DecorationMenuController(inputReader).start());
         commands.put("5", new ShowInventoryCommand(inputReader));
         commands.put("6", new InventoryValueCommand(inputReader));
-       // commands.put("7", () -> new SalesMenuController(inputReader).start());
+        // commands.put("7", () -> new SalesMenuController(inputReader).start());
         // commands.put("8", () -> new SubscriptionMenuController(inputReader).start());
         commands.put("0", new ExitCommand());
     }
@@ -52,5 +52,5 @@ public class MainController {
         } while (!"0".equals(input));
     }
 
-}*/
 
+}

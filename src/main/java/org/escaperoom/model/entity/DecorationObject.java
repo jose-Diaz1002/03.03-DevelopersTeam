@@ -76,8 +76,8 @@ public class DecorationObject {
     public String toString() {
 
         return String.format(
-            "DecorationObject{id=%d, roomId=%d, name='%s', materialType='%s', price=%s, quantityAvailable=%d}",
-            id, roomId, name, materialType, price.toPlainString(), quantityAvailable
+                "DecorationObject{id=%d, roomId=%d, name='%s', materialType='%s', price=%s, quantityAvailable=%d}",
+                id, roomId, name, materialType, price.toPlainString(), quantityAvailable
         );
     }
 }

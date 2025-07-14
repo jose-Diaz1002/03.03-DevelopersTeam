@@ -1,20 +1,6 @@
 package org.escaperoom.view;
 
-
-import org.escaperoom.controller.command.room.AddDecorationObjectCommand;
-import org.escaperoom.controller.command.room.AddClueCommand;
-import org.escaperoom.controller.command.room.CreateRoomCommand;
-import org.escaperoom.controller.command.ListRoomsCommand;
-import org.escaperoom.controller.command.escapeRoom.CreateEscapeRoomCommand;
-import org.escaperoom.controller.command.interficie.Command;
-import org.escaperoom.controller.command.ExitCommand;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-
 import org.escaperoom.input.InputReader;
-
 
 public class ConsoleView {
     private final InputReader inputReader;
@@ -78,6 +64,7 @@ public class ConsoleView {
     }
 
 
+
     public void printClueMenu() {
         System.out.println("\n===== MENÚ PISTAS =====");
         System.out.println("1. Crear Pista");
@@ -96,7 +83,6 @@ public class ConsoleView {
         System.out.println("4. Eliminar Objeto Decorativo");
         System.out.println("0. Volver al menú principal");
     }
-
 
     public void printInventoryMenu() {
         System.out.println("===== Menú de Inventario =====");

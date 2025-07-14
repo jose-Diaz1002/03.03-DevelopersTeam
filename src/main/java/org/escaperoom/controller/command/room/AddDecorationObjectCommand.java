@@ -12,6 +12,10 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 
 public class AddDecorationObjectCommand implements Command {
+    @Override
+    public void execute() {
+
+    }/*
 
     private final DecorationObjectService decorationObjectService;
     private final InputReader inputReader;
@@ -83,5 +87,5 @@ public class AddDecorationObjectCommand implements Command {
         } catch (Exception e) {
             System.out.println("Error inesperado: " + e.getMessage());
         }
-    }
+    }*/
 }
