@@ -1,6 +1,7 @@
 package org.escaperoom.model.service;
 
 import org.escaperoom.dao.common.DecorationObjectDAO;
+import org.escaperoom.exception.DecorationCreationException;
 import org.escaperoom.exception.DecorationObjectCreationException;
 import org.escaperoom.model.entity.DecorationObject;
 
@@ -27,8 +28,8 @@ public class DecorationObjectService {
 
         try {
             decorationObjectDAO.create(decorationObject);
-        } catch (SQLException e) {
-            throw new DecorationObjectCreationException("Error al crear el objeto decorativo: " + e.getMessage(), e);
+        } catch (DecorationCreationException e) {
+            throw new RuntimeException(e);
         }
     }
 

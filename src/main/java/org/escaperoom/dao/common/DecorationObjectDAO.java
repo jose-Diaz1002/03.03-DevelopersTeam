@@ -1,5 +1,6 @@
 package org.escaperoom.dao.common;
 
+import org.escaperoom.exception.DecorationCreationException;
 import org.escaperoom.model.entity.DecorationObject;
 
 import java.sql.SQLException;
@@ -8,14 +9,13 @@ import java.util.List;
 
 
 public interface DecorationObjectDAO {
+    void create(DecorationObject decorationObject) throws DecorationCreationException;
 
-    void create(DecorationObject decorationObject) throws SQLException;
+    DecorationObject findById(int decorationId) throws DecorationCreationException;
 
-    DecorationObject findById(int id) throws SQLException;
+    List<DecorationObject> findByRoomId(int roomId) throws DecorationCreationException;
 
-    List<DecorationObject> findByRoomId(int roomId) throws SQLException;
+    void update(DecorationObject decorationObject) throws DecorationCreationException;
 
-    void update(DecorationObject decorationObject) throws SQLException;
-
-    void delete(int id) throws SQLException;
+    void delete(int decorationId) throws DecorationCreationException;
 }

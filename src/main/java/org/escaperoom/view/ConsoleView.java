@@ -75,13 +75,15 @@ public class ConsoleView {
     }
 
 
+
     public void printDecorationMenu() {
-        System.out.println("===== Menú de Objetos Decorativos =====");
-        System.out.println("1. Crear Objeto Decorativo");
-        System.out.println("2. Listar Objetos Decorativos");
-        System.out.println("3. Actualizar Objeto Decorativo");
-        System.out.println("4. Eliminar Objeto Decorativo");
+        System.out.println("\n========= 🎨 GESTIÓN DE OBJETOS DECORATIVOS =========");
+        System.out.println("1. Crear objeto decorativo");
+        System.out.println("2. Listar objetos decorativos");
+        System.out.println("3. Actualizar objeto decorativo");
+        System.out.println("4. Eliminar objeto decorativo");
         System.out.println("0. Volver al menú principal");
+        System.out.println("======================================================");
     }
 
     public void printInventoryMenu() {
