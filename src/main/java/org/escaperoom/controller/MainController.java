@@ -1,10 +1,16 @@
 package org.escaperoom.controller;
 
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import org.escaperoom.controller.command.ExitCommand;
+
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.controller.command.inventory.InventoryValueCommand;
 import org.escaperoom.controller.command.inventory.ShowInventoryCommand;
 import org.escaperoom.controller.command.system.ExitCommand;
 import org.escaperoom.controller.menu.*;
+import org.escaperoom.dao.mongo.MongoSubscriptionDAO;
 import org.escaperoom.input.InputReader;
 import org.escaperoom.input.ScannerInputReader;
 import org.escaperoom.view.ConsoleView;
@@ -28,7 +34,8 @@ public class MainController {
         this.view = new ConsoleView(inputReader);
         initCommands();
     }
-
+    MongoClient mongoClient = MongoClients.create();
+    MongoSubscriptionDAO subscriptionDAO = new MongoSubscriptionDAO(mongoClient);
 
     /**
      * Initializes the commands for the main menu.
@@ -40,6 +47,10 @@ public class MainController {
         commands.put("4", new DecorationMenuController(inputReader));
         commands.put("5", new ShowInventoryCommand(inputReader));
         commands.put("6", new InventoryValueCommand(inputReader));
+
+        // commands.put("7", () -> new SalesMenuController(inputReader).start());
+        commands.put("8", () -> new SubscriptionMenuController(inputReader, subscriptionDAO).start());
+
         commands.put("0", new ExitCommand());
     }
 

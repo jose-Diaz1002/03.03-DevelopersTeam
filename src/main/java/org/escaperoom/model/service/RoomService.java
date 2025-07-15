@@ -3,12 +3,13 @@ package org.escaperoom.model.service;
 import org.escaperoom.dao.common.RoomDAO;
 import org.escaperoom.exception.RoomCreationException;
 import org.escaperoom.model.entity.Room;
+import org.escaperoom.model.notification.Observable;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 
-public class RoomService {
+public class RoomService extends Observable {
 
     private final RoomDAO roomDAO;
 
@@ -34,7 +35,7 @@ public class RoomService {
 
         // Guardar usando DAO
         roomDAO.create(room);
-    }
+        notifyObservers("roomCreated", room);    }
 
     public List<Room> getRoomsByEscapeRoomId(int escapeRoomId) throws SQLException {
         return roomDAO.findByEscapeRoomId(escapeRoomId);

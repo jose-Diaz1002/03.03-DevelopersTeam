@@ -17,6 +17,7 @@ public class ConsoleView {
     }
 
     public void printMainMenu() {
+
         out.println("\n========= 🎮 ESCAPE ROOM VIRTUAL =========");
         out.println("1. Gestión de Escape Rooms       ➤ Crear, Ver, Editar, Eliminar");
         out.println("2. Gestión de Rooms              ➤ Crear, Ver, Editar, Eliminar");
@@ -28,6 +29,7 @@ public class ConsoleView {
         out.println("8. 📣 Gestión de Subscripciones y Notificaciones");
         out.println("0. ❌ Salir");
         out.println("=====================================");
+
     }
     public String readInput(String prompt) {
         out.print(prompt);             // Imprime el prompt una vez
@@ -105,12 +107,15 @@ public class ConsoleView {
     }
 
     public void printSubscriptionMenu() {
+
+
         out.println("===== Menú de Suscripciones =====");
         out.println("1. Crear Suscripción");
         out.println("2. Listar Suscripciones");
         out.println("3. Actualizar Suscripción");
         out.println("4. Eliminar Suscripción");
         out.println("0. Volver al menú principal");
+
     }
     public void printExitMessage() {
         out.println("Gracias por usar Escape Room Virtual. ¡Hasta luego!");
