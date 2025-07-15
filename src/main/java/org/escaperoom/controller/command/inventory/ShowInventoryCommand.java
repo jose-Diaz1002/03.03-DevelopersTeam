@@ -25,16 +25,20 @@ public class ShowInventoryCommand implements Command {
         try {
             int escapeRoomId = inputReader.readInt("🔍 Introduce el ID del Escape Room: ");
             List<Room> rooms = inventoryService.getRoomsByEscapeRoom(escapeRoomId);
-
-            if (rooms.isEmpty()) {
-                System.out.println("❌ No se encontraron salas para este Escape Room.");
+            if (rooms == null || rooms.isEmpty()) {
+                System.out.println("❌ No se encontraron salas para el Escape Room con ID " + escapeRoomId);
                 return;
             }
+            System.out.println("========================================");
+            System.out.println("📦 Inventario del Escape Room con ID " + escapeRoomId + ":");
+            System.out.println("========================================");
+
 
             for (Room room : rooms) {
                 System.out.println("\n📌 Sala: " + room.getName() + " (ID: " + room.getRoomId() + ")");
 
                 List<Clue> clues = inventoryService.getCluesByRoom(room.getRoomId());
+                System.out.println("----------------------------------------");
                 if (!clues.isEmpty()) {
                     System.out.println("🔎 Pistas:");
                     for (Clue clue : clues) {
@@ -44,12 +48,15 @@ public class ShowInventoryCommand implements Command {
                     System.out.println("🔎 Pistas: Ninguna");
                 }
 
+                System.out.println("----------------------------------------");
                 List<DecorationObject> decorations = inventoryService.getDecorationsByRoom(room.getRoomId());
                 if (!decorations.isEmpty()) {
                     System.out.println("🎨 Objetos decorativos:");
                     for (DecorationObject obj : decorations) {
                         System.out.println("- " + obj.getName() + " (" + obj.getMaterialType() + "), Cantidad: " + obj.getQuantityAvailable() + ", Precio: €" + obj.getPrice());
                     }
+
+                    System.out.println("----------------------------------------");
                 } else {
                     System.out.println("🎨 Objetos decorativos: Ninguno");
                 }
