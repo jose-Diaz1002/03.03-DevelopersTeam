@@ -1,4 +1,4 @@
-package org.escaperoom.dao.mysql;
+/*package org.escaperoom.dao.mysql;
 
 import org.escaperoom.dao.common.SubscriptionDAO;
 import org.escaperoom.database.MySQLConnection;
@@ -34,4 +34,4 @@ public class MySQLSubscriptionDAO implements SubscriptionDAO {
     public void delete(int id) throws SQLException {
 
     }
-}
+}*/

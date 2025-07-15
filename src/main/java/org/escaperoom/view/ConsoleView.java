@@ -23,7 +23,7 @@ public class ConsoleView {
         System.out.println("5. 📦 Ver Inventario Actualizado");
         System.out.println("6. 💰 Ver Valor Total del Inventario (€)");
         System.out.println("7. 🎟️ Gestión de Tickets & Ventas");
-        System.out.println("8. 📣 Gestión de Subscripciones y Notificaciones");
+        System.out.println("8. 📣 Subscripciones");
         System.out.println("0. ❌ Salir");
         System.out.println("=====================================");
     }
@@ -105,9 +105,8 @@ public class ConsoleView {
     public void printSubscriptionMenu() {
         System.out.println("===== Menú de Suscripciones =====");
         System.out.println("1. Crear Suscripción");
-        System.out.println("2. Listar Suscripciones");
-        System.out.println("3. Actualizar Suscripción");
-        System.out.println("4. Eliminar Suscripción");
+        System.out.println("2. Eliminar Suscripción");
+        System.out.println("3. Listar Suscripciones");
         System.out.println("0. Volver al menú principal");
     }
     public void printExitMessage() {
