@@ -3,6 +3,7 @@ package org.escaperoom.controller.command.decoration;
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.factory.DecorationServiceFactory;
 import org.escaperoom.input.InputReader;
+import org.escaperoom.input.InputValidator;
 import org.escaperoom.model.entity.DecorationObject;
 import org.escaperoom.model.service.DecorationService;
 
@@ -21,7 +22,7 @@ public class CreateDecorationCommand implements Command {
     @Override
     public void execute() {
         try {
-            int roomId = inputReader.readInt("ID de la sala para la decoración: ");
+            int roomId = InputValidator.readPositiveInt(inputReader, "ID de la sala a la que pertenece el objeto decorativo: ");
             String name = inputReader.readLine("Nombre del objeto decorativo: ").trim();
             String materialType = inputReader.readLine("Tipo de material: ").trim();
             BigDecimal price = new BigDecimal(inputReader.readLine("Precio: ").trim());
