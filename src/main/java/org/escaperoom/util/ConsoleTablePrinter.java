@@ -85,4 +85,20 @@ public class ConsoleTablePrinter {
         System.out.println(line);
     }
 
+    public static void printEscapeRoomDetails(EscapeRoom escapeRoom) {
+        String line = "+-------+---------------------------+---------------------------+-------------------+";
+        String format = "| %-5s | %-25s | %-25s | %-17s |%n";
+
+        System.out.println(line);
+        System.out.printf(format, "ID", "Nombre", "Inventario Total (€)", "Ventas Total (€)");
+        System.out.println(line);
+        System.out.printf(format,
+                escapeRoom.getId(),
+                escapeRoom.getName(),
+                String.format("%.2f", escapeRoom.getTotalInventoryValue()),
+                String.format("%.2f", escapeRoom.getTotalTicketSales())
+        );
+        System.out.println(line);
+    }
+
 }
