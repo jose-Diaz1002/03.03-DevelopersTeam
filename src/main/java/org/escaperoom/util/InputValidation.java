@@ -47,15 +47,16 @@ public class InputValidation {
 
     public static boolean validateBooleanInput(String prompt) {
         while (true) {
-            System.out.print(prompt + " (true/false): ");
+
+            System.out.print(prompt+ " (s/n): ");
             String input = scanner.nextLine().trim().toLowerCase();
 
-            if (input.equals("true")) {
+            if (input.equals("s")) {
                 return true;
-            } else if (input.equals("false")) {
+            } else if (input.equals("n")) {
                 return false;
             } else {
-                System.out.println("Invalid input. Please enter 'true' or 'false'.");
+                System.out.println("Invalid input. Please enter 's' or 'n'.");
             }
         }
     }
