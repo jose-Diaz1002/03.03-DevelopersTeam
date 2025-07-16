@@ -24,10 +24,10 @@ public class DecorationMenuController implements Command {
     }
 
     private void initCommands() {
-        commands.put("1", new CreateDecorationCommand(inputReader));
-        commands.put("2", new ListDecorationsCommand(inputReader));
-        commands.put("3", new UpdateDecorationCommand(inputReader));
-        commands.put("4", new DeleteDecorationCommand(inputReader));
+        commands.put("1", new CreateDecorationCommand());
+        commands.put("2", new ListDecorationsCommand());
+        commands.put("3", new UpdateDecorationCommand());
+        commands.put("4", new DeleteDecorationCommand());
     }
 
     @Override
