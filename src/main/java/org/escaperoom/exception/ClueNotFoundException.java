@@ -1,6 +1,6 @@
 package org.escaperoom.exception;
 
-public class ClueNotFoundException {
+public class ClueNotFoundException extends Throwable {
     private final String message;
 
     public ClueNotFoundException(String message) {

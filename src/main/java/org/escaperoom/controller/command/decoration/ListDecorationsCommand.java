@@ -4,6 +4,7 @@ import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.factory.DecorationServiceFactory;
 import org.escaperoom.model.entity.DecorationObject;
 import org.escaperoom.service.DecorationService;
+import org.escaperoom.util.ConsoleTablePrinter;
 import org.escaperoom.util.InputValidation;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class ListDecorationsCommand implements Command {
                 System.out.println("❌ No se encontraron objetos decorativos para esta sala.");
             } else {
                 System.out.println("📜 Objetos decorativos en la sala ID " + roomId + ":");
-                decorations.forEach(decoration -> System.out.println(" - " + decoration));
+                ConsoleTablePrinter.printDecorationsTable(decorations);
             }
 
         } catch (Exception e) {

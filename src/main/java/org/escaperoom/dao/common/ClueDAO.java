@@ -17,7 +17,4 @@ public interface ClueDAO {
     void delete(int clueId) throws ClueCreationException;
 
     List<Clue> findByRoomId(int roomId) throws ClueCreationException;
-
-    //save
-    Clue save(Clue clue) throws ClueCreationException;
 }

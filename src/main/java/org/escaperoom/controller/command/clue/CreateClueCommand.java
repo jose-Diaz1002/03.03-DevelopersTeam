@@ -19,7 +19,27 @@ public class CreateClueCommand implements Command {
 
     @Override
     public void execute() {
+        try {
+            int roomId = InputValidation.validateIdInput("ID de la sala a la que pertenece la pista: ");
 
+            // Mejor usar validateEnumInput para seleccionar el tema directamente
+            ClueTheme clueTheme = InputValidation.validateEnumInput(
+                    "Selecciona el tema de la pista:", ClueTheme.class);
 
+            BigDecimal price = InputValidation.validatePositiveBigDecimal("Precio de la pista (€): ");
+
+            int quantity = InputValidation.validatePositiveIntInput("Cantidad disponible de pistas: ");
+
+            Clue clue = new Clue();
+            clue.setRoomId(roomId);
+            clue.setTheme(clueTheme);
+            clue.setPrice(price);
+            clue.setQuantityAvailable(quantity);
+
+            clueService.addClue(clue);
+            System.out.println("✅ Pista creada correctamente.");
+        } catch (Exception e) {
+            System.out.println("❌ Error inesperado: " + e.getMessage());
+        }
     }
 }
