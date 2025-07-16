@@ -1,4 +1,4 @@
-package org.escaperoom.input;
+package org.escaperoom.util;
 import org.escaperoom.model.enums.DifficultyLevel;
 
 import java.math.BigDecimal;
@@ -145,6 +145,39 @@ public class InputValidator {
                     .map(Enum::name)
                     .collect(Collectors.joining(", "));
             throw new IllegalArgumentException("❌ Valor inválido. Opciones válidas: " + validValues);
+        }
+    }
+
+    public static String readEmailString(InputReader inputReader, String prompt) throws IllegalArgumentException {
+        String email = readNonEmptyString(inputReader, prompt);
+        // Regex básico para validar email con case-insensitive
+        String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        if (!email.matches(emailRegex)) {
+            throw new IllegalArgumentException("❌ El email no es válido.");
+        }
+        return email;
+    }
+
+    public static String readString(InputReader inputReader, String s) {
+        String input = inputReader.readLine(s);
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException("❌ El campo no puede estar vacío.");
+        }
+        return input.trim();
+    }
+
+    public static int validatePositiveInt(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException("❌ El campo no puede estar vacío.");
+        }
+        try {
+            int value = Integer.parseInt(input);
+            if (value < 0) {
+                throw new IllegalArgumentException("❌ El número debe ser mayor o igual a 0.");
+            }
+            return value;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("❌ Entrada inválida. Debe ser un número entero válido.");
         }
     }
 }

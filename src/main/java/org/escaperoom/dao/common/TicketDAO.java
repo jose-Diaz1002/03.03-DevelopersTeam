@@ -8,11 +8,13 @@ import java.util.List;
 public interface TicketDAO {
     void create(Ticket ticket) throws SQLException;
 
-    Ticket read(int id) throws SQLException;
+    Ticket findById(int id) throws SQLException;
 
-    List<Ticket> readAll() throws SQLException;
+    List<Ticket> findAll() throws SQLException;
 
     void update(Ticket ticket) throws SQLException;
 
     void delete(int id) throws SQLException;
+
+    List<Ticket> findByPlayerId(int playerId) throws SQLException;
 }

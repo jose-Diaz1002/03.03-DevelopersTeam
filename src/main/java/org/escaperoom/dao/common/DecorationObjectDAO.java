@@ -3,7 +3,6 @@ package org.escaperoom.dao.common;
 import org.escaperoom.exception.DecorationCreationException;
 import org.escaperoom.model.entity.DecorationObject;
 
-import java.sql.SQLException;
 import java.util.List;
 
 

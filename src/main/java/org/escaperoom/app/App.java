@@ -1,4 +1,4 @@
-package org.escaperoom;
+package org.escaperoom.app;
 
 import org.escaperoom.controller.MainController;
 

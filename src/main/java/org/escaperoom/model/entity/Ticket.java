@@ -1,83 +1,94 @@
 package org.escaperoom.model.entity;
 
+import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class Ticket {
 
-
-    /*
-     ticket_id INT AUTO_INCREMENT PRIMARY KEY,
-    player_id INT NOT NULL,
-    room_id INT NOT NULL, -- Un ticket se compra para acceder a una sala específica (según el enunciado)
-    purchase_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Fecha y hora de la compra del ticket
-    total_amount DECIMAL(10, 2) NOT NULL, -- Valor total del ticket
-     */
-
-    private int id;
-    private Integer roomId;
-    private Integer playerId;
-    private LocalDateTime purchaseDate;
-    private Double totalAmount;
+    private int ticketId;
+    private int escapeRoomId;
+    private int roomId;
+    private String playerName;
+    private BigDecimal price;
+    private Instant purchaseDate;
 
     public Ticket() {
     }
 
-    public Ticket(int id, Integer roomId, Integer playerId, LocalDateTime purchaseDate, Double totalAmount) {
-        this.id = id;
+    public Ticket(int ticketId, int escapeRoomId, int roomId, String playerName, BigDecimal price, Instant purchaseDate) {
+        this.ticketId = ticketId;
+        this.escapeRoomId = escapeRoomId;
         this.roomId = roomId;
-        this.playerId = playerId;
+        this.playerName = playerName;
+        this.price = price;
         this.purchaseDate = purchaseDate;
-        this.totalAmount = totalAmount;
     }
 
-    public int getId() {
-        return id;
+
+    public Ticket(int ticketId, int roomId, String playerName, BigDecimal price, Instant purchaseDate) {
+        this.ticketId = ticketId;
+        this.roomId = roomId;
+        this.playerName = playerName;
+        this.price = price;
+        this.purchaseDate = purchaseDate;
     }
 
-    public void setId(int id) {
-        this.id = id;
+
+    public int getTicketId() {
+        return ticketId;
     }
 
-    public Integer getRoomId() {
+    public void setTicketId(int ticketId) {
+        this.ticketId = ticketId;
+    }
+
+    public int getEscapeRoomId() {
+        return escapeRoomId;
+    }
+
+    public void setEscapeRoomId(int escapeRoomId) {
+        this.escapeRoomId = escapeRoomId;
+    }
+
+    public int getRoomId() {
         return roomId;
     }
 
-    public void setRoomId(Integer roomId) {
+    public void setRoomId(int roomId) {
         this.roomId = roomId;
     }
 
-    public Integer getPlayerId() {
-        return playerId;
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public void setPlayerId(Integer playerId) {
-        this.playerId = playerId;
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
-    public LocalDateTime getPurchaseDate() {
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Instant getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(LocalDateTime purchaseDate) {
+    public void setPurchaseDate(Instant purchaseDate) {
         this.purchaseDate = purchaseDate;
-    }
-
-    public Double getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(Double totalAmount) {
-        this.totalAmount = totalAmount;
     }
 
     @Override
     public String toString() {
-        return "Ticket{" +
-                "id=" + id +
-                ", room_id=" + roomId +
-                ", player_id=" + playerId +
-                ", purchase_date=" + purchaseDate +
-                ", total_amount=" + totalAmount +
-                '}';
+        return  String.format(
+                "Ticket ID: %d, Escape Room ID: %d, Room ID: %d, Player Name: %s, Price: %.2f, Purchase Date: %s",
+                ticketId, escapeRoomId, roomId, playerName, price.doubleValue(),
+                LocalDateTime.ofInstant(purchaseDate, java.time.ZoneId.systemDefault())
+        );
     }
 }

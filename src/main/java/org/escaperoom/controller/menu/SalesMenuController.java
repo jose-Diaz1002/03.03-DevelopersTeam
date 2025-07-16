@@ -1,13 +1,18 @@
 package org.escaperoom.controller.menu;
 
 import org.escaperoom.controller.command.interficie.Command;
-import org.escaperoom.input.InputReader;
+import org.escaperoom.controller.command.ticket.CreateSaleCommand;
+import org.escaperoom.controller.command.ticket.DeleteSaleCommand;
+import org.escaperoom.controller.command.ticket.ListSalesCommand;
+import org.escaperoom.controller.command.ticket.UpdateSaleCommand;
+import org.escaperoom.util.InputReader;
+import org.escaperoom.util.InputValidator;
 import org.escaperoom.view.ConsoleView;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class SalesMenuController {
+public class SalesMenuController implements Command {
 
     private final Map<String, Command> commands = new LinkedHashMap<>();
     private final ConsoleView view;
@@ -20,23 +25,28 @@ public class SalesMenuController {
     }
 
     private void initCommands() {
-      /*  commands.put("1", new CreateSaleCommand(inputReader));
-        commands.put("2", new ListSalesCommand(inputReader));
+          commands.put("1", new CreateSaleCommand(inputReader));
+         commands.put("2", new ListSalesCommand(inputReader));
         commands.put("3", new UpdateSaleCommand(inputReader));
-        commands.put("4", new DeleteSaleCommand(inputReader));*/
+         commands.put("4", new DeleteSaleCommand(inputReader));
     }
 
-    public void start() {
-        String input;
-        do {
-            view.printSalesMenu();
-            input = view.readInput("Selecciona una opción: ");
-            Command command = commands.get(input);
+
+
+    @Override
+    public void execute() {
+        boolean exit = false;
+        while (!exit) {
+            view.printTicketsMenu();
+            String choice = inputReader.readLine("Selecciona una opción: ").trim();
+            Command command = commands.get(choice);
             if (command != null) {
                 command.execute();
-            } else if (!"0".equals(input)) {
-                view.printError("❌ Opción no reconocida.");
+            } else if ("0".equals(choice)) {
+                exit = true; // Exit the menu
+            } else {
+                view.printError("❌ Comando no reconocido. Por favor, intenta de nuevo.");
             }
-        } while (!"0".equals(input));
+        }
     }
 }

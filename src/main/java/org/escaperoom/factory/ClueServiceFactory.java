@@ -5,8 +5,8 @@ import org.escaperoom.controller.command.clue.ListCluesCommand;
 import org.escaperoom.controller.command.clue.UpdateClueCommand;
 import org.escaperoom.dao.mysql.MySQLClueDAO;
 import org.escaperoom.database.MySQLConnection;
-import org.escaperoom.input.InputReader;
-import org.escaperoom.model.service.ClueService;
+import org.escaperoom.util.InputReader;
+import org.escaperoom.service.ClueService;
 
 import java.sql.SQLException;
 

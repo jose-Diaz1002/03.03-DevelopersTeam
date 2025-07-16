@@ -5,7 +5,7 @@ import org.escaperoom.controller.command.decoration.CreateDecorationCommand;
 import org.escaperoom.controller.command.decoration.DeleteDecorationCommand;
 import org.escaperoom.controller.command.decoration.ListDecorationsCommand;
 import org.escaperoom.controller.command.decoration.UpdateDecorationCommand;
-import org.escaperoom.input.InputReader;
+import org.escaperoom.util.InputReader;
 import org.escaperoom.view.ConsoleView;
 
 import java.util.LinkedHashMap;
