@@ -1,29 +1,42 @@
 package org.escaperoom.controller.command.clue;
 
 import org.escaperoom.controller.command.interficie.Command;
-import org.escaperoom.util.InputReader;
+import org.escaperoom.exception.ClueCreationException;
+import org.escaperoom.factory.ClueServiceFactory;
 import org.escaperoom.service.ClueService;
+import org.escaperoom.util.InputReader;
+import org.escaperoom.util.InputValidation;
 
 public class DeleteClueCommand implements Command {
 
     private final InputReader inputReader;
-// Assuming you might want to use a service for clue operations, similar to CreateClueCommand
-     private final ClueService clueService;
+    private final ClueService clueService;
+
     public DeleteClueCommand(InputReader inputReader) {
         this.inputReader = inputReader;
-        this.clueService = null; // ClueServiceFactory.createClueService(); // Uncomment if you have a service to use
+        this.clueService = ClueServiceFactory.create(); // usa el factory correctamente
     }
 
     @Override
     public void execute() {
-        // Aquí iría la lógica para eliminar una pista
-        // Por ejemplo, podrías pedir al usuario el ID de la pista a eliminar
-      //  String clueId = inputReader.readInput("Introduce el ID de la pista a eliminar: ");
+        try {
+            int clueId = InputValidation.validateIdInput("🗑️ Introduce el ID de la pista a eliminar: ");
 
-        // Aquí llamarías al método del servicio para eliminar la pista
-        // clueService.deleteClue(clueId); // Descomentar si tienes un servicio implementado
+            // Confirmación simple
+            String confirm = inputReader.readLine("¿Estás seguro? (s/n): ");
+            if (!confirm.equalsIgnoreCase("s")) {
+                System.out.println("❌ Operación cancelada.");
+                return;
+            }
 
-      //  System.out.println("Pista con ID " + clueId + " eliminada correctamente."); // Mensaje de confirmación
+            clueService.deleteClue(clueId);
+            System.out.println("✅ Pista eliminada correctamente.");
 
+        } catch (ClueCreationException e) {
+            System.out.println("❌ Error al eliminar la pista: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("❌ Entrada inválida. Detalles: " + e.getMessage());
+        }
     }
 }
+

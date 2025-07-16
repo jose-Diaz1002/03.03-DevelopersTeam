@@ -18,5 +18,8 @@ public interface RoomDAO {
     void delete(int roomId);
 
     List<Room> findByEscapeRoomId(int escapeRoomId) throws SQLException;
+
+    boolean existsById(int id) throws SQLException;
+
 }
 

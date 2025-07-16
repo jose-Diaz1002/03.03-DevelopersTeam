@@ -37,7 +37,7 @@ public class ClueServiceFactory {
      * Crea un comando para actualizar pistas.
      */
     public static UpdateClueCommand createUpdateClueCommand(InputReader inputReader) {
-        return new UpdateClueCommand();
+        return new UpdateClueCommand(inputReader);
     }
 
     /**
