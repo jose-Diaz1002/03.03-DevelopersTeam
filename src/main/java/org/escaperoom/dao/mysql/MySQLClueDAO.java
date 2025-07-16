@@ -137,6 +137,17 @@ public class MySQLClueDAO implements ClueDAO {
         }
     }
 
+    @Override
+    public Clue save(Clue clue) throws ClueCreationException {
+
+        if (clue.getId() == 0) {
+            create(clue);
+        } else {
+            update(clue);
+        }
+        return clue;
+    }
+
 
     private Clue mapResultSetToClue(ResultSet rs) throws SQLException {
         Clue clue = new Clue();

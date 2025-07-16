@@ -73,4 +73,5 @@ public class Clue {
         return String.format("Clue{id=%d, roomId=%d, theme=%s, price=%.2f€, quantityAvailable=%d}",
                 clueId, roomId, theme, price, quantityAvailable);
     }
+
 }

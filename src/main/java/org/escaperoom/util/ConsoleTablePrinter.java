@@ -1,6 +1,8 @@
 package org.escaperoom.util;
 
+import org.escaperoom.model.entity.EscapeRoom;
 import org.escaperoom.model.entity.Room;
+import org.escaperoom.model.entity.Subscription;
 import org.escaperoom.model.entity.Ticket;
 
 import java.text.SimpleDateFormat;
@@ -61,4 +63,70 @@ public class ConsoleTablePrinter {
         }
         System.out.println(line);
     }
+
+
+    public static void printSubscriptionsTable(List<Subscription> subscriptions) {
+        if (subscriptions == null || subscriptions.isEmpty()) {
+            System.out.println("No hay tickets para mostrar.");
+            return;
+        }
+
+        String format = "| %-30s | %-15s | %-20s |%n";
+        String line = "+--------------------------------+-----------------+----------------------+";
+
+        System.out.println(line);
+        System.out.printf(format, "Email", "Name", "Surnames");
+        System.out.println(line);
+
+        for (Subscription sub : subscriptions) {
+            System.out.printf(format,
+                    sub.getClientEmail(),
+                    sub.getName(),
+                    sub.getSurnames());
+        }
+
+        System.out.println(line);
+    }
+
+    public static void printEscapeRoomsTable(List<EscapeRoom> escapeRooms) {
+        if (escapeRooms == null || escapeRooms.isEmpty()) {
+            System.out.println("No hay Escape Rooms registrados.");
+            return;
+        }
+
+        String format = "| %-5s | %-25s |%n";
+        String line = "+-------+---------------------------+";
+
+        System.out.println(line);
+        System.out.printf(format, "ID", "Nombre");
+        System.out.println(line);
+
+        for (EscapeRoom er : escapeRooms) {
+            System.out.printf(format,
+                    er.getId(),
+                    er.getName()
+            );
+        }
+        System.out.println(line);
+    }
+
+
+    public static void printEscapeRoomDetails(EscapeRoom escapeRoom) {
+        String line = "+-------+---------------------------+---------------------------+-------------------+";
+        String format = "| %-5s | %-25s | %-25s | %-17s |%n";
+
+        System.out.println(line);
+        System.out.printf(format, "ID", "Nombre", "Inventario Total (€)", "Ventas Total (€)");
+        System.out.println(line);
+        System.out.printf(format,
+                escapeRoom.getId(),
+                escapeRoom.getName(),
+                String.format("%.2f", escapeRoom.getTotalInventoryValue()),
+                String.format("%.2f", escapeRoom.getTotalTicketSales())
+        );
+        System.out.println(line);
+    }
+
+
 }
+

@@ -2,30 +2,31 @@ package org.escaperoom.controller.command.decoration;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.factory.DecorationServiceFactory;
-import org.escaperoom.util.InputReader;
 import org.escaperoom.model.entity.DecorationObject;
 import org.escaperoom.service.DecorationService;
+import org.escaperoom.util.InputValidation;
 
 import java.math.BigDecimal;
 
 public class UpdateDecorationCommand implements Command {
 
-    private final InputReader inputReader;
     private final DecorationService decorationService;
 
-    public UpdateDecorationCommand(InputReader inputReader) {
-        this.inputReader = inputReader;
+    public UpdateDecorationCommand() {
         this.decorationService = DecorationServiceFactory.create();
     }
 
     @Override
     public void execute() {
         try {
-            int decorationId = inputReader.readInt("ID del objeto decorativo a actualizar: ");
-            String name = inputReader.readLine("Nuevo nombre: ").trim();
-            String materialType = inputReader.readLine("Nuevo tipo de material: ").trim();
-            BigDecimal price = new BigDecimal(inputReader.readLine("Nuevo precio: ").trim());
-            int quantity = inputReader.readInt("Nueva cantidad disponible: ");
+            System.out.println("\n--- Actualización de Objeto Decorativo ---");
+
+            int decorationId = InputValidation.validateIdInput("ID del objeto decorativo a actualizar: ");
+            String name = InputValidation.validateStringInput("Nuevo nombre: ");
+            String materialType = InputValidation.validateStringInput("Nuevo tipo de material: ");
+            double priceDouble = InputValidation.validatePriceInput("Nuevo precio: ");
+            BigDecimal price = BigDecimal.valueOf(priceDouble);
+            int quantity = InputValidation.validateIntInput("Nueva cantidad disponible: ");
 
             DecorationObject decoration = new DecorationObject();
             decoration.setId(decorationId);
@@ -36,8 +37,14 @@ public class UpdateDecorationCommand implements Command {
 
             decorationService.updateDecoration(decoration);
             System.out.println("✅ Objeto decorativo actualizado correctamente.");
+            System.out.println("🆔 ID: " + decorationId);
+            System.out.println("🖼️ Nombre: " + name);
+            System.out.println("🪵 Material: " + materialType);
+            System.out.println("💶 Precio: " + price + " €");
+            System.out.println("📦 Cantidad: " + quantity);
+
         } catch (Exception e) {
-            System.out.println("❌ Error inesperado: " + e.getMessage());
+            System.out.println("❌ Error inesperado al actualizar el objeto decorativo: " + e.getMessage());
         }
     }
 }
