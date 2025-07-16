@@ -2,10 +2,10 @@ package org.escaperoom.controller.command.decoration;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.factory.DecorationServiceFactory;
-import org.escaperoom.input.InputReader;
-import org.escaperoom.input.InputValidator;
+import org.escaperoom.util.InputReader;
+import org.escaperoom.util.InputValidator;
 import org.escaperoom.model.entity.DecorationObject;
-import org.escaperoom.model.service.DecorationService;
+import org.escaperoom.service.DecorationService;
 
 import java.math.BigDecimal;
 

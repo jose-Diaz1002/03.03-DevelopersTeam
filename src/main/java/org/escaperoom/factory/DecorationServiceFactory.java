@@ -2,7 +2,7 @@ package org.escaperoom.factory;
 
 import org.escaperoom.dao.mysql.MySQLDecorationObjectDAO;
 import org.escaperoom.database.MySQLConnection;
-import org.escaperoom.model.service.DecorationService;
+import org.escaperoom.service.DecorationService;
 
 import java.sql.SQLException;
 

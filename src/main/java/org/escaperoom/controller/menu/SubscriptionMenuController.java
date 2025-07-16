@@ -1,11 +1,11 @@
 package org.escaperoom.controller.menu;
 
-import org.escaperoom.controller.command.Subscription.SubscribeCommand;
-import org.escaperoom.controller.command.Subscription.UnsubscribeCommand;
-import org.escaperoom.controller.command.Subscription.ViewSubscriptionsCommand;
+import org.escaperoom.controller.command.subscription.SubscribeCommand;
+import org.escaperoom.controller.command.subscription.UnsubscribeCommand;
+import org.escaperoom.controller.command.subscription.ViewSubscriptionsCommand;
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.dao.mongo.MongoSubscriptionDAO;
-import org.escaperoom.input.InputReader;
+import org.escaperoom.util.InputReader;
 import org.escaperoom.view.ConsoleView;
 
 import java.util.LinkedHashMap;
@@ -23,12 +23,14 @@ public class SubscriptionMenuController implements Command {
     }
 
     private void initCommands(MongoSubscriptionDAO subscriptionDAO) {
-        commands.put("1", new SubscribeCommand(inputReader, subscriptionDAO));
+        commands.put("1", new SubscribeCommand( subscriptionDAO));
         commands.put("2", new UnsubscribeCommand(inputReader, subscriptionDAO));
         commands.put("3", new ViewSubscriptionsCommand(subscriptionDAO));
     }
 
-    public void start() {
+    @Override
+    public void execute() {
+
         String input;
         do {
             view.printSubscriptionMenu();
@@ -40,10 +42,5 @@ public class SubscriptionMenuController implements Command {
                 view.printError("❌ Comando no reconocido.");
             }
         } while (!"0".equals(input));
-    }
-
-    @Override
-    public void execute() {
-        start();
     }
 }

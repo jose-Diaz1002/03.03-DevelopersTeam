@@ -1,31 +1,25 @@
-package org.escaperoom.controller.command.escapeRoom;
+package org.escaperoom.controller.command.escaperoom;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.controller.command.room.CreateRoomCommand;
 import org.escaperoom.exception.EscapeRoomCreationException;
 import org.escaperoom.factory.EscapeRoomServiceFactory;
-import org.escaperoom.input.InputReader;
 import org.escaperoom.model.entity.EscapeRoom;
-import org.escaperoom.model.service.EscapeRoomService;
+import org.escaperoom.service.EscapeRoomService;
+import org.escaperoom.util.InputValidation;
 
 public class CreateEscapeRoomCommand implements Command {
 
     private final EscapeRoomService escapeRoomService;
-    private final InputReader inputReader;
 
-    public CreateEscapeRoomCommand(InputReader inputReader) {
+    public CreateEscapeRoomCommand() {
         this.escapeRoomService = EscapeRoomServiceFactory.create();
-        this.inputReader = inputReader;
     }
 
     @Override
     public void execute() {
         try {
-            String name = inputReader.readLine("Nombre del Escape Room: ").trim();
-            if (name.isEmpty()) {
-                System.out.println("❌ El nombre no puede estar vacío.");
-                return;
-            }
+            String name = InputValidation.validateStringInput("Nombre del Escape Room: ");
 
             EscapeRoom escapeRoom = new EscapeRoom();
             escapeRoom.setName(name);
@@ -33,11 +27,9 @@ public class CreateEscapeRoomCommand implements Command {
             escapeRoomService.createEscapeRoom(escapeRoom);
             System.out.println("✅ Escape Room creado con ID: " + escapeRoom.getId());
 
-            String respuesta = inputReader.readLine("¿Quieres añadir una sala ahora? (S/N): ").trim().toUpperCase();
-            if (respuesta.equals("S")) {
-                new CreateRoomCommand(inputReader, escapeRoom.getId()).execute();
-            } else {
-                System.out.println("➡️ Puedes añadir salas más tarde desde el menú de Rooms.");
+            boolean añadirSala = InputValidation.validateBooleanInput("¿Quieres añadir una sala ahora?");
+            if (añadirSala) {
+                new CreateRoomCommand(escapeRoom.getId()).execute();
             }
 
         } catch (EscapeRoomCreationException e) {

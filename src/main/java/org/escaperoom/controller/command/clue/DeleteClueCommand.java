@@ -1,8 +1,8 @@
 package org.escaperoom.controller.command.clue;
 
 import org.escaperoom.controller.command.interficie.Command;
-import org.escaperoom.input.InputReader;
-import org.escaperoom.model.service.ClueService;
+import org.escaperoom.util.InputReader;
+import org.escaperoom.service.ClueService;
 
 public class DeleteClueCommand implements Command {
 

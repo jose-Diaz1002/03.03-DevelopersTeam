@@ -1,12 +1,10 @@
-package org.escaperoom.controller.command.room;
+package org.escaperoom.controller.command.ticket;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.util.InputReader;
 
-public class DeleteRoomCommand implements Command {
-
-
-    public DeleteRoomCommand(InputReader inputReader) {
+public class DeleteSaleCommand implements Command {
+    public DeleteSaleCommand(InputReader inputReader) {
     }
 
     @Override

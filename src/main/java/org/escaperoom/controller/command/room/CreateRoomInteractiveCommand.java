@@ -4,10 +4,10 @@ import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.dao.mysql.MySQLRoomDAO;
 import org.escaperoom.database.ConnectionFactory;
 import org.escaperoom.exception.RoomCreationException;
-import org.escaperoom.input.InputReader;
+import org.escaperoom.util.InputReader;
 import org.escaperoom.model.entity.Room;
 import org.escaperoom.model.enums.DifficultyLevel;
-import org.escaperoom.model.service.RoomService;
+import org.escaperoom.service.RoomService;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -17,6 +17,7 @@ public class CreateRoomInteractiveCommand implements Command {
     private final InputReader inputReader;
     private final RoomService roomService;
 
+
     public CreateRoomInteractiveCommand(InputReader inputReader) {
         this.inputReader = inputReader;
         try {
@@ -24,13 +25,14 @@ public class CreateRoomInteractiveCommand implements Command {
         } catch (SQLException e) {
             throw new RuntimeException("❌ Error al obtener la conexión a la base de datos", e);
         }
+
+
     }
 
     @Override
     public void execute() {
         try {
-            int escapeRoomId = Integer.parseInt(
-                    inputReader.readLine("🔢 Introduce el ID del Escape Room al que quieres añadir la sala: ").trim());
+            int escapeRoomId = inputReader.readInt("🔍 ID del EscapeRoom al que pertenece la sala: ");
 
             String name = inputReader.readLine("🏷️ Nombre de la sala: ").trim();
             if (name.isEmpty()) {

@@ -31,7 +31,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.escaperoom.App</mainClass>
+                                    <mainClass>org.escaperoom.app.App</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -61,6 +61,12 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.vandermeer</groupId>
+            <artifactId>asciitable</artifactId>
+            <version>0.3.2</version>
         </dependency>
 
         <dependency>

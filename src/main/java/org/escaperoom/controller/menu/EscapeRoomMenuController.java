@@ -1,11 +1,11 @@
 package org.escaperoom.controller.menu;
 
-import org.escaperoom.controller.command.escapeRoom.CreateEscapeRoomCommand;
-import org.escaperoom.controller.command.escapeRoom.DeleteEscapeRoomCommand;
-import org.escaperoom.controller.command.escapeRoom.ListEscapeRoomsCommand;
-import org.escaperoom.controller.command.escapeRoom.UpdateEscapeRoomCommand;
+import org.escaperoom.controller.command.escaperoom.CreateEscapeRoomCommand;
+import org.escaperoom.controller.command.escaperoom.DeleteEscapeRoomCommand;
+import org.escaperoom.controller.command.escaperoom.ListEscapeRoomsCommand;
+import org.escaperoom.controller.command.escaperoom.UpdateEscapeRoomCommand;
 import org.escaperoom.controller.command.interficie.Command;
-import org.escaperoom.input.InputReader;
+import org.escaperoom.util.InputReader;
 import org.escaperoom.view.ConsoleView;
 
 import java.util.LinkedHashMap;
@@ -24,7 +24,7 @@ public class EscapeRoomMenuController implements Command {
     }
 
     private void initCommands() {
-        commands.put("1", new CreateEscapeRoomCommand(inputReader));
+        commands.put("1", new CreateEscapeRoomCommand());
         commands.put("2", new ListEscapeRoomsCommand(inputReader));
         commands.put("3", new UpdateEscapeRoomCommand(inputReader));
         commands.put("4", new DeleteEscapeRoomCommand(inputReader));
