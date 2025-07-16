@@ -23,20 +23,28 @@ public class ListEscapeRoomsCommand implements Command {
     @Override
     public void execute() {
         List<EscapeRoom> escapeRooms = escapeRoomService.getAllEscapeRooms();
+
+        if (escapeRooms.isEmpty()) {
+            System.out.println("❌ No hay Escape Rooms registrados.");
+            return;
+        }
+
         ConsoleTablePrinter.printEscapeRoomsTable(escapeRooms);
 
-        if (!escapeRooms.isEmpty()) {
-            boolean verDetalles = InputValidation.validateBooleanInput("¿Deseas ver detalles de un Escape Room específico?");
-            if (verDetalles) {
-                int id = InputValidation.validateIdInput("Introduce el ID del Escape Room: ");
-                escapeRooms.stream()
-                        .filter(er -> er.getId() == id)
-                        .findFirst()
-                        .ifPresentOrElse(
-                                er -> System.out.println("Detalles del Escape Room:\n" + er),
-                                () -> System.out.println("❌ No se encontró un Escape Room con ID: " + id)
-                        );
-            }
+        boolean verDetalles = InputValidation.validateBooleanInput("¿Quieres ver detalles de un Escape Room? (true/false): ");
+        if (verDetalles) {
+            int id = InputValidation.validateIdInput("Introduce el ID del Escape Room: ");
+            escapeRooms.stream()
+                    .filter(er -> er.getId() == id)
+                    .findFirst()
+                    .ifPresentOrElse(
+                            er -> {
+                                System.out.println("\n📄 Detalles del Escape Room:");
+                                ConsoleTablePrinter.printEscapeRoomDetails(er);
+                            },
+                            () -> System.out.println("❌ No se encontró un Escape Room con ID: " + id)
+                    );
         }
     }
+
 }
