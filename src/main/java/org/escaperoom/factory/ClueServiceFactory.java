@@ -32,18 +32,12 @@ public class ClueServiceFactory {
         }
     }
 
-    /**
-     * Crea un comando para listar pistas.
-     */
-    public static ListCluesCommand createListCluesCommand(InputReader inputReader) {
-        return new ListCluesCommand(inputReader);
-    }
 
     /**
      * Crea un comando para actualizar pistas.
      */
     public static UpdateClueCommand createUpdateClueCommand(InputReader inputReader) {
-        return new UpdateClueCommand(inputReader);
+        return new UpdateClueCommand();
     }
 
     /**

@@ -1,5 +1,6 @@
 package org.escaperoom.util;
 
+import org.escaperoom.model.entity.EscapeRoom;
 import org.escaperoom.model.entity.Room;
 import org.escaperoom.model.entity.Ticket;
 
@@ -61,4 +62,27 @@ public class ConsoleTablePrinter {
         }
         System.out.println(line);
     }
+
+    public static void printEscapeRoomsTable(List<EscapeRoom> escapeRooms) {
+        if (escapeRooms == null || escapeRooms.isEmpty()) {
+            System.out.println("No hay Escape Rooms registrados.");
+            return;
+        }
+
+        String format = "| %-5s | %-25s |%n";
+        String line = "+-------+---------------------------+";
+
+        System.out.println(line);
+        System.out.printf(format, "ID", "Nombre");
+        System.out.println(line);
+
+        for (EscapeRoom er : escapeRooms) {
+            System.out.printf(format,
+                    er.getId(),
+                    er.getName()
+            );
+        }
+        System.out.println(line);
+    }
+
 }
