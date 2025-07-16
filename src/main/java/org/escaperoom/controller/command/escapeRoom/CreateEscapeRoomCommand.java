@@ -22,7 +22,6 @@ public class CreateEscapeRoomCommand implements Command {
     public void execute() {
         try {
             String name = inputReader.readLine("Nombre del Escape Room: ").trim();
-
             if (name.isEmpty()) {
                 System.out.println("❌ El nombre no puede estar vacío.");
                 return;
@@ -34,9 +33,11 @@ public class CreateEscapeRoomCommand implements Command {
             escapeRoomService.createEscapeRoom(escapeRoom);
             System.out.println("✅ Escape Room creado con ID: " + escapeRoom.getId());
 
-            String respuesta = inputReader.readLine("¿Quieres añadir una sala ahora? (S/N): ").trim();
-            if (respuesta.equalsIgnoreCase("S")) {
+            String respuesta = inputReader.readLine("¿Quieres añadir una sala ahora? (S/N): ").trim().toUpperCase();
+            if (respuesta.equals("S")) {
                 new CreateRoomCommand(inputReader, escapeRoom.getId()).execute();
+            } else {
+                System.out.println("➡️ Puedes añadir salas más tarde desde el menú de Rooms.");
             }
 
         } catch (EscapeRoomCreationException e) {

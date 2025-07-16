@@ -8,7 +8,7 @@ import org.escaperoom.view.ConsoleView;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class RoomMenuController {
+public class RoomMenuController implements Command {
 
     private final Map<String, Command> commands = new LinkedHashMap<>();
     private final ConsoleView view;
@@ -39,5 +39,10 @@ public class RoomMenuController {
                 view.printError("❌ Comando no reconocido.");
             }
         } while (!"0".equals(input));
+    }
+
+    @Override
+    public void execute() {
+        start();
     }
 }

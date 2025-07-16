@@ -1,28 +1,61 @@
 package org.escaperoom.model.entity;
 
+import org.bson.types.ObjectId;
+
 public class Subscription {
-    private int id;
-    private int playerId;
-    private String eventTypeSubscribed;
+    private ObjectId _id;          // ID interno de MongoDB
+    private String clientEmail;    // Identificador propio (clave natural)
+    private String name;
+    private String surnames;
+    //private int playerId;
+    //private String eventTypeSubscribed;
 
     public Subscription() {
     }
 
-    public Subscription(int id, int playerId, String eventTypeSubscribed) {
-        this.id = id;
-        this.playerId = playerId;
-        this.eventTypeSubscribed = eventTypeSubscribed;
+    public Subscription(String clientEmail, String name, String surnames) {
+        this.clientEmail = clientEmail;
+        this.name = name;
+        this.surnames = surnames;
+        //this.playerId = playerId;
+        //this.eventTypeSubscribed = eventTypeSubscribed;
     }
 
-    public int getId() {
-        return id;
+    // Getters y Setters
+
+    public ObjectId get_id() {
+        return _id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void set_id(ObjectId _id) {
+        this._id = _id;
     }
 
-    public int getPlayerId() {
+    public String getClientEmail() {
+        return clientEmail;
+    }
+
+    public void setClientEmail(String clientEmail) {
+        this.clientEmail = clientEmail;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurnames() {
+        return surnames;
+    }
+
+    public void setSurnames(String surnames) {
+        this.surnames = surnames;
+    }
+
+    /*public int getPlayerId() {
         return playerId;
     }
 
@@ -36,14 +69,15 @@ public class Subscription {
 
     public void setEventTypeSubscribed(String eventTypeSubscribed) {
         this.eventTypeSubscribed = eventTypeSubscribed;
-    }
+    }*/
 
     @Override
     public String toString() {
         return "Subscription{" +
-                "id=" + id +
-                ", player_id=" + playerId +
-                ", event_type_subscribed='" + eventTypeSubscribed + '\'' +
-                '}';
+                "_id=" + (_id != null ? _id.toHexString() : "null") +
+                ", clientEmail='" + clientEmail + '\'' +
+                ", name='" + name + '\'' +
+                ", surnames='" + surnames + '\'' +
+               '}';
     }
 }
