@@ -1,15 +1,7 @@
 package org.escaperoom.controller.command.room;
 
 import org.escaperoom.controller.command.interficie.Command;
-import org.escaperoom.exception.DecorationObjectCreationException;
-import org.escaperoom.input.InputReader;
-import org.escaperoom.model.entity.DecorationObject;
-import org.escaperoom.model.service.DecorationObjectService;
-import org.escaperoom.dao.mysql.MySQLDecorationObjectDAO;
-import org.escaperoom.database.ConnectionFactory;
 
-import java.math.BigDecimal;
-import java.sql.SQLException;
 
 public class AddDecorationObjectCommand implements Command {
     @Override

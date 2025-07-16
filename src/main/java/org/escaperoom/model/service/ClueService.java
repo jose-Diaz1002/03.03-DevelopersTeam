@@ -76,4 +76,14 @@ public class ClueService {
     public Clue getClueById(int clueId) throws ClueCreationException {
         return clueDAO.findById(clueId);
     }
+
+    public boolean isRoomIdValid(int roomId) {
+        try {
+            List<Clue> clues = clueDAO.findByRoomId(roomId);
+            return !clues.isEmpty();
+        } catch (ClueCreationException e) {
+            System.out.println("❌ Error al validar ID de sala: " + e.getMessage());
+            return false; // Retorna false si hay error al consultar
+        }
+    }
 }
