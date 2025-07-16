@@ -72,11 +72,4 @@ public class InventoryService {
 
         return total;
     }
-
-
-
-
-
-
-
 }

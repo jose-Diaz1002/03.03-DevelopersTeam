@@ -22,7 +22,7 @@ public class RoomMenuController implements Command {
 
     private void initCommands() {
         commands.put("1", new CreateRoomInteractiveCommand(inputReader));
-       commands.put("2", new ListRoomsCommand(inputReader));
+       commands.put("2", new ListRoomsCommand());
          commands.put("3", new UpdateRoomCommand(inputReader));
          commands.put("4", new DeleteRoomCommand(inputReader));
     }
