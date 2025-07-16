@@ -1,11 +1,11 @@
-package org.escaperoom.controller.command.escapeRoom;
+package org.escaperoom.controller.command.escaperoom;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.exception.EscapeRoomCreationException;
 import org.escaperoom.factory.EscapeRoomServiceFactory;
-import org.escaperoom.input.InputReader;
+import org.escaperoom.util.InputReader;
 import org.escaperoom.model.entity.EscapeRoom;
-import org.escaperoom.model.service.EscapeRoomService;
+import org.escaperoom.service.EscapeRoomService;
 
 public class UpdateEscapeRoomCommand implements Command {
 

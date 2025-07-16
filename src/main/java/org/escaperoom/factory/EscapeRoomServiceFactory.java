@@ -3,7 +3,7 @@ package org.escaperoom.factory;
 import org.escaperoom.dao.common.*;
 import org.escaperoom.dao.mysql.*;
 import org.escaperoom.database.MySQLConnection;
-import org.escaperoom.model.service.EscapeRoomService;
+import org.escaperoom.service.EscapeRoomService;
 
 import java.sql.Connection;
 import java.sql.SQLException;

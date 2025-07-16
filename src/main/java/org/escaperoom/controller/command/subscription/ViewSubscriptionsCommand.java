@@ -1,4 +1,4 @@
-package org.escaperoom.controller.command.Subscription;
+package org.escaperoom.controller.command.subscription;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.dao.mongo.MongoSubscriptionDAO;

@@ -4,6 +4,7 @@ import org.escaperoom.dao.common.RoomDAO;
 import org.escaperoom.exception.RoomCreationException;
 import org.escaperoom.model.entity.Room;
 import org.escaperoom.model.notification.Observer;
+import org.escaperoom.service.RoomService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

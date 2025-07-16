@@ -2,9 +2,9 @@ package org.escaperoom.controller.command.clue;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.factory.ClueServiceFactory;
-import org.escaperoom.input.InputReader;
+import org.escaperoom.util.InputReader;
 import org.escaperoom.model.entity.Clue;
-import org.escaperoom.model.service.ClueService;
+import org.escaperoom.service.ClueService;
 
 import java.util.List;
 

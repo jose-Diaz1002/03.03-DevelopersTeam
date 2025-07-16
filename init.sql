@@ -52,12 +52,13 @@ CREATE TABLE Player (
 -- Tabla: Ticket
 CREATE TABLE Ticket (
                         ticket_id INT AUTO_INCREMENT PRIMARY KEY,
-                        player_id INT NOT NULL,
+                        escape_room_id INT NOT NULL,
                         room_id INT NOT NULL,
-                        purchase_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                        total_amount DECIMAL(10, 2) NOT NULL,
-                        FOREIGN KEY (player_id) REFERENCES Player(player_id) ON DELETE CASCADE,
-                        FOREIGN KEY (room_id) REFERENCES Room(room_id) ON DELETE CASCADE
+                        player_name VARCHAR(255) NOT NULL,
+                        price DECIMAL(10,2) NOT NULL,
+                        purchase_date TIMESTAMP NOT NULL,
+                        FOREIGN KEY (escape_room_id) REFERENCES EscapeRoom(escape_room_id),
+                        FOREIGN KEY (room_id) REFERENCES Room(room_id)
 );
 
 -- Tabla: Achievement

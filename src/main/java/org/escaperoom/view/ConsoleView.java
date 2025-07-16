@@ -1,6 +1,9 @@
 package org.escaperoom.view;
 
-import org.escaperoom.input.InputReader;
+import org.escaperoom.controller.command.interficie.Command;
+import org.escaperoom.util.InputReader;
+
+import java.util.Map;
 
 import static java.lang.System.*;
 
@@ -30,22 +33,6 @@ public class ConsoleView {
         out.println("0. ❌ Salir");
         out.println("=====================================");
 
-    }
-    public String readInput(String prompt) {
-        out.print(prompt);             // Imprime el prompt una vez
-        return inputReader.readLine();        // Lee la línea sin imprimir nada más
-    }
-
-    public void printError(String message) {
-        err.println("Error: " + message);
-    }
-
-    public void printInfo(String message) {
-        out.println(message);
-    }
-
-    public void printSuccess(String message) {
-        out.println("✅ " + message);
     }
 
     public void printRoomMenu() {
@@ -97,27 +84,40 @@ public class ConsoleView {
         out.println("0. Volver al menú principal");
     }
 
-    public void printSalesMenu() {
-        out.println("===== Menú de Ventas =====");
-        out.println("1. Crear Venta");
-        out.println("2. Listar Ventas");
-        out.println("3. Actualizar Venta");
-        out.println("4. Eliminar Venta");
-        out.println("0. Volver al menú principal");
+    public void printTicketsMenu() {
+        System.out.println("\n🎟️ MENÚ GESTIÓN DE TICKETS 🎟️");
+        System.out.println("1️⃣ Crear Ticket");
+        System.out.println("2️⃣ Listar Tickets");
+        System.out.println("3️⃣ Actualizar Ticket");
+        System.out.println("4️⃣ Eliminar Ticket");
+        System.out.println("0️⃣ Volver al menú principal");
     }
 
     public void printSubscriptionMenu() {
-
-
-        out.println("===== Menú de Suscripciones =====");
-        out.println("1. Crear Suscripción");
-        out.println("2. Listar Suscripciones");
-        out.println("3. Actualizar Suscripción");
-        out.println("4. Eliminar Suscripción");
+        out.println("\n========= 📣 GESTIÓN DE SUBSCRIPCIONES Y NOTIFICACIONES =========");
+        out.println("1. Suscribirse a Notificaciones");
+        out.println("2. Cancelar Suscripción");
+        out.println("3. Ver Subscripciones Actuales");
         out.println("0. Volver al menú principal");
-
     }
     public void printExitMessage() {
         out.println("Gracias por usar Escape Room Virtual. ¡Hasta luego!");
+    }
+
+    public void printHeader(String salesMenu) {
+        out.println("\n========= " + salesMenu + " =========");
+    }
+
+    public void printError(String s) {
+        out.println(s);
+    }
+
+    public String readInput(String s) {
+        out.print(s);
+        return inputReader.readLine(s);
+    }
+
+    public void printSuccess(String s) {
+        out.println("✅ " + s);
     }
 }

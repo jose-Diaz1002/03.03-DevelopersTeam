@@ -1,8 +1,8 @@
-package org.escaperoom.controller.command.Subscription;
+package org.escaperoom.controller.command.subscription;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.dao.mongo.MongoSubscriptionDAO;
-import org.escaperoom.input.InputReader;
+import org.escaperoom.util.InputReader;
 
 public class UnsubscribeCommand implements Command {
 

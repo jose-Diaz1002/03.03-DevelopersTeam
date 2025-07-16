@@ -18,7 +18,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>org.escaperoom.App</mainClass>
+                  <mainClass>org.escaperoom.app.App</mainClass>
                 </transformer>
               </transformers>
             </configuration>

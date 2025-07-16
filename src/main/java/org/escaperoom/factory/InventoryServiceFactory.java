@@ -4,7 +4,7 @@ import org.escaperoom.dao.mysql.MySQLClueDAO;
 import org.escaperoom.dao.mysql.MySQLDecorationObjectDAO;
 import org.escaperoom.dao.mysql.MySQLRoomDAO;
 import org.escaperoom.database.MySQLConnection;
-import org.escaperoom.model.service.InventoryService;
+import org.escaperoom.service.InventoryService;
 
 import java.sql.SQLException;
 
