@@ -25,25 +25,21 @@ public class ClueMenuController implements Command {
 
     private void initCommands() {
         commands.put("1", new CreateClueCommand());
-        commands.put("2", new ListCluesCommand());
+
         commands.put("3", new UpdateClueCommand(inputReader));
         commands.put("4", new DeleteClueCommand(inputReader));
+
     }
 
-
-    // Este es el método requerido por el patrón Command,
-    // que simplemente delega al método start().
     @Override
     public void execute() {
         start();
     }
 
-    // Aquí está el ciclo interactivo real del menú,
-    // separado para que sea más claro y reusable.
     public void start() {
         String input;
         do {
-            view.printClueMenu();  // Muestra las opciones
+            view.printClueMenu();
             input = view.readInput("Selecciona una opción: ");
             Command command = commands.get(input);
             if (command != null) {

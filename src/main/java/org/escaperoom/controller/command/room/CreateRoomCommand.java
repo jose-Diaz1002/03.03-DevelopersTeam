@@ -56,8 +56,14 @@ public class CreateRoomCommand implements Command {
 
             int quantity = InputValidation.validateIntInput("Cantidad disponible: ");
 
-            String difficultyName = InputValidation.validateEnumInput("Selecciona la dificultad:", DifficultyLevel.class);
-            DifficultyLevel difficultyLevel = DifficultyLevel.valueOf(difficultyName);
+            String difficultyInput = InputValidation.validateStringInput("Dificultad (Easy, Medium, Hard, Expert): ");
+            DifficultyLevel difficultyLevel;
+            try {
+                difficultyLevel = DifficultyLevel.fromString(difficultyInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println("❌ Dificultad inválida. Debe ser: Easy, Medium, Hard o Expert.");
+                return;
+            }
 
             Room room = new Room();
             room.setName(name);

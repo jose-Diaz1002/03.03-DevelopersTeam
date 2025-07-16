@@ -19,6 +19,7 @@ public class ListCluesCommand implements Command {
     @Override
     public void execute() {
         try {
+
             List<Clue> pistas = clueService.getAllClues();
 
             if (pistas == null || pistas.isEmpty()) {
@@ -31,6 +32,7 @@ public class ListCluesCommand implements Command {
             }
         } catch (ClueCreationException e) {
             System.out.println("❌ Error al obtener las pistas: " + e.getMessage());
+
         }
     }
 

@@ -42,6 +42,7 @@ public class CreateClueCommand implements Command {
     @Override
     public void execute() {
         try {
+
             int finalRoomId = askRoomId
                     ? InputValidation.validateIdInput("🔍 ID de la sala a la que pertenece la pista: ")
                     : roomId;
@@ -74,6 +75,7 @@ public class CreateClueCommand implements Command {
 
         } catch (Exception e) {
             System.out.println("❌ Error al crear la pista: " + e.getMessage());
+
         }
     }
 
