@@ -142,4 +142,20 @@ public class MySQLRoomDAO implements RoomDAO {
       System.out.println("❌ Error al eliminar sala: " + e.getMessage());
     }
   }
+
+  @Override
+  public boolean existsById(int id) {
+    String sql = "SELECT COUNT(*) FROM Room WHERE room_id = ?";
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+      stmt.setInt(1, id);
+      ResultSet rs = stmt.executeQuery();
+      if (rs.next()) {
+        return rs.getInt(1) > 0;
+      }
+    } catch (SQLException e) {
+      System.out.println("❌ Error al verificar existencia de la sala: " + e.getMessage());
+    }
+    return false;
+  }
+
 }
