@@ -2,8 +2,8 @@ package org.escaperoom.controller.command.decoration;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.factory.DecorationServiceFactory;
-import org.escaperoom.input.InputReader;
-import org.escaperoom.model.service.DecorationService;
+import org.escaperoom.util.InputReader;
+import org.escaperoom.service.DecorationService;
 
 public class DeleteDecorationCommand implements Command {
 

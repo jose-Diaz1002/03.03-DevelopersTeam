@@ -3,12 +3,11 @@ package org.escaperoom.model.entity;
 import org.bson.types.ObjectId;
 
 public class Subscription {
-    private ObjectId _id;          // ID interno de MongoDB
-    private String clientEmail;    // Identificador propio (clave natural)
+    private ObjectId _id;
+    private String clientEmail;  
     private String name;
     private String surnames;
-    //private int playerId;
-    //private String eventTypeSubscribed;
+
 
     public Subscription() {
     }
@@ -17,8 +16,14 @@ public class Subscription {
         this.clientEmail = clientEmail;
         this.name = name;
         this.surnames = surnames;
-        //this.playerId = playerId;
-        //this.eventTypeSubscribed = eventTypeSubscribed;
+    
+    }
+
+    public Subscription(ObjectId _id, String clientEmail, String name, String surnames) {
+        this._id = _id;
+        this.clientEmail = clientEmail;
+        this.name = name;
+        this.surnames = surnames;
     }
 
     // Getters y Setters
@@ -55,29 +60,12 @@ public class Subscription {
         this.surnames = surnames;
     }
 
-    /*public int getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(int playerId) {
-        this.playerId = playerId;
-    }
-
-    public String getEventTypeSubscribed() {
-        return eventTypeSubscribed;
-    }
-
-    public void setEventTypeSubscribed(String eventTypeSubscribed) {
-        this.eventTypeSubscribed = eventTypeSubscribed;
-    }*/
 
     @Override
     public String toString() {
-        return "Subscription{" +
-                "_id=" + (_id != null ? _id.toHexString() : "null") +
-                ", clientEmail='" + clientEmail + '\'' +
-                ", name='" + name + '\'' +
-                ", surnames='" + surnames + '\'' +
-               '}';
+        return String.format(
+                "Subscription{id=%s, clientEmail='%s', name='%s', surnames='%s'}",
+                _id != null ? _id.toHexString() : "null",
+                clientEmail, name, surnames);
     }
 }

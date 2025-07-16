@@ -1,4 +1,4 @@
-package org.escaperoom.model.service;
+package org.escaperoom.service;
 
 import org.escaperoom.dao.common.ClueDAO;
 import org.escaperoom.exception.ClueCreationException;

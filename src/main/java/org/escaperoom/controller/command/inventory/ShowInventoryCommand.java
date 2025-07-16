@@ -1,11 +1,11 @@
 package org.escaperoom.controller.command.inventory;
 
 import org.escaperoom.controller.command.interficie.Command;
-import org.escaperoom.input.InputReader;
+import org.escaperoom.util.InputReader;
 import org.escaperoom.model.entity.Clue;
 import org.escaperoom.model.entity.DecorationObject;
 import org.escaperoom.model.entity.Room;
-import org.escaperoom.model.service.InventoryService;
+import org.escaperoom.service.InventoryService;
 import org.escaperoom.factory.InventoryServiceFactory;
 
 import java.util.List;

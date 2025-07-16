@@ -5,7 +5,7 @@ import org.escaperoom.controller.command.clue.DeleteClueCommand;
 import org.escaperoom.controller.command.clue.ListCluesCommand;
 import org.escaperoom.controller.command.clue.UpdateClueCommand;
 import org.escaperoom.controller.command.interficie.Command;
-import org.escaperoom.input.InputReader;
+import org.escaperoom.util.InputReader;
 import org.escaperoom.view.ConsoleView;
 
 import java.util.LinkedHashMap;

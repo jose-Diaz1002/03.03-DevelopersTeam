@@ -4,11 +4,10 @@ import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.dao.mysql.MySQLRoomDAO;
 import org.escaperoom.database.ConnectionFactory;
 import org.escaperoom.exception.RoomCreationException;
-import org.escaperoom.input.InputReader;
 import org.escaperoom.model.entity.Room;
 import org.escaperoom.model.enums.DifficultyLevel;
-import org.escaperoom.model.service.RoomService;
-import org.escaperoom.input.InputValidator;
+import org.escaperoom.service.RoomService;
+import org.escaperoom.util.InputValidation;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -16,35 +15,63 @@ import java.sql.SQLException;
 public class CreateRoomCommand implements Command {
 
     private final RoomService roomService;
-    private final InputReader inputReader;
+    private final boolean askEscapeRoomId;
     private final int escapeRoomId;
 
-    public CreateRoomCommand(InputReader inputReader, int escapeRoomId) {
-        this.inputReader = inputReader;
+    // Constructor para modo interactivo (pregunta escapeRoomId)
+    public CreateRoomCommand() {
+        this.escapeRoomId = -1;
+        this.askEscapeRoomId = true;
+        this.roomService = createRoomService();
+    }
+
+    // Constructor cuando ya tienes escapeRoomId
+    public CreateRoomCommand(int escapeRoomId) {
         this.escapeRoomId = escapeRoomId;
+        this.askEscapeRoomId = false;
+        this.roomService = createRoomService();
+    }
+
+    private RoomService createRoomService() {
         try {
-            this.roomService = new RoomService(new MySQLRoomDAO(ConnectionFactory.getMySQLConnection()));
+            return new RoomService(new MySQLRoomDAO(ConnectionFactory.getMySQLConnection()));
         } catch (SQLException e) {
-            throw new RuntimeException("Error al obtener la conexión a BD", e);
+            throw new RuntimeException("❌ Error al obtener la conexión a la base de datos", e);
         }
     }
 
     @Override
     public void execute() {
         try {
-            System.out.println("📦 Creando sala para EscapeRoom ID: " + escapeRoomId);
+            int finalEscapeRoomId = askEscapeRoomId
+                    ? InputValidation.validateIdInput("🔍 ID del EscapeRoom al que pertenece la sala: ")
+                    : escapeRoomId;
 
-            String name = InputValidator.readNonEmptyString(inputReader, "Nombre de la sala: ");
-            DifficultyLevel difficulty = InputValidator.readDifficultyLevel(inputReader, "Dificultad (Easy, Medium, Hard, Expert): ");
-            BigDecimal price = InputValidator.readPositiveBigDecimal(inputReader, "Precio: ");
-            int quantity = InputValidator.readPositiveInt(inputReader, "Cantidad disponible: ");
+            System.out.println("📦 Creando sala para EscapeRoom ID: " + finalEscapeRoomId);
 
-            Room room = new Room(escapeRoomId, name, difficulty, price, quantity);
+            String name = InputValidation.validateStringInput("Nombre de la sala: ");
+
+            double priceValue = InputValidation.validatePriceInput("Precio de la sala: ");
+            BigDecimal price = BigDecimal.valueOf(priceValue);
+
+            int quantity = InputValidation.validateIntInput("Cantidad disponible: ");
+
+            String difficultyName = InputValidation.validateEnumInput("Selecciona la dificultad:", DifficultyLevel.class);
+            DifficultyLevel difficultyLevel = DifficultyLevel.valueOf(difficultyName);
+
+            Room room = new Room();
+            room.setName(name);
+            room.setEscapeRoomId(finalEscapeRoomId);
+            room.setPrice(price);
+            room.setQuantityAvailable(quantity);
+            room.setDifficultyLevel(difficultyLevel);
+
             roomService.createRoom(room);
-            System.out.println("✅ Sala creada con éxito.");
 
-        } catch (IllegalArgumentException | RoomCreationException e) {
-            System.out.println(e.getMessage());
+            System.out.println("✅ Sala creada con éxito. ID: " + room.getRoomId());
+
+        } catch (RoomCreationException e) {
+            System.out.println("❌ Error al crear la sala: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("❌ Error inesperado: " + e.getMessage());
         }

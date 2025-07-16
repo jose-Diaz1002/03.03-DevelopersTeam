@@ -6,12 +6,12 @@ import java.math.BigDecimal;
 
 public class Room {
 
-    private int roomId;                 // Clave primaria
-    private int escapeRoomId;           // Clave foránea → EscapeRoom
-    private String name;                // Nombre de la sala
-    private DifficultyLevel difficultyLevel;    // 'Easy', 'Medium', 'Hard', 'Expert'
-    private BigDecimal price;           // Precio en el inventario
-    private int quantityAvailable;      // Cantidad disponible en inventario
+    private int roomId;
+    private int escapeRoomId;
+    private String name;
+    private DifficultyLevel difficultyLevel;
+    private BigDecimal price;
+    private int quantityAvailable;
 
     public Room() {}
 
@@ -74,7 +74,6 @@ public class Room {
         this.price = price;
     }
 
-    // Método auxiliar para obtener el precio como double si es necesario
     public double getPriceAsDouble() {
         return price != null ? price.doubleValue() : 0.0;
     }

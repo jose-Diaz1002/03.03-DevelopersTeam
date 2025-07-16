@@ -13,7 +13,7 @@ public interface RoomDAO {
 
     List<Room> findAll();
 
-    void update(Room room);
+    Room update(Room room);
 
     void delete(int roomId);
 
