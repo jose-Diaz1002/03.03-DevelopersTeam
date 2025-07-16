@@ -26,8 +26,8 @@ public class ClueMenuController implements Command {
     private void initCommands() {
         commands.put("1", new CreateClueCommand());
         commands.put("2", new ListCluesCommand());
-        commands.put("3", new UpdateClueCommand());
-      //  commands.put("4", new DeleteClueCommand());
+        commands.put("3", new UpdateClueCommand(inputReader));
+        commands.put("4", new DeleteClueCommand(inputReader));
     }
 
 
