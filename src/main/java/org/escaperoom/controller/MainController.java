@@ -3,7 +3,6 @@ package org.escaperoom.controller;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import org.escaperoom.controller.command.ExitCommand;
 
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.controller.command.inventory.InventoryValueCommand;
@@ -13,6 +12,7 @@ import org.escaperoom.controller.menu.*;
 import org.escaperoom.dao.mongo.MongoSubscriptionDAO;
 import org.escaperoom.input.InputReader;
 import org.escaperoom.input.ScannerInputReader;
+import org.escaperoom.model.service.InventoryService;
 import org.escaperoom.view.ConsoleView;
 
 
