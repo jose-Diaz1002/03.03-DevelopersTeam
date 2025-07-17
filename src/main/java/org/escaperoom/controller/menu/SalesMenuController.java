@@ -26,7 +26,7 @@ public class SalesMenuController implements Command {
 
     private void initCommands() {
           commands.put("1", new CreateSaleCommand(inputReader));
-         commands.put("2", new ListSalesCommand(inputReader));
+         commands.put("2", new ListSalesCommand());
         commands.put("3", new UpdateSaleCommand(inputReader));
          commands.put("4", new DeleteSaleCommand(inputReader));
     }

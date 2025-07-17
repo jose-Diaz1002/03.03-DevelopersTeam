@@ -1,134 +1,126 @@
 package org.escaperoom.util;
 
+
+import java.math.BigDecimal;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class InputValidation {
 
     private static final Scanner scanner = new Scanner(System.in);
-
-    private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(
+            "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +
+                    "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"
+    );
 
     public static int validateIntInput(String prompt) {
-        int input = 0;
-        boolean valid = false;
-
-        while (!valid) {
+        while (true) {
             System.out.print(prompt);
             if (scanner.hasNextInt()) {
-                input = scanner.nextInt();
-
-                valid = true;
+                int input = scanner.nextInt();
+                scanner.nextLine();
+                return input;
             } else {
                 System.out.println("Invalid input. Please enter an integer.");
-            }
-            scanner.nextLine();
-        }
-        return input;
-    }
-
-    public static String validateStringInput(String prompt) {
-        String input = "";
-        boolean valid = false;
-
-        while (!valid) {
-            System.out.print(prompt);
-            input = scanner.nextLine().trim();
-
-            if (!input.isEmpty()) {
-                valid = true;
-            } else {
-                System.out.println("Invalid input. Please enter a non-empty text.");
+                scanner.nextLine();
             }
         }
-        return input;
     }
 
-    public static boolean validateBooleanInput(String prompt) {
+    public static int validatePositiveIntInput(String prompt) {
         while (true) {
-
-            System.out.print(prompt+ " (s/n): ");
-            String input = scanner.nextLine().trim().toLowerCase();
-
-            if (input.equals("s")) {
-                return true;
-            } else if (input.equals("n")) {
-                return false;
-            } else {
-                System.out.println("Invalid input. Please enter 's' or 'n'.");
+            int value = validateIntInput(prompt);
+            if (value >= 0) {
+                return value;
             }
+            System.out.println("Value must be a positive integer.");
         }
     }
 
     public static int validateIdInput(String prompt) {
-        int input;
+        while (true) {
+            int id = validateIntInput(prompt);
+            if (id > 0) {
+                return id;
+            }
+            System.out.println("Invalid input. ID must be greater than zero.");
+        }
+    }
+
+    public static String validateStringInput(String prompt) {
         while (true) {
             System.out.print(prompt);
-            if (scanner.hasNextInt()) {
-                input = scanner.nextInt();
-
-                if (input > 0) {
-                    return input;
-                } else {
-                    System.out.println("Invalid input. ID must be greater than zero.");
-                }
-                scanner.nextLine();
-            } else {
-                System.out.println("Invalid input. Please enter a positive integer.");
+            String input = scanner.nextLine().trim();
+            if (!input.isEmpty()) {
+                return input;
             }
-
+            System.out.println("Invalid input. Please enter a non-empty text.");
         }
-    }
-
-    public static String validateEmailInput(String prompt) {
-        String input = "";
-        boolean valid = false;
-
-        while (!valid) {
-            System.out.print(prompt);
-            input = scanner.nextLine().trim();
-
-            if (validateEmail(input)) {
-                valid = true;
-            } else {
-                System.out.println("Invalid email format. Please enter a valid email.");
-            }
-        }
-        return input;
-    }
-
-    public static boolean validateEmail(String email) {
-        if (email == null) {
-            return false;
-        }
-        return EMAIL_PATTERN.matcher(email).matches();
     }
 
     public static double validatePriceInput(String prompt) {
-        double price = 0.0;
-        boolean valid = false;
-
-        while (!valid) {
+        while (true) {
             System.out.print(prompt);
             if (scanner.hasNextDouble()) {
-                price = scanner.nextDouble();
+                double price = scanner.nextDouble();
                 scanner.nextLine();
                 if (price >= 0) {
-                    valid = true;
+                    return Math.round(price * 100.0) / 100.0;
                 } else {
                     System.out.println("Price must be a positive number.");
                 }
             } else {
                 System.out.println("Invalid input. Please enter a valid price.");
+                scanner.nextLine();
             }
         }
-
-        price = Math.round(price * 100.0) / 100.0;
-        return price;
     }
 
-    public static <T extends Enum<T>> String validateEnumInput(String prompt, Class<T> enumClass) {
+    public static BigDecimal validatePositiveBigDecimal(String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            String input = scanner.nextLine().trim();
+            try {
+                BigDecimal value = new BigDecimal(input);
+                if (value.compareTo(BigDecimal.ZERO) >= 0) {
+                    return value;
+                }
+                System.out.println("Value must be a positive number.");
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid decimal number.");
+            }
+        }
+    }
+
+    public static boolean validateBooleanInput(String prompt) {
+        while (true) {
+            System.out.print(prompt + " (s/n): ");
+            String input = scanner.nextLine().trim().toLowerCase();
+            if (input.equals("s")) {
+                return true;
+            } else if (input.equals("n")) {
+                return false;
+            }
+            System.out.println("Invalid input. Please enter 's' or 'n'.");
+        }
+    }
+
+    public static String validateEmailInput(String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            String input = scanner.nextLine().trim();
+            if (validateEmail(input)) {
+                return input;
+            }
+            System.out.println("Invalid email format. Please enter a valid email.");
+        }
+    }
+
+    public static boolean validateEmail(String email) {
+        return email != null && EMAIL_PATTERN.matcher(email).matches();
+    }
+
+    public static <T extends Enum<T>> T validateEnumInput(String prompt, Class<T> enumClass) {
         T[] values = enumClass.getEnumConstants();
 
         System.out.println(prompt);
@@ -136,14 +128,25 @@ public class InputValidation {
             System.out.println((i + 1) + ". " + values[i]);
         }
 
-        int choice;
         while (true) {
-            choice = validateIntInput("Choose an option: ");
+            int choice = validateIntInput("Choose an option: ");
             if (choice >= 1 && choice <= values.length) {
-                return values[choice - 1].name();
+                return values[choice - 1];
             }
             System.out.println("Invalid choice. Please try again.");
         }
+    }
+
+    public static String enumOptions(Class<? extends Enum<?>> enumClass) {
+        StringBuilder options = new StringBuilder();
+        Object[] constants = enumClass.getEnumConstants();
+        for (int i = 0; i < constants.length; i++) {
+            options.append(constants[i].toString());
+            if (i < constants.length - 1) {
+                options.append(", ");
+            }
+        }
+        return options.toString();
     }
 
     public static void closeScanner() {

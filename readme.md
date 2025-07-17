@@ -16,7 +16,7 @@ Deepen knowledge and practice of:
 
 @asantamar87
 
-@Jose-diaz1002
+@Jose-Diaz1002
 
 @AlvaroLMC
 

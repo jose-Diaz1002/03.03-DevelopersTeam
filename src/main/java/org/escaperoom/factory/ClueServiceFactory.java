@@ -5,8 +5,8 @@ import org.escaperoom.controller.command.clue.ListCluesCommand;
 import org.escaperoom.controller.command.clue.UpdateClueCommand;
 import org.escaperoom.dao.mysql.MySQLClueDAO;
 import org.escaperoom.database.MySQLConnection;
-import org.escaperoom.util.InputReader;
 import org.escaperoom.service.ClueService;
+import org.escaperoom.util.InputReader;
 
 import java.sql.SQLException;
 
@@ -32,6 +32,12 @@ public class ClueServiceFactory {
         }
     }
 
+    /**
+     * Crea un comando para listar pistas.
+     */
+    public static ListCluesCommand createListCluesCommand(InputReader inputReader) {
+        return new ListCluesCommand();
+    }
 
     /**
      * Crea un comando para actualizar pistas.
@@ -44,6 +50,6 @@ public class ClueServiceFactory {
      * Crea un comando para eliminar pistas.
      */
     public static DeleteClueCommand createDeleteClueCommand(InputReader inputReader) {
-        return new DeleteClueCommand(inputReader);
+        return new DeleteClueCommand();
     }
 }

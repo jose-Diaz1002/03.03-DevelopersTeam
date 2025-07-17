@@ -7,6 +7,7 @@ import org.escaperoom.exception.RoomCreationException;
 import org.escaperoom.model.entity.Room;
 import org.escaperoom.model.enums.DifficultyLevel;
 import org.escaperoom.service.RoomService;
+import org.escaperoom.util.ConsoleTablePrinter;
 import org.escaperoom.util.InputValidation;
 
 import java.math.BigDecimal;
@@ -18,14 +19,12 @@ public class CreateRoomCommand implements Command {
     private final boolean askEscapeRoomId;
     private final int escapeRoomId;
 
-    // Constructor para modo interactivo (pregunta escapeRoomId)
     public CreateRoomCommand() {
         this.escapeRoomId = -1;
         this.askEscapeRoomId = true;
         this.roomService = createRoomService();
     }
 
-    // Constructor cuando ya tienes escapeRoomId
     public CreateRoomCommand(int escapeRoomId) {
         this.escapeRoomId = escapeRoomId;
         this.askEscapeRoomId = false;
@@ -51,13 +50,13 @@ public class CreateRoomCommand implements Command {
 
             String name = InputValidation.validateStringInput("Nombre de la sala: ");
 
-            double priceValue = InputValidation.validatePriceInput("Precio de la sala: ");
+            double priceValue = InputValidation.validatePriceInput("Precio de la sala (€): ");
             BigDecimal price = BigDecimal.valueOf(priceValue);
 
             int quantity = InputValidation.validateIntInput("Cantidad disponible: ");
 
-            String difficultyName = InputValidation.validateEnumInput("Selecciona la dificultad:", DifficultyLevel.class);
-            DifficultyLevel difficultyLevel = DifficultyLevel.valueOf(difficultyName);
+            DifficultyLevel difficultyLevel = InputValidation.validateEnumInput(
+                    "Selecciona la dificultad:", DifficultyLevel.class);
 
             Room room = new Room();
             room.setName(name);
@@ -68,7 +67,8 @@ public class CreateRoomCommand implements Command {
 
             roomService.createRoom(room);
 
-            System.out.println("✅ Sala creada con éxito. ID: " + room.getRoomId());
+            // Usar ConsoleTablePrinter para imprimir resumen
+            ConsoleTablePrinter.printRoomDetails(room);
 
         } catch (RoomCreationException e) {
             System.out.println("❌ Error al crear la sala: " + e.getMessage());
