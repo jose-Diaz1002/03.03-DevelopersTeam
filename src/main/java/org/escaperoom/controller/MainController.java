@@ -32,7 +32,7 @@ public class MainController {
         this.inputReader = new ScannerInputReader();
         this.view = new ConsoleView(inputReader);
         this.mongoClient = MongoClients.create();
-        this.subscriptionDAO = new MongoSubscriptionDAO(mongoClient);
+        this.subscriptionDAO = new MongoSubscriptionDAO();
         initCommands();
     }
 

@@ -1,4 +1,7 @@
-package org.escaperoom.controller;
+package org.escaperoom.controller.menu;
+
+
 
 public class EscapeRoomControllerTest {
+
 }

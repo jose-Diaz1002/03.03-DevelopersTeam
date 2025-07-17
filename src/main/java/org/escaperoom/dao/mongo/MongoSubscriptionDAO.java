@@ -1,12 +1,12 @@
 package org.escaperoom.dao.mongo;
 
-import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.escaperoom.dao.common.SubscriptionDAO;
+import org.escaperoom.database.MongoConnection;
 import org.escaperoom.model.entity.Subscription;
 
 import java.util.ArrayList;
@@ -18,8 +18,8 @@ public class MongoSubscriptionDAO implements SubscriptionDAO {
 
     private final MongoCollection<Document> collection;
 
-    public MongoSubscriptionDAO(MongoClient mongoClient) {
-        MongoDatabase database = mongoClient.getDatabase("escaperoom");
+    public MongoSubscriptionDAO() {
+        MongoDatabase database = MongoConnection.getInstance().getDatabase(); // escaperoom_logs_db
         this.collection = database.getCollection("subscriptions");
     }
 
@@ -62,7 +62,7 @@ public class MongoSubscriptionDAO implements SubscriptionDAO {
         Document updated = new Document("$set", new Document()
                 .append("name", subscription.getName())
                 .append("surnames", subscription.getSurnames()));
-            UpdateResult result = collection.updateOne(filter, updated);
+        UpdateResult result = collection.updateOne(filter, updated);
         if (result.getMatchedCount() == 0) {
             throw new IllegalArgumentException("Subscription with clientEmail " + subscription.getClientEmail() + " not found");
         }

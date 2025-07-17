@@ -1,5 +1,13 @@
 db = db.getSiblingDB('escaperoom_logs_db');
 
+// Crear usuario appuser con permisos solo en esta DB
+db.createUser({
+    user: "appuser",
+    pwd: "app_pass",
+    roles: [{ role: "readWrite", db: "escaperoom_logs_db" }]
+});
+
+// Insertar logs iniciales
 db.logs.insertMany([
     {
         type: "STARTUP",
