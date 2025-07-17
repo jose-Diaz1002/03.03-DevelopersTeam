@@ -37,7 +37,7 @@ public class UpdateClueCommand implements Command {
                 System.out.printf("%d. %s%n", i + 1, themes[i]);
             }
 
-            String inputTema = InputValidation.validateStringInput("Nuevo tema (" + clue.getTheme() + ") [ENTER para no cambiar]: ");
+            String inputTema = InputValidation.validateStringInput("Nuevo tema (" + clue.getTheme() + "): ");
 
             if (!inputTema.trim().isEmpty()) {
                 try {
@@ -57,7 +57,7 @@ public class UpdateClueCommand implements Command {
                 }
             }
 
-            String priceStr = InputValidation.validateStringInput("Nuevo precio (" + clue.getPrice() + "€) [ENTER para no cambiar]: ");
+            String priceStr = InputValidation.validateStringInput("Nuevo precio (" + clue.getPrice() + "): ");
             if (!priceStr.trim().isEmpty()) {
                 try {
                     BigDecimal price = new BigDecimal(priceStr.trim());
@@ -71,7 +71,7 @@ public class UpdateClueCommand implements Command {
                 }
             }
 
-            String cantidadStr = InputValidation.validateStringInput("Nueva cantidad disponible (" + clue.getQuantityAvailable() + ") [ENTER para no cambiar]: ");
+            String cantidadStr = InputValidation.validateStringInput("Nueva cantidad disponible (" + clue.getQuantityAvailable() + "): ");
             if (!cantidadStr.trim().isEmpty()) {
                 try {
                     int cantidad = Integer.parseInt(cantidadStr.trim());
