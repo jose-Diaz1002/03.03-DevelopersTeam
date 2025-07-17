@@ -125,7 +125,7 @@ public class ConsoleTablePrinter {
     }
 
 
-    public static void printCluesTable(List<Clue> clues) {
+/*    public static void printCluesTable(List<Clue> clues) {
         if (clues == null || clues.isEmpty()) {
             System.out.println("No hay pistas para mostrar.");
             return;
@@ -147,6 +147,21 @@ public class ConsoleTablePrinter {
             );
         }
         System.out.println(line);
+    }*/
+
+    public static void printCluesTable(List<Clue> clues) {
+        System.out.printf("%-5s %-10s %-15s %-10s %-10s%n", "ID", "RoomID", "Theme", "Price (€)", "Quantity");
+        System.out.println("--------------------------------------------------------");
+        for (Clue clue : clues) {
+            System.out.printf(
+                    "%-5d %-10d %-15s %-10.2f %-10d%n",
+                    clue.getId(),
+                    clue.getRoomId(),
+                    clue.getTheme().name(),
+                    clue.getPrice(),
+                    clue.getQuantityAvailable()
+            );
+        }
     }
 
     public static void printDecorationsTable(List<DecorationObject> decorations) {
@@ -174,6 +189,32 @@ public class ConsoleTablePrinter {
         System.out.println(line);
     }
 
+    public static void printRoomDetails(Room room) {
+        System.out.println("\n✅ Sala creada con éxito. Detalles:");
+        System.out.println("+----------------+---------------------------+");
+        System.out.printf("| %-14s | %-25s |\n", "Campo", "Valor");
+        System.out.println("+----------------+---------------------------+");
+        System.out.printf("| %-14s | %-25d |\n", "ID Sala", room.getRoomId());
+        System.out.printf("| %-14s | %-25d |\n", "ID EscapeRoom", room.getEscapeRoomId());
+        System.out.printf("| %-14s | %-25s |\n", "Nombre", room.getName());
+        System.out.printf("| %-14s | %-25s |\n", "Dificultad", room.getDifficultyLevel());
+        System.out.printf("| %-14s | %-25.2f |\n", "Precio (€)", room.getPrice().doubleValue());
+        System.out.printf("| %-14s | %-25d |\n", "Cantidad", room.getQuantityAvailable());
+        System.out.println("+----------------+---------------------------+");
+    }
+
+    public static void printRoomTable(Room room) {
+        System.out.println("\n+-----+----------------------+------------+----------+------------+");
+        System.out.printf("| %-3s | %-20s | %-10s | %-8s | %-10s |\n", "ID", "Nombre", "Dificultad", "Precio", "Cantidad");
+        System.out.println("+-----+----------------------+------------+----------+------------+");
+        System.out.printf("| %-3d | %-20s | %-10s | %8.2f€ | %-10d |\n",
+                room.getRoomId(),
+                room.getName(),
+                room.getDifficultyLevel().name(),
+                room.getPrice().doubleValue(),
+                room.getQuantityAvailable());
+        System.out.println("+-----+----------------------+------------+----------+------------+\n");
+    }
 
 }
 

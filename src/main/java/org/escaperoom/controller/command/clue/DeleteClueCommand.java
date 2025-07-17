@@ -4,17 +4,14 @@ import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.exception.ClueCreationException;
 import org.escaperoom.factory.ClueServiceFactory;
 import org.escaperoom.service.ClueService;
-import org.escaperoom.util.InputReader;
 import org.escaperoom.util.InputValidation;
 
 public class DeleteClueCommand implements Command {
 
-    private final InputReader inputReader;
     private final ClueService clueService;
 
-    public DeleteClueCommand(InputReader inputReader) {
-        this.inputReader = inputReader;
-        this.clueService = ClueServiceFactory.create(); // usa el factory correctamente
+    public DeleteClueCommand() {
+        this.clueService = ClueServiceFactory.create();
     }
 
     @Override
@@ -22,8 +19,7 @@ public class DeleteClueCommand implements Command {
         try {
             int clueId = InputValidation.validateIdInput("🗑️ Introduce el ID de la pista a eliminar: ");
 
-            // Confirmación simple
-            String confirm = inputReader.readLine("¿Estás seguro? (s/n): ");
+            String confirm = InputValidation.validateStringInput("¿Estás seguro? (s/n): ");
             if (!confirm.equalsIgnoreCase("s")) {
                 System.out.println("❌ Operación cancelada.");
                 return;
@@ -39,4 +35,3 @@ public class DeleteClueCommand implements Command {
         }
     }
 }
-

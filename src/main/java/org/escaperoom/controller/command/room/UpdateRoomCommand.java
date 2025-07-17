@@ -7,7 +7,9 @@ import org.escaperoom.exception.RoomUpdateException;
 import org.escaperoom.model.entity.Room;
 import org.escaperoom.model.enums.DifficultyLevel;
 import org.escaperoom.service.RoomService;
+import org.escaperoom.util.ConsoleTablePrinter;
 import org.escaperoom.util.InputReader;
+import org.escaperoom.util.InputValidation;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -41,24 +43,20 @@ public class UpdateRoomCommand implements Command {
                 return;
             }
 
-            System.out.println("➡ Sala actual: " + existingRoom);
+            ConsoleTablePrinter.printRoomTable(existingRoom);
 
             String name = inputReader.readLine("Nuevo nombre (deja en blanco para mantener): ");
             if (name != null && !name.trim().isEmpty()) {
                 existingRoom.setName(name.trim());
             }
 
-            String difficultyStr = inputReader.readLine("Nueva dificultad (Easy, Medium, Hard, Expert): ");
-            if (difficultyStr != null && !difficultyStr.trim().isEmpty()) {
-                try {
-                    DifficultyLevel difficulty = DifficultyLevel.fromString(difficultyStr.trim());
-                    existingRoom.setDifficultyLevel(difficulty);
-                } catch (IllegalArgumentException e) {
-                    System.out.println("❌ Dificultad inválida. Se mantiene la actual.");
-                }
+            String changeDifficulty = inputReader.readLine("¿Deseas cambiar la dificultad? (s/n): ");
+            if (changeDifficulty.equalsIgnoreCase("s")) {
+                DifficultyLevel difficulty = InputValidation.validateEnumInput("🎮 Nueva dificultad:", DifficultyLevel.class);
+                existingRoom.setDifficultyLevel(difficulty);
             }
 
-            String priceStr = inputReader.readLine("Nuevo precio (€): ");
+            String priceStr = inputReader.readLine("Nuevo precio (€) (deja en blanco para mantener): ");
             if (priceStr != null && !priceStr.trim().isEmpty()) {
                 try {
                     BigDecimal price = new BigDecimal(priceStr.trim());
@@ -72,7 +70,7 @@ public class UpdateRoomCommand implements Command {
                 }
             }
 
-            String quantityStr = inputReader.readLine("Nueva cantidad disponible: ");
+            String quantityStr = inputReader.readLine("Nueva cantidad disponible (deja en blanco para mantener): ");
             if (quantityStr != null && !quantityStr.trim().isEmpty()) {
                 try {
                     int quantity = Integer.parseInt(quantityStr.trim());
