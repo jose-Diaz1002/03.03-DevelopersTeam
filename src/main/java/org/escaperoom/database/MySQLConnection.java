@@ -18,7 +18,7 @@ public class MySQLConnection {
             "jdbc:mysql://%s:%s/%s?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC",
             HOST, PORT, DB_NAME);
 
-    private MySQLConnection() throws SQLException {
+    public MySQLConnection() throws SQLException {
         this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
