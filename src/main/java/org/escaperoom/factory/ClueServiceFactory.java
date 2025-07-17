@@ -43,13 +43,13 @@ public class ClueServiceFactory {
      * Crea un comando para actualizar pistas.
      */
     public static UpdateClueCommand createUpdateClueCommand(InputReader inputReader) {
-        return new UpdateClueCommand(inputReader);
+        return new UpdateClueCommand();
     }
 
     /**
      * Crea un comando para eliminar pistas.
      */
     public static DeleteClueCommand createDeleteClueCommand(InputReader inputReader) {
-        return new DeleteClueCommand(inputReader);
+        return new DeleteClueCommand();
     }
 }

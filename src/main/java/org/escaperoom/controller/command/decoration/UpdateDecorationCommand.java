@@ -29,7 +29,6 @@ public class UpdateDecorationCommand implements Command {
                 return;
             }
 
-            // Si no quieres permitir cambiar la sala, la mantenemos
             int roomId = existingDecoration.getRoomId();
 
             String name = InputValidation.validateStringInput("Nuevo nombre (" + existingDecoration.getName() + "): ");

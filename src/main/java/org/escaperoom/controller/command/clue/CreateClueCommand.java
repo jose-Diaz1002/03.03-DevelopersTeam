@@ -3,7 +3,6 @@ package org.escaperoom.controller.command.clue;
 import org.escaperoom.controller.command.interficie.Command;
 import org.escaperoom.dao.mysql.MySQLClueDAO;
 import org.escaperoom.database.ConnectionFactory;
-import org.escaperoom.factory.ClueServiceFactory;
 import org.escaperoom.model.entity.Clue;
 import org.escaperoom.model.enums.ClueTheme;
 import org.escaperoom.service.ClueService;
@@ -30,7 +29,6 @@ public class CreateClueCommand implements Command {
         this.roomId = -1;
     }
 
-
     private ClueService createClueService() {
         try {
             return new ClueService(new MySQLClueDAO(ConnectionFactory.getMySQLConnection()));
@@ -42,12 +40,10 @@ public class CreateClueCommand implements Command {
     @Override
     public void execute() {
         try {
-
             int finalRoomId = askRoomId
                     ? InputValidation.validateIdInput("🔍 ID de la sala a la que pertenece la pista: ")
                     : roomId;
 
-            // 🔍 Validamos que la Room exista
             if (!clueService.roomExists(finalRoomId)) {
                 System.out.println("❌ La sala con ID " + finalRoomId + " no existe.");
                 return;
@@ -60,8 +56,7 @@ public class CreateClueCommand implements Command {
 
             int quantity = InputValidation.validateIntInput("📦 Cantidad disponible: ");
 
-            String themeName = InputValidation.validateEnumInput("🎭 Selecciona la temática:", ClueTheme.class);
-            ClueTheme theme = ClueTheme.fromString(themeName);
+            ClueTheme theme = InputValidation.validateEnumInput("🎭 Selecciona la temática:", ClueTheme.class);
 
             Clue clue = new Clue();
             clue.setRoomId(finalRoomId);
@@ -75,10 +70,6 @@ public class CreateClueCommand implements Command {
 
         } catch (Exception e) {
             System.out.println("❌ Error al crear la pista: " + e.getMessage());
-
         }
     }
-
-
-
 }
