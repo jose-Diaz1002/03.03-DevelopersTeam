@@ -35,7 +35,7 @@ public class DeleteEscapeRoomCommand implements Command {
             System.out.println("❌ Error al eliminar el Escape Room: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("❌ Error inesperado al eliminar el Escape Room: " + e.getMessage());
-            e.printStackTrace();  // Para ver detalle en consola durante depuración
+            e.printStackTrace();
         }
     }
 }
