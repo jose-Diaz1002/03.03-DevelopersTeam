@@ -12,13 +12,7 @@ public class InputValidator {
         throw new UnsupportedOperationException("Esta clase no puede ser instanciada.");
     }
 
-    /**
-     * Lee una cadena de texto del usuario y lanza una excepción si está vacía o nula.
-     *
-     * @param inputReader El lector de entrada.
-     * @param prompt      El mensaje a mostrar al usuario.
-     * @return La cadena leída, sin espacios en blanco al principio o al final.
-     */
+
     public static String readNonEmptyString(InputReader inputReader, String prompt) {
         String input = inputReader.readLine(prompt);
         if (input == null || input.trim().isEmpty()) {
@@ -28,13 +22,7 @@ public class InputValidator {
     }
 
 
-    /**
-     * Lee un nivel de dificultad del usuario y lanza una excepción si es inválido.
-     *
-     * @param inputReader El lector de entrada.
-     * @param prompt      El mensaje a mostrar al usuario.
-     * @return El nivel de dificultad correspondiente.
-     */
+
     public static DifficultyLevel readDifficultyLevel(InputReader inputReader, String prompt) {
         String input = readNonEmptyString(inputReader, prompt);
         try {
@@ -45,13 +33,7 @@ public class InputValidator {
     }
 
 
-    /**
-     * Lee un BigDecimal positivo del usuario y lanza una excepción si es inválido.
-     *
-     * @param inputReader El lector de entrada.
-     * @param prompt      El mensaje a mostrar al usuario.
-     * @return El BigDecimal leído, que debe ser positivo.
-     */
+
     public static BigDecimal readPositiveBigDecimal(InputReader inputReader, String prompt) {
         String input = readNonEmptyString(inputReader, prompt);
         try {
@@ -65,13 +47,7 @@ public class InputValidator {
         }
     }
 
-    /**
-     * Lee un entero positivo del usuario y lanza una excepción si es inválido.
-     *
-     * @param inputReader El lector de entrada.
-     * @param prompt      El mensaje a mostrar al usuario.
-     * @return El entero leído, que debe ser mayor o igual a 0.
-     */
+
     public static int readPositiveInt(InputReader inputReader, String prompt) {
         String input = readNonEmptyString(inputReader, prompt);
         try {
@@ -85,13 +61,7 @@ public class InputValidator {
         }
     }
 
-    /**
-     * Lee un entero positivo del usuario y lanza una excepción si es inválido.
-     *
-     * @param inputReader El lector de entrada.
-     * @param prompt      El mensaje a mostrar al usuario.
-     * @return El entero leído, que debe ser mayor o igual a 0.
-     */
+
     public static int readPositiveIntOrZero(InputReader inputReader, String prompt) {
         String input = readNonEmptyString(inputReader, prompt);
         try {
@@ -105,17 +75,12 @@ public class InputValidator {
         }
     }
 
-    /**
-     * Verifica si una cadena es válida (no vacía y no solo espacios).
-     */
+
     public static boolean isValidString(String input) {
         return input != null && !input.trim().isEmpty();
     }
 
-    /**
-     * Valida una respuesta de tipo Sí/No.
-     * Acepta S, N, s, n y sus variantes con espacios.
-     */
+
     public static boolean isAffirmative(String input) {
         return input != null && input.trim().equalsIgnoreCase("S");
     }
@@ -124,9 +89,7 @@ public class InputValidator {
         return input != null && input.trim().equalsIgnoreCase("N");
     }
 
-    /**
-     * Comprueba que un número sea positivo o cero.
-     */
+
     public static boolean isPositiveNumber(int number) {
         return number >= 0;
     }

@@ -15,10 +15,7 @@ import org.escaperoom.view.ConsoleView;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * MainController is the entry point for the Escape Room application.
- * It initializes the main menu and handles user input to navigate through different functionalities.
- */
+
 public class MainController {
 
     private final Map<String, Command> commands = new LinkedHashMap<>();
@@ -36,9 +33,7 @@ public class MainController {
         initCommands();
     }
 
-    /**
-     * Initializes the commands for the main menu.
-     */
+
     private void initCommands() {
         commands.put("1", new EscapeRoomMenuController(inputReader, view));
         commands.put("2", new RoomMenuController(inputReader, view));
@@ -51,9 +46,7 @@ public class MainController {
         commands.put("0", new ExitCommand());
     }
 
-    /**
-     * Starts the main menu loop, allowing the user to select options until they choose to exit.
-     */
+
     public void start() {
         String input;
         do {
